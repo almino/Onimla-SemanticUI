@@ -25,6 +25,6 @@ class Menu extends \Onimla\SemanticUI\Component {
     }
     
     public function invert() {
-        return $this->removeClass('inverted');
+        return $this->addClass('inverted');
     }
 }
