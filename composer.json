@@ -1,0 +1,25 @@
+{
+    "name": "onimla/semantic-ui",
+    "description": "Generate HTML using https://github.com/almino/Onimla-HTML for http://semantic-ui.com/.",
+    "authors": [
+        {
+            "name": "Almino Melo",
+            "email": "almino.melo@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/almino/Onimla-HTML"
+        }
+    ],
+    "require": {
+        "onimla/html": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Onimla\\SematicUI\\": "."
+        }
+    }
+}
