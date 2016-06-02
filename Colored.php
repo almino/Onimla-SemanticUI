@@ -8,7 +8,7 @@ trait Colored {
         if ($color === FALSE) {
             
         }
-        
+
         $colors = array(
             'red',
             'orange',
@@ -24,13 +24,21 @@ trait Colored {
             'grey',
             'black',
         );
-        
+
         $this->removeClass($colors);
         $this->addClass($color);
     }
-    
-    public function invert() {
+
+    public function setInverted() {
         return $this->addClass('inverted');
+    }
+
+    public function unsetInverted() {
+        return $this->removeClass('inverted');
+    }
+
+    public function invert() {
+        return $this->setInverted();
     }
 
 }
