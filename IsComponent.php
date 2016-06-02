@@ -2,7 +2,6 @@
 
 namespace Onimla\SemanticUI;
 
-
 trait IsComponent {
     public function setComponent() {
         $this->addClass('ui');
