@@ -10,10 +10,10 @@ trait Alignment {
     protected $center = 'center';
     protected $aligned = 'aligned';
 
-    protected function setAlignment($option, $requireAligned = TRUE) {
+    protected function setAlignment($class, $requireAligned = TRUE) {
         $this->removeAlignmentClasses();
 
-        $this->addClass($this->$option);
+        $this->addClass($class);
 
         if ($requireAligned) {
             $this->addClass($this->aligned);
@@ -39,9 +39,16 @@ trait Alignment {
     }
 
     protected function removeAlignmentClasses() {
-        foreach (get_object_vars($this) as $option) {
-            $this->removeClass($this->$option);
-        }
+        $classes = array(
+            $this->right,
+            $this->left,
+            $this->justified,
+            $this->center,
+            $this->aligned,
+        );
+
+        $this->removeClass($classes);
+
 
         return $this;
     }
