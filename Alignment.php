@@ -35,7 +35,7 @@ trait Alignment {
     }
 
     public function center() {
-        return $this->setAlignment(__FUNCTION__, FALSE);
+        return $this->setAlignment(__FUNCTION__);
     }
 
     protected function removeAlignmentClasses() {
