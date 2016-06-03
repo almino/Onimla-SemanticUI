@@ -14,7 +14,7 @@ require_once substr(__DIR__, 0, strpos(__DIR__, 'Form')) . 'IsComponent.trait.ph
 
 class Form extends \Onimla\HTML\Form {
 
-    use \Onimla\SemanticUI\IsComponent;
+    use \Onimla\SemanticUI\Traits\Component;
 
     public function __construct($method = FALSE, $action = FALSE) {
         parent::__construct($method, $action);

@@ -1,8 +1,8 @@
 <?php
 
-namespace Onimla\SemanticUI;
+namespace Onimla\SemanticUI\Traits;
 
-trait IsComponent {
+trait Component {
     public function setComponent() {
         $this->addClass('ui');
     }

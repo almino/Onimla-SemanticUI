@@ -14,7 +14,7 @@ require_once 'IsComponent.trait.php';
 
 
 class Component extends \Onimla\HTML\Element {
-    use IsComponent;
+    use Traits\Component;
     public function __construct($name, $attr = FALSE, $children = FALSE) {
         parent::__construct($name, $attr, $children);
         $this->setComponent();

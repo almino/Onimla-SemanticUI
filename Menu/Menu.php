@@ -6,7 +6,7 @@ namespace Onimla\SemanticUI\Menu;
 
 class Menu extends \Onimla\SemanticUI\Component {
 
-    use \Onimla\SemanticUI\Colored;
+    use \Onimla\SemanticUI\Traits\Colored;
 
     public function __construct($children = FALSE, $attr = FALSE) {
         parent::__construct('div', $attr, $children);

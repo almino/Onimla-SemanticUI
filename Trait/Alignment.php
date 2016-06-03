@@ -1,6 +1,6 @@
 <?php
 
-namespace Onimla\SemanticUI;
+namespace Onimla\SemanticUI\Traits;
 
 trait Alignment {
 

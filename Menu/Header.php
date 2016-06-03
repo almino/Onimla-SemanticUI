@@ -13,7 +13,7 @@ require_once substr(__DIR__, 0, strpos(__DIR__, 'Menu')) . 'IsItem.trait.php';
 
 class Header extends \Onimla\HTML\Element {
 
-    use \Onimla\SemanticUI\IsItem;
+    use \Onimla\SemanticUI\Traits\Item;
 
     public function __construct($text = FALSE) {
         parent::__construct('div');

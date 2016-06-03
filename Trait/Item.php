@@ -1,9 +1,9 @@
 <?php
 
-namespace Onimla\SemanticUI;
+namespace Onimla\SemanticUI\Traits;
 
 
-trait IsItem {
+trait Item {
     public function setItem() {
         $this->addClass('item');
     }
