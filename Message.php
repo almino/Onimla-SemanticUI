@@ -9,7 +9,7 @@ namespace Onimla\SemanticUI;
  * @property \Onimla\HTML\Element $header .header
  */
 class Message extends \Onimla\HTML\Node implements \Onimla\HTML\HasAttribute, \Onimla\HTML\Appendable {
-    const CLASS_VALUE = self::CLASS_VALUE;
+    const CLASS_VALUE = 'message';
 
     use Traits\Component,
         Traits\Colored;
