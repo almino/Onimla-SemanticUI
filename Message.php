@@ -9,6 +9,7 @@ namespace Onimla\SemanticUI;
  * @property \Onimla\HTML\Element $header .header
  */
 class Message extends \Onimla\HTML\Node implements \Onimla\HTML\HasAttribute, \Onimla\HTML\Appendable {
+    const CLASS_VALUE = self::CLASS_VALUE;
 
     use Traits\Component,
         Traits\Colored;
@@ -22,7 +23,7 @@ class Message extends \Onimla\HTML\Node implements \Onimla\HTML\HasAttribute, \O
 
         # Atributos ================================================================== #
         $this->setComponent($this->container);
-        $this->container->addClass('message');
+        $this->container->addClass(self::CLASS_VALUE);
 
         $this->content->addClass('content');
 
@@ -60,13 +61,13 @@ class Message extends \Onimla\HTML\Node implements \Onimla\HTML\HasAttribute, \O
 
     public function error() {
         $class = $this->container->getClass();
-        $class->before('message', __FUNCTION__);
+        $class->before(self::CLASS_VALUE, __FUNCTION__);
         return $this;
     }
 
     public function negative() {
         $class = $this->container->getClass();
-        $class->before('message', __FUNCTION__);
+        $class->before(self::CLASS_VALUE, __FUNCTION__);
         return $this;
     }
 
@@ -83,7 +84,7 @@ class Message extends \Onimla\HTML\Node implements \Onimla\HTML\HasAttribute, \O
             $this->icon = new Icon($icon);
         }
 
-        $this->container->getClass->after('ui', 'icon');
+        $this->container->getClass->after(Component::CLASS_VALUE, 'icon');
 
         $this->container->prepend($this->icon);
 
