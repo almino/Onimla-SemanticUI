@@ -23,6 +23,7 @@ class Icon extends \Onimla\HTML\Element {
 
     public function __construct($class) {
         parent::__construct('i');
+        $this->addClass(self::CLASS_VALUE);
         call_user_func_array(array($this, 'setIcon'), func_get_args());
     }
 
