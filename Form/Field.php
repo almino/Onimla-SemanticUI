@@ -32,6 +32,8 @@ require_once implode(DIRECTORY_SEPARATOR, array(
  * @property \Onimla\HTML\Label $label
  */
 class Field extends \Onimla\HTML\Node implements \Onimla\HTML\HasAttribute, \Onimla\HTML\Appendable {
+    
+    const CLASS_VALUE = 'field';
 
     public function __construct($label = FALSE, $name = FALSE, $value = FALSE) {
         parent::__construct();
@@ -42,7 +44,7 @@ class Field extends \Onimla\HTML\Node implements \Onimla\HTML\HasAttribute, \Oni
         $this->label = new \Onimla\HTML\Label($this->input, $label);
 
         # Atributos ================================================================== #
-        $this->container->addClass('field');
+        $this->container->addClass(self::CLASS_VALUE);
 
         # Árvore ===================================================================== #
         $this->container->append($this->label, $this->input);
@@ -74,6 +76,10 @@ class Field extends \Onimla\HTML\Node implements \Onimla\HTML\HasAttribute, \Oni
 
     public function &matchClass($classes, $level = FALSE) {
         return call_user_func_array(array($this->container, __FUNCTION__), func_get_args());
+    }
+    
+    public function error() {
+        $this->container->getClass()->after(self::CLASS_VALUE, 'error');
     }
 
 }
