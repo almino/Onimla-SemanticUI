@@ -57,6 +57,14 @@ class Message extends \Onimla\HTML\Node implements \Onimla\HTML\HasAttribute, \O
     public function &matchClass($classes, $level = FALSE) {
         return call_user_func_array(array($this->container, __FUNCTION__), func_get_args());
     }
+    
+    public function error() {
+        $this->container->addClass('error', 'message');
+    }
+    
+    public function negative() {
+        $this->container->addClass('negative', 'message');
+    }
 
     public function icon($icon = FALSE) {
         if ($icon === FALSE) {
