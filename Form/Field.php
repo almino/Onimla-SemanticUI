@@ -26,6 +26,7 @@ require_once implode(DIRECTORY_SEPARATOR, array(
  */
 
 /**
+ * A field is a form element containing a label and an input
  * @property \Onimla\HTML\Element $container
  * @property \Onimla\HTML\Input $input
  * @property \Onimla\HTML\Label $label
