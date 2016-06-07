@@ -4,6 +4,8 @@ namespace Onimla\SemanticUI;
 
 class Icon extends \Onimla\HTML\Element {
 
+    const CLASS_VALUE = 'icon';
+
     protected $classes = array(
         # Icons can alert users to the type of message being displayed
         'message' => array(
@@ -26,11 +28,11 @@ class Icon extends \Onimla\HTML\Element {
 
     public function setIcon($class) {
         $this->unsetIcon();
-        $this->addClass('icon', func_get_args());
+        $this->getClass()->before(self::CLASS_VALUE, func_get_args());
     }
 
     public function unsetIcon() {
-        $this->removeClass('icon', $this->classes);
+        $this->removeClass($this->classes);
     }
 
 }
