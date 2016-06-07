@@ -84,7 +84,7 @@ class Message extends \Onimla\HTML\Node implements \Onimla\HTML\HasAttribute, \O
             $this->icon = new Icon($icon);
         }
 
-        $this->container->getClass->after(Component::CLASS_VALUE, 'icon');
+        $this->container->getClass()->after(Component::CLASS_VALUE, 'icon');
 
         $this->container->prepend($this->icon);
 
