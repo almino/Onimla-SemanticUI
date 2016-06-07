@@ -58,6 +58,42 @@ class Message extends \Onimla\HTML\Node implements \Onimla\HTML\HasAttribute, \O
         return call_user_func_array(array($this->container, __FUNCTION__), func_get_args());
     }
 
+    public function icon($icon = FALSE) {
+        if ($icon === FALSE) {
+            return isset($this->icon) ? $this->icon : FALSE;
+        }
+
+        $this->removeIcon();
+
+        if ($icon instanceof Icon) {
+            $this->icon = $icon;
+        } else {
+            $this->icon = new Icon($icon);
+        }
+
+        $this->container->addClass('icon', 'message');
+
+        $this->container->prepend($this->icon);
+
+        return $this;
+    }
+
+    public function removeIcon() {
+        if (isset($this->icon)) {
+            $this->container->removeClass('icon');
+            $this->container->removeChild($this->icon);
+            $icon = $this->icon;
+            unset($this->icon);
+            return $icon;
+        }
+
+        return FALSE;
+    }
+
+    public function unsetIcon() {
+        return $this->removeIcon();
+    }
+
     public function header($text = FALSE) {
         if ($text === FALSE) {
             return isset($this->header) ? $this->header : FALSE;
@@ -97,41 +133,29 @@ class Message extends \Onimla\HTML\Node implements \Onimla\HTML\HasAttribute, \O
     public function unsetHeader() {
         return $this->removeHeader();
     }
-    
-    public function icon($icon = FALSE) {
-        if ($icon === FALSE) {
-            return isset($this->icon) ? $this->icon : FALSE;
+
+    public function text($string = FALSE) {
+        $params = self::filterChildren(func_get_args());
+
+        if (count($params) < 1) {
+            return $this->container->text();
         }
 
-        $this->removeIcon();
+        $this->removeContent();
 
-        if ($icon instanceof Icon) {
-            $this->icon = $icon;
-        } else {
-            $this->icon = new Icon($icon);
+        foreach ($params as $text) {
+            if (!$text instanceof Node) {
+                $text = new \Onimla\HTML\Paragraph($text);
+            }
+
+            $this->content->append($text);
         }
-        
-        $this->container->addClass('icon', 'message');
-
-        $this->container->prepend($this->icon);
 
         return $this;
     }
 
-    public function removeIcon() {
-        if (isset($this->icon)) {
-            $this->container->removeClass('icon');
-            $this->container->removeChild($this->icon);
-            $icon = $this->icon;
-            unset($this->icon);
-            return $icon;
-        }
-
-        return FALSE;
-    }
-
-    public function unsetIcon() {
-        return $this->removeIcon();
+    public function removeContent() {
+        return $this->content->removeChildren();
     }
 
 }
