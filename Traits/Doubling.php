@@ -3,7 +3,7 @@
 namespace Onimla\SemanticUI\Traits;
 
 
-class Doubling {
+trait Doubling {
 
     public function doubling() {
         return $this->setDoubling();

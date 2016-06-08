@@ -2,7 +2,7 @@
 
 namespace Onimla\SemanticUI\Traits;
 
-class Attached {
+trait Attached {
 
     private $top = 'top';
     private $attached = 'attached';
