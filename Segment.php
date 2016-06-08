@@ -7,9 +7,10 @@ namespace Onimla\SemanticUI;
  */
 class Segment extends Component {
 
-    const CLASS_NAME = 'segment';
+    use Traits\Attached,
+        Traits\Colored;
 
-    use Onimla\SemanticUI\Traits\Attached;
+    const CLASS_NAME = 'segment';
 
     public function __construct($children = FALSE) {
         parent::__construct('div', FALSE, func_get_args());
