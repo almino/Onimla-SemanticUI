@@ -9,7 +9,7 @@ trait Doubling {
     }
 
     public function setDoubling() {
-        $this->getClass()->prepend(\Onimla\SemanticUI\Constant::DOUBLING);
+        $this->getClassAttribute()->after(\Onimla\SemanticUI\Component::CLASS_NAME, \Onimla\SemanticUI\Constant::DOUBLING);
         return $this;
     }
 
