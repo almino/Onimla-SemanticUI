@@ -32,7 +32,7 @@ trait Attached {
         $this->setAttached($this->bottom, TRUE);
     }
 
-    private function removeAlignmentClasses() {
+    private function removeAttachedClasses() {
         $classes = array(
             $this->top,
             $this->bottom,
