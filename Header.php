@@ -20,4 +20,8 @@ class Header extends \Onimla\HTML\Heading {
         return $this->getClass()->before(self::CLASS_VALUE, __FUNCTION__);
     }
 
+    public function block() {
+        return $this->getClass()->before(self::CLASS_VALUE, __FUNCTION__);
+    }
+
 }
