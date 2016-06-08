@@ -13,7 +13,7 @@ trait Attached {
 
         $this->getClassAttribute()->before($this->attachedAddClassBefore(), $class);
 
-        if ($requireAligned) {
+        if ($requireAttached) {
             $this->getClassAttribute()->after($class, $this->attached);
         }
 
