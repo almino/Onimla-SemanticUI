@@ -13,10 +13,10 @@ trait Alignment {
     protected function setAlignment($class, $requireAligned = TRUE) {
         $this->removeAlignmentClasses();
         
-        $this->getClassAttribute()->after($this->addClassAfter(), $class);
+        $this->getClassAttribute()->after($this->alignmentAddClassAfter(), $class);
 
         if ($requireAligned) {
-            $this->addClass($this->aligned);
+            $this->getClassAttribute()->after($class, $this->aligned);
         }
 
         return $this;
@@ -53,7 +53,7 @@ trait Alignment {
         return $this;
     }
     
-    private function addClassAfter() {
+    private function alignmentAddClassAfter() {
         if ($this->hasClass(\Onimla\SemanticUI\Constant::DOUBLING)) {
             return \Onimla\SemanticUI\Constant::DOUBLING;
         }
