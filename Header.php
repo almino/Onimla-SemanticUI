@@ -9,8 +9,9 @@ class Header extends \Onimla\HTML\Heading {
 
     const CLASS_NAME = 'header';
 
-    use Traits\Component,
-        Traits\Alignment,
+    use Traits\Alignment,
+        Traits\Attached,
+        Traits\Component,
         Traits\Colored;
 
     public function __construct($number, $text = FALSE, $class = FALSE) {
@@ -47,7 +48,7 @@ class Header extends \Onimla\HTML\Heading {
         if (isset($this->sub)) {
             $this->removeChild($this->sub);
         }
-        
+
         return $this;
     }
 
