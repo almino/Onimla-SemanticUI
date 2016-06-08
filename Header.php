@@ -44,7 +44,11 @@ class Header extends \Onimla\HTML\Heading {
     }
 
     public function removeSub() {
-        $this->removeChild($this->sub);
+        if (isset($this->sub)) {
+            $this->removeChild($this->sub);
+        }
+        
+        return $this;
     }
 
 }
