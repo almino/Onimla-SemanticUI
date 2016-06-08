@@ -2,6 +2,9 @@
 
 namespace Onimla\SemanticUI;
 
+/**
+ * @property Header\Sub $sub .sub.header
+ */
 class Header extends \Onimla\HTML\Heading {
 
     const CLASS_VALUE = 'header';
@@ -22,6 +25,26 @@ class Header extends \Onimla\HTML\Heading {
 
     public function block() {
         return $this->getClass()->before(self::CLASS_VALUE, __FUNCTION__);
+    }
+
+    public function sub($text = FALSE) {
+        if ($text === FALSE) {
+            return isset($this->sub) ? $this->sub : FALSE;
+        }
+
+        $this->removeSub();
+
+        if ($text instanceof \Onimla\HTML\Element) {
+            $this->sub = $text;
+        } else {
+            $this->sub = new Header\Sub($text);
+        }
+
+        return $this;
+    }
+
+    public function removeSub() {
+        $this->removeChild($this->sub);
     }
 
 }
