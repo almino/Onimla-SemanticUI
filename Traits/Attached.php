@@ -46,13 +46,15 @@ class Attached {
     }
 
     private function attachedAddClassBefore() {
-        /*
-          if ($this->hasClass(\Onimla\SemanticUI\Constant::DOUBLING)) {
-          return \Onimla\SemanticUI\Constant::DOUBLING;
-          }
-         */
+        if ($this->hasClass(\Onimla\SemanticUI\Segment::CLASS_NAME)) {
+            return \Onimla\SemanticUI\Segment::CLASS_NAME;
+        }
+        
+        if ($this->hasClass(\Onimla\SemanticUI\Header::CLASS_NAME)) {
+            return \Onimla\SemanticUI\Header::CLASS_NAME;
+        }
 
-        return \Onimla\SemanticUI\Segment::CLASS_NAME;
+        return self::CLASS_NAME;
     }
 
 }
