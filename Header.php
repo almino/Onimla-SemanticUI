@@ -7,7 +7,7 @@ namespace Onimla\SemanticUI;
  */
 class Header extends \Onimla\HTML\Heading {
 
-    const CLASS_VALUE = 'header';
+    const CLASS_NAME = 'header';
 
     use Traits\Component,
         Traits\Alignment,
@@ -16,15 +16,15 @@ class Header extends \Onimla\HTML\Heading {
     public function __construct($number, $text = FALSE, $class = FALSE) {
         parent::__construct($number, $text, $class);
         $this->setComponent();
-        $this->addClass(self::CLASS_VALUE);
+        $this->addClass(self::CLASS_NAME);
     }
 
     public function dividing() {
-        return $this->getClass()->before(self::CLASS_VALUE, __FUNCTION__);
+        return $this->getClass()->before(self::CLASS_NAME, __FUNCTION__);
     }
 
     public function block() {
-        return $this->getClass()->before(self::CLASS_VALUE, __FUNCTION__);
+        return $this->getClass()->before(self::CLASS_NAME, __FUNCTION__);
     }
 
     public function sub($text = FALSE) {

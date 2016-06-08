@@ -13,7 +13,7 @@ trait Component {
             $instance = $this;
         }
 
-        $instance->addClass(\Onimla\SemanticUI\Component::CLASS_VALUE);
+        $instance->addClass(\Onimla\SemanticUI\Component::CLASS_NAME);
     }
 
     public function unsetComponent($instance = FALSE) {
@@ -21,7 +21,7 @@ trait Component {
             $instance = $this;
         }
 
-        $instance->removeClass(\Onimla\SemanticUI\Component::CLASS_VALUE);
+        $instance->removeClass(\Onimla\SemanticUI\Component::CLASS_NAME);
     }
 
     public function state($state) {

@@ -14,7 +14,7 @@ namespace Onimla\SemanticUI;
 
 class Component extends \Onimla\HTML\Element {
     
-    const CLASS_VALUE = 'ui';
+    const CLASS_NAME = 'ui';
 
     use Traits\Component;
 
