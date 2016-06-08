@@ -11,7 +11,7 @@ trait Attached {
     protected function setAttached($class, $requireAttached = TRUE) {
         $this->removeAttachedClasses();
 
-        $this->getClassAttribute()->before($this->addClassAfter(), $class);
+        $this->getClassAttribute()->before($this->attachedAddClassBefore(), $class);
 
         if ($requireAligned) {
             $this->getClassAttribute()->after($class, $this->attached);
