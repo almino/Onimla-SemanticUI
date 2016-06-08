@@ -20,11 +20,11 @@ class Header extends \Onimla\HTML\Heading {
     }
 
     public function dividing() {
-        return $this->getClass()->before(self::CLASS_NAME, __FUNCTION__);
+        return $this->getClassAttribute()->before(self::CLASS_NAME, __FUNCTION__);
     }
 
     public function block() {
-        return $this->getClass()->before(self::CLASS_NAME, __FUNCTION__);
+        return $this->getClassAttribute()->before(self::CLASS_NAME, __FUNCTION__);
     }
 
     public function sub($text = FALSE) {

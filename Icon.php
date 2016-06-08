@@ -29,7 +29,7 @@ class Icon extends \Onimla\HTML\Element {
 
     public function setIcon($class) {
         $this->unsetIcon();
-        $this->getClass()->before(self::CLASS_NAME, func_get_args());
+        $this->getClassAttribute()->before(self::CLASS_NAME, func_get_args());
     }
 
     public function unsetIcon() {

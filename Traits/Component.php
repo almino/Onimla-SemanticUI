@@ -9,7 +9,7 @@ trait Component {
     }
 
     public function setComponent($instance = FALSE) {
-        if ($instance === FALSE) {
+        if (!is_object($instance)) {
             $instance = $this;
         }
 
@@ -17,7 +17,7 @@ trait Component {
     }
 
     public function unsetComponent($instance = FALSE) {
-        if ($instance === FALSE) {
+        if (!is_object($instance)) {
             $instance = $this;
         }
 

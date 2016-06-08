@@ -79,7 +79,7 @@ class Field extends \Onimla\HTML\Node implements \Onimla\HTML\HasAttribute, \Oni
     }
     
     public function error() {
-        $this->container->getClass()->after(self::CLASS_NAME, 'error');
+        $this->container->getClassAttribute()->after(self::CLASS_NAME, 'error');
     }
     
     public function value($value = FALSE) {

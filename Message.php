@@ -60,13 +60,13 @@ class Message extends \Onimla\HTML\Node implements \Onimla\HTML\HasAttribute, \O
     }
 
     public function error() {
-        $class = $this->container->getClass();
+        $class = $this->container->getClassAttribute();
         $class->before(self::CLASS_NAME, __FUNCTION__);
         return $this;
     }
 
     public function negative() {
-        $class = $this->container->getClass();
+        $class = $this->container->getClassAttribute();
         $class->before(self::CLASS_NAME, __FUNCTION__);
         return $this;
     }
@@ -84,7 +84,7 @@ class Message extends \Onimla\HTML\Node implements \Onimla\HTML\HasAttribute, \O
             $this->icon = new Icon($icon);
         }
 
-        $this->container->getClass()->after(Component::CLASS_NAME, 'icon');
+        $this->container->getClassAttribute()->after(Component::CLASS_NAME, 'icon');
 
         $this->container->prepend($this->icon);
 
