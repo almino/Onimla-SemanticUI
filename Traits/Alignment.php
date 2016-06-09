@@ -17,6 +17,10 @@ trait Alignment {
         if ($this->hasClass(\Onimla\SemanticUI\Constant::DOUBLING)) {
             return \Onimla\SemanticUI\Constant::DOUBLING;
         }
+        
+        if ($this->hasClass(\Onimla\SemanticUI\Row::CLASS_NAME)) {
+            return \Onimla\SemanticUI\Row::CLASS_NAME;
+        }
 
         return \Onimla\SemanticUI\Component::CLASS_NAME;
     }
@@ -52,7 +56,7 @@ trait Alignment {
     }
 
     public function bottom() {
-        return $this->setAlignment(__FUNCTION__, FALSE);
+        return $this->setAlignment(__FUNCTION__);
     }
 
     public function center() {
@@ -68,7 +72,7 @@ trait Alignment {
     }
 
     public function middle() {
-        return $this->setAlignment(__FUNCTION__, FALSE);
+        return $this->setAlignment(__FUNCTION__);
     }
 
     public function right() {
@@ -76,7 +80,7 @@ trait Alignment {
     }
 
     public function top() {
-        return $this->setAlignment(__FUNCTION__, FALSE);
+        return $this->setAlignment(__FUNCTION__);
     }
 
 }
