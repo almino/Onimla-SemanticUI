@@ -6,18 +6,18 @@ trait Divided {
 
     private $divided = 'divided';
 
-    protected function setDivided($class, $requireDivided = TRUE) {
+    protected function setDivided() {
         $this->getClassAttribute()->before($this->dividedAddClassBefore(), $class);
 
         return $this;
     }
 
-    protected function unsetDivided($class, $requireDivided = TRUE) {
+    protected function unsetDivided() {
         return $this->removeDividedClasses();
     }
 
-    public function attached() {
-        return $this->setDivided($this->divided, TRUE);
+    public function divided() {
+        return $this->setDivided();
     }
 
     private function removeDividedClasses() {
