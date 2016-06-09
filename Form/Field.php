@@ -3,26 +3,26 @@
 namespace Onimla\SemanticUI\Form;
 
 /*
-require_once implode(DIRECTORY_SEPARATOR, array(
-            substr(__DIR__, 0, strpos(__DIR__, 'Onimla') + 6),
-            'HTML',
-            'Node.class.php',
-        ));
-require_once implode(DIRECTORY_SEPARATOR, array(
-            substr(__DIR__, 0, strpos(__DIR__, 'Onimla') + 6),
-            'HTML',
-            'Element.class.php',
-        ));
-require_once implode(DIRECTORY_SEPARATOR, array(
-            substr(__DIR__, 0, strpos(__DIR__, 'Onimla') + 6),
-            'HTML',
-            'Input.class.php',
-        ));
-require_once implode(DIRECTORY_SEPARATOR, array(
-            substr(__DIR__, 0, strpos(__DIR__, 'Onimla') + 6),
-            'HTML',
-            'Label.class.php',
-        ));
+  require_once implode(DIRECTORY_SEPARATOR, array(
+  substr(__DIR__, 0, strpos(__DIR__, 'Onimla') + 6),
+  'HTML',
+  'Node.class.php',
+  ));
+  require_once implode(DIRECTORY_SEPARATOR, array(
+  substr(__DIR__, 0, strpos(__DIR__, 'Onimla') + 6),
+  'HTML',
+  'Element.class.php',
+  ));
+  require_once implode(DIRECTORY_SEPARATOR, array(
+  substr(__DIR__, 0, strpos(__DIR__, 'Onimla') + 6),
+  'HTML',
+  'Input.class.php',
+  ));
+  require_once implode(DIRECTORY_SEPARATOR, array(
+  substr(__DIR__, 0, strpos(__DIR__, 'Onimla') + 6),
+  'HTML',
+  'Label.class.php',
+  ));
  */
 
 /**
@@ -32,7 +32,7 @@ require_once implode(DIRECTORY_SEPARATOR, array(
  * @property \Onimla\HTML\Label $label
  */
 class Field extends \Onimla\HTML\Node implements \Onimla\HTML\HasAttribute, \Onimla\HTML\Appendable {
-    
+
     const CLASS_NAME = 'field';
 
     public function __construct($label = FALSE, $name = FALSE, $value = FALSE) {
@@ -77,18 +77,42 @@ class Field extends \Onimla\HTML\Node implements \Onimla\HTML\HasAttribute, \Oni
     public function &matchClass($classes, $level = FALSE) {
         return call_user_func_array(array($this->container, __FUNCTION__), func_get_args());
     }
-    
+
+    public function required() {
+        return $this->setRequired();
+    }
+
+    public function isRequired() {
+        return $this->setRequired();
+    }
+
+    public function isNotRequired() {
+        return $this->unsetRequired();
+    }
+
+    public function setRequired() {
+        $this->container->getClassAttribute()->prepend('required');
+        call_user_func(array($this->input, __FUNCTION__));
+        return $this;
+    }
+
+    public function unsetRequired() {
+        $this->container->removeClass('required');
+        call_user_func(array($this->input, __FUNCTION__));
+        return $this;
+    }
+
     public function error() {
         $this->container->getClassAttribute()->after(self::CLASS_NAME, 'error');
     }
-    
+
     public function value($value = FALSE) {
         if ($value === FALSE) {
             return $this->input->attr(__FUNCTION__);
         }
-        
+
         $this->input->value($value);
-        
+
         return $this;
     }
 
