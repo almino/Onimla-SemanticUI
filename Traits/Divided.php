@@ -7,7 +7,7 @@ trait Divided {
     private $divided = 'divided';
 
     protected function setDivided() {
-        $this->getClassAttribute()->before($this->dividedAddClassBefore(), $class);
+        $this->getClassAttribute()->before($this->dividedAddClassBefore(), $this->divided);
 
         return $this;
     }
