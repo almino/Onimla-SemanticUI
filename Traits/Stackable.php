@@ -3,8 +3,7 @@
 namespace Onimla\SemanticUI\Traits;
 
 trait Stackable {
-
-    private $stackable = \Onimla\SemanticUI\Constant::STACKABLE;
+    private $stackable = 'stackable';
 
     public function stackable() {
         return $this->setStackable();
@@ -18,5 +17,5 @@ trait Stackable {
     public function unsetStackable() {
         return $this->removeClass($this->stackable);
     }
-
+    
 }
