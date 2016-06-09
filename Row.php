@@ -13,6 +13,6 @@ class Row extends \Onimla\HTML\Element {
 
     public function __construct($children = FALSE) {
         parent::__construct('div', FALSE, $children);
-        $this->addClass(self::CLASS_VALUE);
+        $this->addClass(self::CLASS_NAME);
     }
 }
