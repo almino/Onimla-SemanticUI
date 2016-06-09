@@ -5,7 +5,8 @@ namespace Onimla\SemanticUI;
 class Grid extends Component {
 
     use Traits\Alignment,
-        Traits\Doubling;
+        Traits\Doubling,
+        Traits\Stackable;
 
     const CLASS_NAME = 'grid';
 
