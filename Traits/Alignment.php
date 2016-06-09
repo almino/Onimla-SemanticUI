@@ -4,23 +4,26 @@ namespace Onimla\SemanticUI\Traits;
 
 trait Alignment {
 
-    private $right = 'right';
-    private $left = 'left';
-    private $justified = 'justified';
-    private $center = 'center';
     private $aligned = 'aligned';
-    
+    private $bottom = 'bottom';
+    private $center = 'center';
+    private $justified = 'justified';
+    private $left = 'left';
+    private $middle = 'middle';
+    private $right = 'right';
+    private $top = 'top';
+
     private function alignmentAddClassAfter() {
         if ($this->hasClass(\Onimla\SemanticUI\Constant::DOUBLING)) {
             return \Onimla\SemanticUI\Constant::DOUBLING;
         }
-        
+
         return \Onimla\SemanticUI\Component::CLASS_NAME;
     }
 
     protected function setAlignment($class, $requireAligned = TRUE) {
         $this->removeAlignmentClasses();
-        
+
         $this->getClassAttribute()->after($this->alignmentAddClassAfter(), $class);
 
         if ($requireAligned) {
@@ -32,11 +35,14 @@ trait Alignment {
 
     private function removeAlignmentClasses() {
         $classes = array(
-            $this->right,
-            $this->left,
-            $this->justified,
-            $this->center,
             $this->aligned,
+            $this->bottom,
+            $this->center,
+            $this->justified,
+            $this->left,
+            $this->middle,
+            $this->right,
+            $this->top,
         );
 
         $this->removeClass($classes);
