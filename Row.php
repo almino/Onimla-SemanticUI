@@ -8,7 +8,7 @@ class Row extends \Onimla\HTML\Element {
         Traits\Alignment,
         Traits\Column;
     
-    const CLASS_VALUE = 'row';
+    const CLASS_NAME = 'row';
 
 
     public function __construct($children = FALSE) {
