@@ -13,22 +13,24 @@ trait Alignment {
     private $rightAlignment = 'right';
     private $topAlignment = 'top';
 
-    private function alignmentAddClassAfter() {
-        if ($this->hasClass(\Onimla\SemanticUI\Constant::DOUBLING)) {
-            return \Onimla\SemanticUI\Constant::DOUBLING;
+    private function alignmentAddClass($class) {
+        $method = 'after';
+        $search = \Onimla\SemanticUI\Component::CLASS_NAME;
+
+        if ($this->hasClass(\Onimla\SemanticUI\Row::CLASS_NAME)) {
+            $method = 'before';
+            $search = \Onimla\SemanticUI\Row::CLASS_NAME;
         }
         
-        if ($this->hasClass(\Onimla\SemanticUI\Row::CLASS_NAME)) {
-            return \Onimla\SemanticUI\Row::CLASS_NAME;
-        }
+        call_user_func_array(array($this->getClassAttribute(), $method), array($search, $class));
 
-        return \Onimla\SemanticUI\Component::CLASS_NAME;
+        return $this;
     }
 
     protected function setAlignment($class, $requireAligned = TRUE) {
         $this->removeAlignmentClasses();
 
-        $this->getClassAttribute()->after($this->alignmentAddClassAfter(), $class);
+        $this->alignmentAddClass($class);
 
         if ($requireAligned) {
             $this->getClassAttribute()->after($class, $this->aligned);
