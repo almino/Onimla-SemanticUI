@@ -5,6 +5,7 @@ namespace Onimla\SemanticUI;
 class Grid extends Component {
 
     use Traits\Alignment,
+        Traits\Column,
         Traits\Doubling,
         Traits\Stackable;
 
