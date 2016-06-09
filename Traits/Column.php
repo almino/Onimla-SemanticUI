@@ -29,6 +29,10 @@ trait Column {
         'nineteen',
         'twenty',
     );
+    
+    public function column($number, $plural = FALSE) {
+        $this->setColumn($number, $plural);
+    }
 
     public function setColumn($number, $plural = FALSE) {
         $this->getClassAttribute()->before($this->columnAddClassBefore(), $this->number($number), $this->column);
