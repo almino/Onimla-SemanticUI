@@ -4,9 +4,9 @@ namespace Onimla\SemanticUI\Traits;
 
 trait Attached {
 
-    private $top = 'top';
+    private $topAttached = 'top';
     private $attached = 'attached';
-    private $bottom = 'bottom';
+    private $bottomAttached = 'bottom';
 
     protected function setAttached($class, $requireAttached = TRUE) {
         $this->removeAttachedClasses();
@@ -21,7 +21,7 @@ trait Attached {
     }
 
     public function topAttached() {
-        $this->setAttached($this->top, TRUE);
+        $this->setAttached($this->topAttached, TRUE);
     }
 
     public function attached() {
@@ -29,13 +29,13 @@ trait Attached {
     }
 
     public function bottomAttached() {
-        $this->setAttached($this->bottom, TRUE);
+        $this->setAttached($this->bottomAttached, TRUE);
     }
 
     private function removeAttachedClasses() {
         $classes = array(
-            $this->top,
-            $this->bottom,
+            $this->topAttached,
+            $this->bottomAttached,
             $this->attached,
         );
 
