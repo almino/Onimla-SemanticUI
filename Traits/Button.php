@@ -50,7 +50,7 @@ trait Button {
             $instance = $this;
         }
 
-        $instance->unsetComponent();
+        $instance->setComponent();
         $instance->addClass(\Onimla\SemanticUI\Constant::BUTTON);
     }
 
