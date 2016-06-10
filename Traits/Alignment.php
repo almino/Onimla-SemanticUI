@@ -22,6 +22,11 @@ trait Alignment {
             $search = \Onimla\SemanticUI\Row::CLASS_NAME;
         }
         
+        if ($this->hasClass(\Onimla\SemanticUI\Column::CLASS_NAME)) {
+            call_user_func_array(array($this->getClassAttribute(), 'prepend'), func_get_args());
+            return $this;
+        }
+        
         call_user_func_array(array($this->getClassAttribute(), $method), array($search, func_get_args()));
 
         return $this;
