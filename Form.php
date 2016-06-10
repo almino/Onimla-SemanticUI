@@ -1,6 +1,6 @@
 <?php
 
-namespace Onimla\SemanticUI\Form;
+namespace Onimla\SemanticUI;
 
 /*
 require_once implode(DIRECTORY_SEPARATOR, array(
@@ -14,12 +14,14 @@ require_once substr(__DIR__, 0, strpos(__DIR__, 'Form')) . 'IsComponent.trait.ph
 
 class Form extends \Onimla\HTML\Form {
 
-    use \Onimla\SemanticUI\Traits\Component;
+    use Traits\Component;
+    
+    const CLASS_NAME = 'form';
 
     public function __construct($method = FALSE, $action = FALSE) {
         parent::__construct($method, $action);
         $this->setComponent();
-        $this->addClass('form');
+        $this->addClass(self::CLASS_NAME);
     }
 
 }
