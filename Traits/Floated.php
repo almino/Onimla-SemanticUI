@@ -12,12 +12,12 @@ trait Floated {
         $method = 'after';
         $search = \Onimla\SemanticUI\Component::CLASS_NAME;
 
-        if ($this->hasClass(\Onimla\SemanticUI\Row::CLASS_NAME)) {
+        if ($this->hasClass(\Onimla\SemanticUI\Column::CLASS_NAME)) {
             $method = 'before';
-            $search = \Onimla\SemanticUI\Row::CLASS_NAME;
+            $search = \Onimla\SemanticUI\Column::CLASS_NAME;
         }
 
-        call_user_func_array(array($this->getClassAttribute(), $method), array($search, $class));
+        call_user_func_array(array($this->getClassAttribute(), $method), array($search, func_get_args()));
 
         return $this;
     }
@@ -25,14 +25,14 @@ trait Floated {
     protected function setFloated($class) {
         $this->removeFloatedClasses();
 
-        $this->floatedAddClass($class);
+        $this->floatedAddClass($class, $this->floated);
 
-        $this->getClassAttribute()->after($class, $this->floated);
+        #$this->getClassAttribute()->after($class, $this->floated);
 
         return $this;
     }
 
-    public function topFloated() {
+    public function leftFloated() {
         $this->setFloated($this->leftFloated);
     }
 
@@ -40,18 +40,13 @@ trait Floated {
         $this->setFloated($this->floated);
     }
 
-    public function bottomFloated() {
+    public function rightFloated() {
         $this->setFloated($this->rightFloated);
     }
 
     private function removeFloatedClasses() {
-        $classes = array(
-            $this->leftFloated,
-            $this->rightFloated,
-            $this->floated,
-        );
-
-        $this->getClassAttribute()->strictRemoveClass($classes);
+        $this->getClassAttribute()->strictRemoveClass($this->leftFloated, $this->floated);
+        $this->getClassAttribute()->strictRemoveClass($this->rightFloated, $this->floated);
 
         return $this;
     }
