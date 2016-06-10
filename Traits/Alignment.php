@@ -22,31 +22,29 @@ trait Alignment {
             $search = \Onimla\SemanticUI\Row::CLASS_NAME;
         }
         
-        call_user_func_array(array($this->getClassAttribute(), $method), array($search, $class));
+        call_user_func_array(array($this->getClassAttribute(), $method), array($search, func_get_args()));
 
         return $this;
     }
 
-    protected function setAlignment($class, $requireAligned = TRUE) {
+    protected function setAlignment($class) {
         $this->removeAlignmentClasses();
-
-        $this->alignmentAddClass($class);
-
-        if ($requireAligned) {
-            $this->getClassAttribute()->after($class, $this->aligned);
+        
+        if ($class == $this->justifiedAlignment) {
+            return $this->alignmentAddClass($this->justifiedAlignment);
         }
-
-        return $this;
+        
+        return $this->alignmentAddClass($class, $this->aligned);
     }
 
     private function removeAlignmentClasses() {
         $this->getClassAttribute()->strictRemoveClass($this->bottomAlignment, $this->aligned);
-        $this->getClassAttribute()->strictRemoveClass($this->centerAlignment, $this->floated);
+        $this->getClassAttribute()->strictRemoveClass($this->centerAlignment, $this->aligned);
         $this->getClassAttribute()->strictRemoveClass($this->justifiedAlignment);
-        $this->getClassAttribute()->strictRemoveClass($this->leftAlignment, $this->floated);
-        $this->getClassAttribute()->strictRemoveClass($this->middleAlignment, $this->floated);
-        $this->getClassAttribute()->strictRemoveClass($this->rightAlignment, $this->floated);
-        $this->getClassAttribute()->strictRemoveClass($this->topAlignment, $this->floated);
+        $this->getClassAttribute()->strictRemoveClass($this->leftAlignment, $this->aligned);
+        $this->getClassAttribute()->strictRemoveClass($this->middleAlignment, $this->aligned);
+        $this->getClassAttribute()->strictRemoveClass($this->rightAlignment, $this->aligned);
+        $this->getClassAttribute()->strictRemoveClass($this->topAlignment, $this->aligned);
     }
 
     public function bottom() {
@@ -58,7 +56,7 @@ trait Alignment {
     }
 
     public function justified() {
-        return $this->setAlignment(__FUNCTION__, FALSE);
+        return $this->setAlignment(__FUNCTION__);
     }
 
     public function left() {
