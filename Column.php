@@ -4,7 +4,8 @@ namespace Onimla\SemanticUI;
 
 class Column extends \Onimla\HTML\Element {
 
-    use Traits\Column,
+    use Traits\Alignment,
+        Traits\Column,
         Traits\Floated;
 
     const CLASS_NAME = 'column';

@@ -40,21 +40,13 @@ trait Alignment {
     }
 
     private function removeAlignmentClasses() {
-        $classes = array(
-            $this->aligned,
-            $this->bottomAlignment,
-            $this->centerAlignment,
-            $this->justifiedAlignment,
-            $this->leftAlignment,
-            $this->middleAlignment,
-            $this->rightAlignment,
-            $this->topAlignment,
-        );
-
-        $this->removeClass($classes);
-
-
-        return $this;
+        $this->getClassAttribute()->strictRemoveClass($this->bottomAlignment, $this->aligned);
+        $this->getClassAttribute()->strictRemoveClass($this->centerAlignment, $this->floated);
+        $this->getClassAttribute()->strictRemoveClass($this->justifiedAlignment);
+        $this->getClassAttribute()->strictRemoveClass($this->leftAlignment, $this->floated);
+        $this->getClassAttribute()->strictRemoveClass($this->middleAlignment, $this->floated);
+        $this->getClassAttribute()->strictRemoveClass($this->rightAlignment, $this->floated);
+        $this->getClassAttribute()->strictRemoveClass($this->topAlignment, $this->floated);
     }
 
     public function bottom() {
