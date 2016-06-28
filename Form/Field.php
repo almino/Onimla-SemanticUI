@@ -42,6 +42,7 @@ class Field extends \Onimla\HTML\Node implements \Onimla\HTML\HasAttribute, \Oni
         $this->container = new \Onimla\HTML\Element('div');
         $this->input = new \Onimla\HTML\Input($name, $value);
         $this->label = new \Onimla\HTML\Label($this->input, $label);
+        $this->id = $this->input->id();
 
         # Atributos ================================================================== #
         $this->container->addClass(self::CLASS_NAME);
