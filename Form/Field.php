@@ -117,4 +117,9 @@ class Field extends \Onimla\HTML\Node implements \Onimla\HTML\HasAttribute, \Oni
         return $this;
     }
 
+    public function append($children) {
+        call_user_func_array(array($this->container, __FUNCTION__), func_get_args());
+        return $this;
+    }
+
 }
