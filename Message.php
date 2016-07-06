@@ -28,6 +28,8 @@ class Message extends \Onimla\HTML\Node implements \Onimla\HTML\HasAttribute, \O
         $this->content->addClass('content');
 
         # Árvore ===================================================================== #
+        call_user_func_array(array($this, 'text'), func_get_args());
+        
         $this->container->append($this->content);
     }
 
