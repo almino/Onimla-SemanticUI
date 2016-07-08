@@ -72,6 +72,11 @@ class Message extends \Onimla\HTML\Node implements \Onimla\HTML\HasAttribute, \O
         $class->before(self::CLASS_NAME, __FUNCTION__);
         return $this;
     }
+    
+    public function append($children) {
+        call_user_func_array(array($this->container, __FUNCTION__), func_get_args());
+        return $this;
+    }
 
     public function icon($icon = FALSE) {
         if ($icon === FALSE) {
