@@ -79,6 +79,15 @@ class Field extends \Onimla\HTML\Node implements \Onimla\HTML\HasAttribute, \Oni
         return call_user_func_array(array($this->container, __FUNCTION__), func_get_args());
     }
 
+    public function id($value = FALSE) {
+        if ($value === FALSE) {
+            return call_user_func(array($this->input, __FUNCTION__));
+        }
+
+        call_user_func(array($this->input, __FUNCTION__), $value);
+        return $this;
+    }
+
     public function error() {
         $this->container->getClassAttribute()->after(self::CLASS_NAME, 'error');
     }
