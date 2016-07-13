@@ -2,7 +2,6 @@
 
 namespace Onimla\SemanticUI\Traits;
 
-use Onimla\SemanticUI\Component;
 use Onimla\SemanticUI\Constant;
 
 trait Doubling {
@@ -12,7 +11,7 @@ trait Doubling {
     }
 
     public function setDoubling() {
-        $this->getClassAttribute()->after(Component::CLASS_NAME, Constant::DOUBLING);
+        $this->getClassAttribute()->after(\Onimla\SemanticUI\Component::CLASS_NAME, Constant::DOUBLING);
         return $this;
     }
 
