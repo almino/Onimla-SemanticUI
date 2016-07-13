@@ -4,7 +4,7 @@ namespace Onimla\SemanticUI;
 
 use Onimla\SemanticUI\Constant;
 
-class Label extends \Onimla\HTML\Element {
+class Label extends Component {
 
     const CLASS_NAME = 'label';
     const POINTING = 'pointing';
@@ -14,7 +14,6 @@ class Label extends \Onimla\HTML\Element {
 
     public function __construct($element, $text) {
         parent::__construct($element);
-        $this->isComponent();
         $this->addClass(self::CLASS_NAME);
         $this->text($text);
     }
