@@ -9,7 +9,8 @@ class Label extends Component {
     const CLASS_NAME = 'label';
     const POINTING = 'pointing';
 
-    use Traits\Colored,
+    use Traits\Basic,
+        Traits\Colored,
         Traits\Component;
 
     public function __construct($element, $text) {
@@ -32,7 +33,7 @@ class Label extends Component {
         $this->getClassAttribute()->strictRemoveClass(self::CLASS_NAME, Constant::BELOW);
         $this->getClassAttribute()->strictRemoveClass(Constant::LEFT, self::CLASS_NAME);
         $this->getClassAttribute()->strictRemoveClass(Constant::RIGHT, self::CLASS_NAME);
-        
+
         return $this;
     }
 
