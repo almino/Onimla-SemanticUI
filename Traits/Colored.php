@@ -2,43 +2,63 @@
 
 namespace Onimla\SemanticUI\Traits;
 
+use Onimla\SemanticUI\Constant;
+
 trait Colored {
+
+    private $colors = array(
+        'red',
+        'orange',
+        'yellow',
+        'olive',
+        'green',
+        'teal',
+        'blue',
+        'violet',
+        'purple',
+        'pink',
+        'brown',
+        'grey',
+        'black',
+    );
 
     public function color($color = FALSE) {
         if ($color === FALSE) {
             
         }
 
-        $colors = array(
-            'red',
-            'orange',
-            'yellow',
-            'olive',
-            'green',
-            'teal',
-            'blue',
-            'violet',
-            'purple',
-            'pink',
-            'brown',
-            'grey',
-            'black',
-        );
+        $this->setColor($color);
+        return $this;
+    }
 
-        $this->removeClass($colors);
-        $this->addClass($color);
+    public function setColor($color) {
+        $this->unsetColor();
+        $this->getClassAttribute()->before($this->coloredAddClassBefore(), $color);
+    }
+
+    public function unsetColor() {
+        $this->removeClass($this->colors);
     }
 
     public function setInverted() {
-        return $this->addClass('inverted');
+        $this->addClass('inverted');
     }
 
     public function unsetInverted() {
-        return $this->removeClass('inverted');
+        $this->removeClass('inverted');
     }
 
     public function invert() {
-        return $this->setInverted();
+        $this->setInverted();
+        return $this;
+    }
+
+    private function coloredAddClassBefore() {
+        if ($this->hasClass(Constant::BASIC)) {
+            return Constant::BASIC;
+        }
+
+        return self::CLASS_NAME;
     }
 
 }
