@@ -168,7 +168,7 @@ class Message extends Node implements HasAttribute, Appendable {
 
         $this->removeHeader();
 
-        $this->setHeader();
+        $this->setHeader($text);
 
         return $this;
     }
