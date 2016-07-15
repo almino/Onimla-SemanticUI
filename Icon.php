@@ -7,6 +7,10 @@ class Icon extends \Onimla\HTML\Element {
     const CLASS_NAME = 'icon';
 
     protected $classes = array(
+        # Special icons can trigger user actions
+        'special' => array(
+            'close'
+        ),
         # Icons can alert users to the type of message being displayed
         'message' => array(
             'announcement',
@@ -33,7 +37,7 @@ class Icon extends \Onimla\HTML\Element {
     }
 
     public function unsetIcon() {
-        $this->removeClass($this->classes);
+        $this->getClassAttribute()->strictRemoveClass($this->classes);
     }
 
 }

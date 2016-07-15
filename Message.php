@@ -2,13 +2,21 @@
 
 namespace Onimla\SemanticUI;
 
+use Onimla\HTML\Node;
+use Onimla\HTML\HasAttribute;
+use Onimla\HTML\Appendable;
+use Onimla\HTML\Element;
+use Onimla\SemanticUI\Icon\Close as Dismiss;
+
 /**
- * @property \Onimla\HTML\Element $container .ui.message
- * @property \Onimla\HTML\Element $content .content
+ * @property Element $container .ui.message
+ * @property Element $content .content
  * @property Icon $icon .icon
- * @property \Onimla\HTML\Element $header .header
+ * @property Element $header .header
+ * @property Dismiss $dismiss .close.icon
  */
-class Message extends \Onimla\HTML\Node implements \Onimla\HTML\HasAttribute, \Onimla\HTML\Appendable {
+class Message extends Node implements HasAttribute, Appendable {
+
     const CLASS_NAME = 'message';
 
     use Traits\Component,
@@ -18,8 +26,8 @@ class Message extends \Onimla\HTML\Node implements \Onimla\HTML\HasAttribute, \O
         parent::__construct();
 
         # Instâncias ================================================================= #
-        $this->container = new \Onimla\HTML\Element('div');
-        $this->content = new \Onimla\HTML\Element('div');
+        $this->container = new Element('div');
+        $this->content = new Element('div');
 
         # Atributos ================================================================== #
         $this->setComponent($this->container);
@@ -29,7 +37,7 @@ class Message extends \Onimla\HTML\Node implements \Onimla\HTML\HasAttribute, \O
 
         # Árvore ===================================================================== #
         call_user_func_array(array($this, 'text'), func_get_args());
-        
+
         $this->container->append($this->content);
     }
 
@@ -72,10 +80,45 @@ class Message extends \Onimla\HTML\Node implements \Onimla\HTML\HasAttribute, \O
         $class->before(self::CLASS_NAME, __FUNCTION__);
         return $this;
     }
-    
+
+    public function prepend($children) {
+        call_user_func_array(array($this->container, __FUNCTION__), func_get_args());
+        return $this;
+    }
+
     public function append($children) {
         call_user_func_array(array($this->container, __FUNCTION__), func_get_args());
         return $this;
+    }
+
+    public function isDismissable() {
+        return isset($this->dismiss) AND $this->container->isChild($this->dismiss);
+    }
+
+    public function dismiss($instance = FALSE) {
+        if ($instance === FALSE) {
+            return isset($this->dismiss) ? $this->dismiss : FALSE;
+        }
+        
+        $this->unsetDismissable();
+        $this->setDismissable($instance);
+        
+        return $this;
+    }
+
+    public function setDismissable($instance = FALSE) {
+        $this->dismiss = $instance === FALSE ? new Dismiss : $instance;
+        $this->prepend($this->dismiss);
+    }
+
+    public function unsetDismissable() {
+        if ($this->isDismissable()) {
+            $dismiss = $this->dismiss;
+            $this->container->removeChild($dismiss);
+            return $dismiss;
+        }
+
+        return FALSE;
     }
 
     public function icon($icon = FALSE) {
@@ -85,15 +128,7 @@ class Message extends \Onimla\HTML\Node implements \Onimla\HTML\HasAttribute, \O
 
         $this->removeIcon();
 
-        if ($icon instanceof Icon) {
-            $this->icon = $icon;
-        } else {
-            $this->icon = new Icon($icon);
-        }
-
-        $this->container->getClassAttribute()->after(Component::CLASS_NAME, 'icon');
-
-        $this->container->prepend($this->icon);
+        $this->setIcon($icon);
 
         return $this;
     }
@@ -110,6 +145,18 @@ class Message extends \Onimla\HTML\Node implements \Onimla\HTML\HasAttribute, \O
         return FALSE;
     }
 
+    public function setIcon($icon) {
+        if ($icon instanceof Icon) {
+            $this->icon = $icon;
+        } else {
+            $this->icon = new Icon($icon);
+        }
+
+        $this->container->getClassAttribute()->after(Component::CLASS_NAME, 'icon');
+
+        $this->container->prepend($this->icon);
+    }
+
     public function unsetIcon() {
         return $this->removeIcon();
     }
@@ -121,20 +168,7 @@ class Message extends \Onimla\HTML\Node implements \Onimla\HTML\HasAttribute, \O
 
         $this->removeHeader();
 
-        if ($text instanceof \Onimla\HTML\Element) {
-            $this->header = $text;
-        } else {
-            # Instâncias ================================================================= #
-            $this->header = new \Onimla\HTML\Element('div');
-
-            # Atributos ================================================================== #
-            $this->header->addClass('header');
-
-            # Árvore ===================================================================== #
-            $this->header->text($text);
-        }
-
-        $this->content->prepend($this->header);
+        $this->setHeader();
 
         return $this;
     }
@@ -148,6 +182,23 @@ class Message extends \Onimla\HTML\Node implements \Onimla\HTML\HasAttribute, \O
         }
 
         return FALSE;
+    }
+
+    public function setHeader($text) {
+        if ($text instanceof Element) {
+            $this->header = $text;
+        } else {
+            # Instâncias ================================================================= #
+            $this->header = new Element('div');
+
+            # Atributos ================================================================== #
+            $this->header->addClass('header');
+
+            # Árvore ===================================================================== #
+            $this->header->text($text);
+        }
+
+        $this->content->prepend($this->header);
     }
 
     public function unsetHeader() {
