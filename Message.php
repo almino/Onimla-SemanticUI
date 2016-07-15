@@ -95,14 +95,14 @@ class Message extends Node implements HasAttribute, Appendable {
         return isset($this->dismiss) AND $this->container->isChild($this->dismiss);
     }
 
-    public function dismiss($instance = FALSE) {
+    public function dismissable($instance = FALSE) {
         if ($instance === FALSE) {
             return isset($this->dismiss) ? $this->dismiss : FALSE;
         }
-        
+
         $this->unsetDismissable();
         $this->setDismissable($instance);
-        
+
         return $this;
     }
 
@@ -203,6 +203,10 @@ class Message extends Node implements HasAttribute, Appendable {
 
     public function unsetHeader() {
         return $this->removeHeader();
+    }
+
+    public function appendText($text) {
+        call_user_func_array(array($this->container, __FUNCTION__), func_get_args());
     }
 
     public function text($string = FALSE) {
