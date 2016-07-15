@@ -2,28 +2,12 @@
 
 namespace Onimla\SemanticUI\Form;
 
-/*
-  require_once implode(DIRECTORY_SEPARATOR, array(
-  substr(__DIR__, 0, strpos(__DIR__, 'Onimla') + 6),
-  'HTML',
-  'Node.class.php',
-  ));
-  require_once implode(DIRECTORY_SEPARATOR, array(
-  substr(__DIR__, 0, strpos(__DIR__, 'Onimla') + 6),
-  'HTML',
-  'Element.class.php',
-  ));
-  require_once implode(DIRECTORY_SEPARATOR, array(
-  substr(__DIR__, 0, strpos(__DIR__, 'Onimla') + 6),
-  'HTML',
-  'Input.class.php',
-  ));
-  require_once implode(DIRECTORY_SEPARATOR, array(
-  substr(__DIR__, 0, strpos(__DIR__, 'Onimla') + 6),
-  'HTML',
-  'Label.class.php',
-  ));
- */
+use Onimla\HTML\Node;
+use Onimla\HTML\HasAttribute;
+use Onimla\HTML\Appendable;
+use Onimla\HTML\Element;
+use Onimla\HTML\Input;
+use Onimla\HTML\Label;
 
 /**
  * A field is a form element containing a label and an input
@@ -31,7 +15,7 @@ namespace Onimla\SemanticUI\Form;
  * @property \Onimla\HTML\Input $input
  * @property \Onimla\HTML\Label $label
  */
-class Field extends \Onimla\HTML\Node implements \Onimla\HTML\HasAttribute, \Onimla\HTML\Appendable {
+class Field extends Node implements HasAttribute, Appendable {
 
     const CLASS_NAME = 'field';
 
@@ -39,16 +23,17 @@ class Field extends \Onimla\HTML\Node implements \Onimla\HTML\HasAttribute, \Oni
         parent::__construct();
 
         # Instâncias ================================================================= #
-        $this->container = new \Onimla\HTML\Element('div');
-        $this->input = new \Onimla\HTML\Input($name, $value);
-        $this->label = new \Onimla\HTML\Label($this->input, $label);
+        $this->container = new Element('div');
+        $this->input = new Input($name, $value);
+        $this->label = new Label($this->input, $label);
         $this->id = $this->input->id();
 
         # Atributos ================================================================== #
         $this->container->addClass(self::CLASS_NAME);
 
         # Árvore ===================================================================== #
-        $this->container->append($this->label, $this->input);
+        $this->container->label = $this->label;
+        $this->container->input = $this->input;
     }
 
     public function __toString() {
@@ -134,13 +119,25 @@ class Field extends \Onimla\HTML\Node implements \Onimla\HTML\HasAttribute, \Oni
 
         return $this;
     }
-    
+
     public function isValueSet() {
-        return $this->input->getAttribute('value')->isValueSet();
+        $value = $this->input->getAttribute('value');
+        return $value ? $value->isValueSet() : FALSE;
     }
 
     public function append($children) {
         call_user_func_array(array($this->container, __FUNCTION__), func_get_args());
+        return $this;
+    }
+
+    public function input(Element $instance = NULL) {
+        if ($instance === NULL) {
+            return isset($this->input) ? $this->input : FALSE;
+        }
+
+        $this->input = $instance;
+        $this->container->input = $this->input;
+
         return $this;
     }
 
