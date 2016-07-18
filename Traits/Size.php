@@ -2,8 +2,6 @@
 
 namespace Onimla\SemanticUI\Traits;
 
-use Onimla\SemanticUI\Component;
-
 trait Size {
 
     protected $sizes = array(
@@ -19,7 +17,7 @@ trait Size {
 
     public function setSize($size) {
         $this->unsetSize();
-        $this->getClassAttribute()->after(Component::CLASS_NAME, $size);
+        $this->getClassAttribute()->after(\Onimla\SemanticUI\Component::CLASS_NAME, $size);
     }
 
     public function unsetSize() {
