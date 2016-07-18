@@ -2,11 +2,88 @@
 
 namespace Onimla\SemanticUI;
 
-class Icon extends \Onimla\HTML\Element {
+use Onimla\HTML\Element;
+
+class Icon extends Element {
 
     const CLASS_NAME = 'icon';
 
     protected $classes = array(
+        # Icons can represent types of content found on websites
+        'web-content' => array(
+            'add to calendar',
+            'alarm outline',
+            'alarm mute outline',
+            'alarm mute',
+            'alarm',
+            'at',
+            'browser',
+            'bug',
+            'calendar outline',
+            'calendar',
+            'checked calendar',
+            'cloud',
+            'code',
+            'comment outline',
+            'comment',
+            'comments outline',
+            'comments',
+            'comments',
+            'copyright',
+            'creative commons',
+            'dashboard',
+            'delete calendar',
+            'external square',
+            'external',
+            'external',
+            'eyedropper',
+            'feed',
+            'find',
+            'hand pointer',
+            'hashtag',
+            'heartbeat',
+            'history',
+            'home',
+            'hourglass empty',
+            'hourglass end',
+            'hourglass full',
+            'hourglass half',
+            'hourglass start',
+            'idea',
+            'image',
+            'inbox',
+            'industry',
+            'lab',
+            'mail outline',
+            'mail square',
+            'mail',
+            'mouse pointer',
+            'options',
+            'paint brush',
+            'payment',
+            'percent',
+            'privacy',
+            'protect',
+            'registered',
+            'emove from calendar',
+            'search',
+            'setting',
+            'settings',
+            'shop',
+            'shopping bag',
+            'shopping basket',
+            'signal',
+            'sitemap',
+            'tag',
+            'tags',
+            'tasks',
+            'terminal',
+            'text telephone',
+            'ticket',
+            'trademark',
+            'trophy',
+            'wifi',
+        ),
         # Special icons can trigger user actions
         'special' => array(
             'close'
@@ -27,8 +104,12 @@ class Icon extends \Onimla\HTML\Element {
 
     public function __construct($class) {
         parent::__construct('i');
-        $this->addClass(self::CLASS_NAME);
+        $this->getClassAttribute()->append(self::CLASS_NAME);
         call_user_func_array(array($this, 'setIcon'), func_get_args());
+    }
+    
+    public function addClass($class) {
+        return $this->getClassAttribute()->before(self::CLASS_NAME, ...func_get_args());
     }
 
     public function setIcon($class) {
