@@ -2,13 +2,11 @@
 
 namespace Onimla\SemanticUI\Button;
 
-use Onimla\HTML\Anchor;
-
 /**
  * An <code>&lt;a&gt;</code> tag styled as a button.
  * Any tag can be used for a button.
  */
-class Anchor extends Anchor {
+class Anchor extends \Onimla\HTML\Anchor {
 
     use Traits\Button;
 
