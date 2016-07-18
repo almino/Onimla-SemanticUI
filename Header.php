@@ -12,7 +12,8 @@ class Header extends \Onimla\HTML\Heading {
     use Traits\Alignment,
         Traits\Attached,
         Traits\Component,
-        Traits\Colored;
+        Traits\Colored,
+        Traits\Size;
 
     public function __construct($number, $text = FALSE, $class = FALSE) {
         parent::__construct($number, $text, $class);
