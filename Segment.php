@@ -17,7 +17,7 @@ class Segment extends Component {
 
     public function __construct($children = FALSE) {
         parent::__construct('div', FALSE, func_get_args());
-        $this->addClass(self::CLASS_NAME);
+        $this->getClassAttribute()->append(self::CLASS_NAME);
     }
     
     public function addClass($class) {
