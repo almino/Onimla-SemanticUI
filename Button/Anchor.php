@@ -1,12 +1,14 @@
 <?php
 
-namespace Onimla\SemanticUI;
+namespace Onimla\SemanticUI\Button;
+
+use Onimla\HTML\Anchor;
 
 /**
  * An <code>&lt;a&gt;</code> tag styled as a button.
  * Any tag can be used for a button.
  */
-class AnchorButton extends \Onimla\HTML\Anchor {
+class Anchor extends Anchor {
 
     use Traits\Button;
 
