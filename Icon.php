@@ -9,6 +9,10 @@ class Icon extends Element {
     const CLASS_NAME = 'icon';
 
     protected $classes = array(
+        # Special icons can trigger user actions
+        'special' => array(
+            'close'
+        ),
         # Icons can represent types of content found on websites
         'web-content' => array(
             'add to calendar',
@@ -84,9 +88,66 @@ class Icon extends Element {
             'trophy',
             'wifi',
         ),
-        # Special icons can trigger user actions
-        'special' => array(
-            'close'
+        # Icons can represent common actions a user can take
+        'user-actions' => array(
+            'add to cart',
+            'add user',
+            'adjust',
+            'archive',
+            'ban',
+            'bookmark',
+            'call',
+            'call square',
+            'clone',
+            'cloud download',
+            'cloud upload',
+            'talk',
+            'talk outline',
+            'compress',
+            'configure',
+            'download',
+            'edit',
+            'erase',
+            'exchange',
+            'expand',
+            'external share',
+            'filter',
+            'hide',
+            'in cart',
+            'lock',
+            'mail forward',
+            'object group',
+            'object ungroup',
+            'pin',
+            'print',
+            'random',
+            'recycle',
+            'refresh',
+            'remove bookmark',
+            'remove user',
+            'repeat',
+            'reply all',
+            'reply',
+            'retweet',
+            'send',
+            'send outline',
+            'share alternate',
+            'share alternate square',
+            'share',
+            'share square',
+            'sign in',
+            'sign out',
+            'theme',
+            'translate',
+            'undo',
+            'unhide',
+            'unlock alternate',
+            'unlock',
+            'upload',
+            'wait',
+            'wizard',
+            'write',
+            'write square',
         ),
         # Icons can alert users to the type of message being displayed
         'message' => array(
@@ -107,7 +168,7 @@ class Icon extends Element {
         $this->getClassAttribute()->append(self::CLASS_NAME);
         call_user_func_array(array($this, 'setIcon'), func_get_args());
     }
-    
+
     public function addClass($class) {
         return $this->getClassAttribute()->before(self::CLASS_NAME, ...func_get_args());
     }
