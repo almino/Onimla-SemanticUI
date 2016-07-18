@@ -69,6 +69,18 @@ class Message extends Node implements HasAttribute, Appendable {
         return call_user_func_array(array($this->container, __FUNCTION__), func_get_args());
     }
 
+    public function success() {
+        $class = $this->container->getClassAttribute();
+        $class->before(self::CLASS_NAME, __FUNCTION__);
+        return $this;
+    }
+
+    public function positive() {
+        $class = $this->container->getClassAttribute();
+        $class->before(self::CLASS_NAME, __FUNCTION__);
+        return $this;
+    }
+
     public function error() {
         $class = $this->container->getClassAttribute();
         $class->before(self::CLASS_NAME, __FUNCTION__);
