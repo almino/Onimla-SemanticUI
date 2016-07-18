@@ -3,7 +3,6 @@
 namespace Onimla\SemanticUI\Traits;
 
 use Onimla\SemanticUI\Constant;
-use Onimla\SemanticUI\Column;
 
 trait Button {
 
@@ -25,9 +24,9 @@ trait Button {
         $method = 'after';
         $search = \Onimla\SemanticUI\Component::CLASS_NAME;
 
-        if ($instance->hasClass(Column::CLASS_NAME)) {
+        if ($instance->hasClass(\Onimla\SemanticUI\Column::CLASS_NAME)) {
             $method = 'before';
-            $search = Column::CLASS_NAME;
+            $search = \Onimla\SemanticUI\Column::CLASS_NAME;
         }
 
         call_user_func_array(array($instance->getClassAttribute(), $method), array($search, $class));
