@@ -1,6 +1,7 @@
 <?php
 
 namespace Onimla\SemanticUI\Button;
+use \Onimla\SemanticUI\Traits\Button;
 
 /**
  * An <code>&lt;a&gt;</code> tag styled as a button.
@@ -8,7 +9,7 @@ namespace Onimla\SemanticUI\Button;
  */
 class Anchor extends \Onimla\HTML\Anchor {
 
-    use Traits\Button;
+    use Button;
 
     public function __construct($text = FALSE, $href = FALSE, $title = FALSE) {
         parent::__construct($text, $href, $title);
