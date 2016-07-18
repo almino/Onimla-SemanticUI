@@ -8,7 +8,7 @@ use Onimla\SemanticUI\Column;
 trait Button {
 
     use Basic,
-        Color,
+        Colored,
         Component,
         Emphasis,
         Size;
