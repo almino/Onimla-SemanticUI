@@ -20,6 +20,10 @@ class Segment extends Component {
         $this->addClass(self::CLASS_NAME);
     }
     
+    public function addClass($class) {
+        $this->getClassAttribute()->before(self::CLASS_NAME, ...func_get_args());
+    }
+    
     public function setVertical() {
         $this->getClassAttribute()->before(self::CLASS_NAME, Constant::VERTICAL);
     }
