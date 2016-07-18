@@ -24,7 +24,7 @@ trait Colored {
 
     public function color($color = FALSE) {
         if ($color === FALSE) {
-            
+            return $this->getClassAttribute()->hasAny(Constant::INVERTED, ...$this->colors);
         }
 
         $this->setColor($color);
@@ -33,7 +33,7 @@ trait Colored {
 
     public function setColor($color) {
         $this->unsetColor();
-        $this->getClassAttribute()->before($this->coloredAddClassBefore(), $color);
+        $this->coloredAddClass($color);
     }
 
     public function unsetColor() {
@@ -41,11 +41,11 @@ trait Colored {
     }
 
     public function setInverted() {
-        $this->addClass('inverted');
+        $this->coloredAddClass(Constant::INVERTED);
     }
 
     public function unsetInverted() {
-        $this->removeClass('inverted');
+        $this->removeClass(Constant::INVERTED);
     }
 
     public function invert() {
@@ -53,12 +53,23 @@ trait Colored {
         return $this;
     }
 
-    private function coloredAddClassBefore() {
+    private function coloredAddClass($class) {
+        $method = 'after';
+        $search = \Onimla\SemanticUI\Component::CLASS_NAME;
+
         if ($this->hasClass(Constant::BASIC)) {
-            return Constant::BASIC;
+            $method = 'before';
+            $search = Constant::BASIC;
         }
 
-        return self::CLASS_NAME;
+        if ($this->hasClass(Constant::INVERTED)) {
+            $method = 'before';
+            $search = Constant::INVERTED;
+        }
+        
+        call_user_func_array(array($this->getClassAttribute(), $method), array($search, func_get_args()));
+
+        return $this;
     }
 
 }
