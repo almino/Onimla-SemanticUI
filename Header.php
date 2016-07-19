@@ -89,7 +89,7 @@ class Header extends Heading {
         return $icon;
     }
 
-    public function setIcon(Icon $instance) {
+    public function setIcon($instance) {
         if ($instance instanceof Icon) {
             $this->icon = $instance;
         } else {
