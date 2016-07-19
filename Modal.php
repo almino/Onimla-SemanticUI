@@ -8,7 +8,7 @@ use Onimla\HTML\Appendable;
 use Onimla\SemanticUI\Component;
 use Onimla\SemanticUI\Content;
 use Onimla\SemanticUI\Content\Header as ModalHeader;
-use Onimla\SemanticUI\Content\Actions;
+use Onimla\SemanticUI\Content\Actions as ModalActions;
 
 /**
  * @property Element $container .ui.message
@@ -66,6 +66,36 @@ class Modal extends Node implements HasAttribute, Appendable {
         return call_user_func_array(array($this->container, __FUNCTION__), func_get_args());
     }
 
+    public function setSize($size) {
+        $this->unsetSize();
+        $this->container->getClassAttribute()->before(self::CLASS_NAME, $size);
+    }
+
+    public function unsetSize() {
+        $this->container->removeClass($this->sizes);
+    }
+
+    public function isSize() {
+        return $this->container->getClassAttribute()->matchValue(implode('|', $this->sizes));
+    }
+
+    public function size($size = FALSE) {
+        if ($size === FALSE) {
+            return $this->container->getClassAttribute()->hasAny(...$this->sizes);
+        }
+
+        $this->setSize($size);
+        return $this;
+    }
+    
+    public function small() {
+        return $this->size(__FUNCTION__);
+    }
+    
+    public function large() {
+        return $this->size(__FUNCTION__);
+    }
+
     public function prepend($children) {
         call_user_func_array(array($this->content, __FUNCTION__), func_get_args());
         return $this;
@@ -88,7 +118,7 @@ class Modal extends Node implements HasAttribute, Appendable {
 
     public function removeHeader() {
         if (isset($this->header)) {
-            $this->content->removeChild($this->header);
+            $this->container->removeChild($this->header);
             $header = $this->header;
             unset($this->header);
             return $header;
@@ -136,35 +166,42 @@ class Modal extends Node implements HasAttribute, Appendable {
     public function removeContent() {
         return $this->content->removeChildren();
     }
-
-    public function setSize($size) {
-        $this->unsetSize();
-        $this->container->getClassAttribute()->before(self::CLASS_NAME, $size);
-    }
-
-    public function unsetSize() {
-        $this->container->removeClass($this->sizes);
-    }
-
-    public function isSize() {
-        return $this->container->getClassAttribute()->matchValue(implode('|', $this->sizes));
-    }
-
-    public function size($size = FALSE) {
-        if ($size === FALSE) {
-            return $this->container->getClassAttribute()->hasAny(...$this->sizes);
+    
+    public function actions($children = FALSE) {
+        if (count(self::filterChildren(func_get_args())) < 1) {
+            return isset($this->actions) ? $this->actions : FALSE;
         }
 
-        $this->setSize($size);
+        $this->setActions(func_get_args());
+
         return $this;
     }
-    
-    public function small() {
-        return $this->size(__FUNCTION__);
+
+    public function removeActions() {
+        if (isset($this->actions)) {
+            $this->container->removeChild($this->actions);
+            $actions = $this->actions;
+            unset($this->actions);
+            return $actions;
+        }
+
+        return FALSE;
     }
-    
-    public function large() {
-        return $this->size(__FUNCTION__);
+
+    public function setActions($children) {
+        $this->removeActions();
+
+        if ($children instanceof ModalActions) {
+            $this->actions = $children;
+        } else {
+            $this->actions = new ModalActions(...func_get_args());
+        }
+
+        $this->container->append($this->actions);
+    }
+
+    public function unsetActions() {
+        return $this->removeActions();
     }
 
 }
