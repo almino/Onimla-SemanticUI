@@ -7,7 +7,7 @@ use Onimla\HTML\HasAttribute;
 use Onimla\HTML\Appendable;
 use Onimla\SemanticUI\Component;
 use Onimla\SemanticUI\Content;
-use Onimla\SemanticUI\Content\Header;
+use Onimla\SemanticUI\Content\Header as MessageHeader;
 use Onimla\SemanticUI\Icon\Close as Dismiss;
 
 /**
@@ -195,12 +195,9 @@ class Message extends Node implements HasAttribute, Appendable {
     }
 
     public function setHeader($text) {
-        if ($text instanceof Element) {
-            $this->header = $text;
-        } else {
-            $this->header = new Header;
-            $this->header->text($text);
-        }
+        $this->removeHeader();
+
+        $this->header = ($text instanceof Element) ? $text : new MessageHeader($text);
 
         $this->content->prepend($this->header);
     }

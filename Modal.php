@@ -7,7 +7,7 @@ use Onimla\HTML\HasAttribute;
 use Onimla\HTML\Appendable;
 use Onimla\SemanticUI\Component;
 use Onimla\SemanticUI\Content;
-use Onimla\SemanticUI\Content\Header;
+use Onimla\SemanticUI\Content\Header as ModalHeader;
 use Onimla\SemanticUI\Content\Actions;
 
 /**
@@ -20,7 +20,7 @@ use Onimla\SemanticUI\Content\Actions;
 class Modal extends Node implements HasAttribute, Appendable {
 
     const CLASS_NAME = 'modal';
-    
+
     protected $sizes = array('small', 'large');
 
     public function __construct($children = FALSE) {
@@ -98,13 +98,8 @@ class Modal extends Node implements HasAttribute, Appendable {
 
     public function setHeader($text) {
         $this->removeHeader();
-        
-        if ($text instanceof Element) {
-            $this->header = $text;
-        } else {
-            $this->header = new Header;
-            $this->header->text($text);
-        }
+
+        $this->header = ($text instanceof Element) ? $text : new ModalHeader($text);
 
         $this->container->prepend($this->header);
     }
@@ -140,7 +135,7 @@ class Modal extends Node implements HasAttribute, Appendable {
     public function removeContent() {
         return $this->content->removeChildren();
     }
-    
+
     public function setSize($size) {
         $this->unsetSize();
         $this->container->getClassAttribute()->before(self::CLASS_NAME, $size);
@@ -158,7 +153,7 @@ class Modal extends Node implements HasAttribute, Appendable {
         if ($size === FALSE) {
             return $this->container->getClassAttribute()->hasAny(...$this->sizes);
         }
-        
+
         $this->setSize();
         return $this;
     }
