@@ -174,7 +174,11 @@ class Modal extends Node implements HasAttribute, Appendable {
      */
     public function actions($children = FALSE) {
         if (count(self::filterChildren(func_get_args())) < 1) {
-            return isset($this->actions) ? $this->actions : FALSE;
+            if (!isset($this->actions)) {
+                $this->setActions(func_get_args());
+            }
+
+            return $this->actions;
         }
 
         $this->setActions(func_get_args());
