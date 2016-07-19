@@ -155,7 +155,7 @@ class Modal extends Node implements HasAttribute, Appendable {
             return $this->container->getClassAttribute()->hasAny(...$this->sizes);
         }
 
-        $this->setSize();
+        $this->setSize($size);
         return $this;
     }
     
