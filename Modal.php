@@ -167,6 +167,11 @@ class Modal extends Node implements HasAttribute, Appendable {
         return $this->content->removeChildren();
     }
     
+    /**
+     * 
+     * @param mixed $children
+     * @return \Onimla\SemanticUI\Content\Actions|\Onimla\SemanticUI\Modal|bool
+     */
     public function actions($children = FALSE) {
         if (count(self::filterChildren(func_get_args())) < 1) {
             return isset($this->actions) ? $this->actions : FALSE;
