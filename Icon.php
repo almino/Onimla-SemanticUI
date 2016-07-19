@@ -14,6 +14,7 @@ class Icon extends Element {
             'close'
         ),
         # Icons can represent types of content found on websites
+        # http://semantic-ui.com/elements/icon.html#web-content
         'web-content' => array(
             'add to calendar',
             'alarm outline',
@@ -89,6 +90,7 @@ class Icon extends Element {
             'wifi',
         ),
         # Icons can represent common actions a user can take
+        # http://semantic-ui.com/elements/icon.html#user-actions
         'user-actions' => array(
             'add to cart',
             'add user',
@@ -150,6 +152,7 @@ class Icon extends Element {
             'write square',
         ),
         # Icons can alert users to the type of message being displayed
+        # http://semantic-ui.com/elements/icon.html#message
         'message' => array(
             'announcement',
             'birthday',
@@ -160,6 +163,31 @@ class Icon extends Element {
             'warning',
             'warning circle',
             'warning sign',
+        ),
+        # Icons can show whether an item is included in a set
+        # http://semantic-ui.com/elements/icon.html#item-selection
+        'item-selection' => array(
+            'add circle',
+            'add square',
+            'check circle',
+            'check circle outline',
+            'check square',
+            'checkmark box',
+            'checkmark',
+            'minus circle',
+            'minus',
+            'minus square',
+            'minus square outline',
+            'move',
+            'plus',
+            'plus square outline',
+            'radio',
+            'remove circle',
+            'remove circle outline',
+            'remove',
+            'selected radio',
+            'toggle off',
+            'toggle on',
         ),
     );
 
