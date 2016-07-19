@@ -18,7 +18,7 @@ class Component extends \Onimla\HTML\Element {
 
     use Traits\Component;
 
-    public function __construct($name, $attr = FALSE, $children = FALSE) {
+    public function __construct($name = 'div', $attr = FALSE, $children = FALSE) {
         parent::__construct($name, $attr, $children);
         $this->setComponent();
     }

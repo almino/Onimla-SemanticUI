@@ -8,7 +8,7 @@ use Onimla\HTML\Appendable;
 use Onimla\SemanticUI\Component;
 use Onimla\SemanticUI\Content;
 use Onimla\SemanticUI\Content\Header;
-use Onimla\SemanticUI\Icon\Close as Dismiss;
+use Onimla\SemanticUI\Content\Actions;
 
 /**
  * @property Element $container .ui.message
@@ -17,11 +17,11 @@ use Onimla\SemanticUI\Icon\Close as Dismiss;
  * @property Element $header .header
  * @property Dismiss $dismiss .close.icon
  */
-class Message extends Node implements HasAttribute, Appendable {
+class Modal extends Node implements HasAttribute, Appendable {
 
-    const CLASS_NAME = 'message';
-
-    use Traits\Colored;
+    const CLASS_NAME = 'modal';
+    
+    protected $sizes = array('small', 'large');
 
     public function __construct($text = FALSE) {
         parent::__construct();
@@ -67,116 +67,20 @@ class Message extends Node implements HasAttribute, Appendable {
         return call_user_func_array(array($this->container, __FUNCTION__), func_get_args());
     }
 
-    public function success() {
-        $class = $this->container->getClassAttribute();
-        $class->before(self::CLASS_NAME, __FUNCTION__);
-        return $this;
-    }
-
-    public function positive() {
-        $class = $this->container->getClassAttribute();
-        $class->before(self::CLASS_NAME, __FUNCTION__);
-        return $this;
-    }
-
-    public function error() {
-        $class = $this->container->getClassAttribute();
-        $class->before(self::CLASS_NAME, __FUNCTION__);
-        return $this;
-    }
-
-    public function negative() {
-        $class = $this->container->getClassAttribute();
-        $class->before(self::CLASS_NAME, __FUNCTION__);
-        return $this;
-    }
-
     public function prepend($children) {
-        call_user_func_array(array($this->container, __FUNCTION__), func_get_args());
+        call_user_func_array(array($this->content, __FUNCTION__), func_get_args());
         return $this;
     }
 
     public function append($children) {
-        call_user_func_array(array($this->container, __FUNCTION__), func_get_args());
+        call_user_func_array(array($this->content, __FUNCTION__), func_get_args());
         return $this;
-    }
-
-    public function isDismissable() {
-        return isset($this->dismiss) AND $this->container->isChild($this->dismiss);
-    }
-
-    public function dismissable($instance = FALSE) {
-        if ($instance === FALSE) {
-            return isset($this->dismiss) ? $this->dismiss : FALSE;
-        }
-
-        $this->unsetDismissable();
-        $this->setDismissable($instance);
-
-        return $this;
-    }
-
-    public function setDismissable($instance = FALSE) {
-        $this->dismiss = $instance === FALSE ? new Dismiss : $instance;
-        $this->prepend($this->dismiss);
-    }
-
-    public function unsetDismissable() {
-        if ($this->isDismissable()) {
-            $dismiss = $this->dismiss;
-            $this->container->removeChild($dismiss);
-            return $dismiss;
-        }
-
-        return FALSE;
-    }
-
-    public function icon($icon = FALSE) {
-        if ($icon === FALSE) {
-            return isset($this->icon) ? $this->icon : FALSE;
-        }
-
-        $this->removeIcon();
-
-        $this->setIcon($icon);
-
-        return $this;
-    }
-
-    public function removeIcon() {
-        if (isset($this->icon)) {
-            $this->container->removeClass('icon');
-            $this->container->removeChild($this->icon);
-            $icon = $this->icon;
-            unset($this->icon);
-            return $icon;
-        }
-
-        return FALSE;
-    }
-
-    public function setIcon($icon) {
-        if ($icon instanceof Icon) {
-            $this->icon = $icon;
-        } else {
-            $this->icon = new Icon($icon);
-        }
-
-        $this->container->getClassAttribute()->after(Component::CLASS_NAME, 'icon');
-
-        $this->container->prepend($this->icon);
-    }
-
-    public function unsetIcon() {
-        return $this->removeIcon();
     }
 
     public function header($text = FALSE) {
         if ($text === FALSE) {
             return isset($this->header) ? $this->header : FALSE;
         }
-
-        $this->removeHeader();
 
         $this->setHeader($text);
 
@@ -195,6 +99,8 @@ class Message extends Node implements HasAttribute, Appendable {
     }
 
     public function setHeader($text) {
+        $this->removeHeader();
+        
         if ($text instanceof Element) {
             $this->header = $text;
         } else {
@@ -202,7 +108,7 @@ class Message extends Node implements HasAttribute, Appendable {
             $this->header->text($text);
         }
 
-        $this->content->prepend($this->header);
+        $this->container->prepend($this->header);
     }
 
     public function unsetHeader() {
@@ -210,7 +116,7 @@ class Message extends Node implements HasAttribute, Appendable {
     }
 
     public function appendText($text) {
-        call_user_func_array(array($this->container, __FUNCTION__), func_get_args());
+        call_user_func_array(array($this->content, __FUNCTION__), func_get_args());
     }
 
     public function text($string = FALSE) {
@@ -235,6 +141,28 @@ class Message extends Node implements HasAttribute, Appendable {
 
     public function removeContent() {
         return $this->content->removeChildren();
+    }
+    
+    public function setSize($size) {
+        $this->unsetSize();
+        $this->container->getClassAttribute()->before(self::CLASS_NAME, $size);
+    }
+
+    public function unsetSize() {
+        $this->removeClass($this->sizes);
+    }
+
+    public function isSize() {
+        return $this->container->getClassAttribute()->matchValue(implode('|', $this->sizes));
+    }
+
+    public function size($size = FALSE) {
+        if ($size === FALSE) {
+            return $this->container->getClassAttribute()->hasAny(...$this->sizes);
+        }
+        
+        $this->setSize();
+        return $this;
     }
 
 }
