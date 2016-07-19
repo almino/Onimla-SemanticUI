@@ -2,17 +2,9 @@
 
 namespace Onimla\SemanticUI;
 
-/*
-  require_once implode(DIRECTORY_SEPARATOR, array(
-  substr(__DIR__, 0, strpos(__DIR__, 'Onimla') + 6),
-  'HTML',
-  'Element.class.php',
-  ));
+use Onimla\HTML\Element;
 
-  require_once 'IsComponent.trait.php';
- */
-
-class Component extends \Onimla\HTML\Element {
+class Component extends Element {
     
     const CLASS_NAME = 'ui';
 
