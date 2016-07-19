@@ -11,6 +11,10 @@ trait Button {
         Component,
         Emphasis,
         Size;
+    
+    public function addClass($classes) {
+        $this->getClassAttribute()->before(Constant::BUTTON, ...func_get_args());
+    }
 
     private function buttonAddClass($instance = FALSE, $class) {
         if (!is_object($instance)) {
@@ -55,7 +59,7 @@ trait Button {
         }
 
         $instance->setComponent();
-        $instance->addClass(Constant::BUTTON);
+        $instance->getClassAttribute()->append(Constant::BUTTON);
     }
 
     /**

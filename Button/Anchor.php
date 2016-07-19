@@ -14,7 +14,7 @@ class Anchor extends \Onimla\HTML\Anchor {
     public function __construct($text = FALSE, $href = FALSE, $title = FALSE) {
         parent::__construct($text, $href, $title);
         $this->setButton();
-        $this->attr('tabindex', '0');
+        $this->setTabIndex();
     }
 
 }
