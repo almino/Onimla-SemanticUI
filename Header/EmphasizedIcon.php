@@ -2,7 +2,9 @@
 
 namespace Onimla\SemanticUI\Header;
 
+use Onimla\SemanticUI\Header;
 use Onimla\SemanticUI\Icon;
+
 
 /**
  * @property Icon $icon .icon
@@ -11,7 +13,17 @@ class EmphasizedIcon extends Content {
 
     public function __construct($number = FALSE, $text = FALSE, $icon = FALSE) {
         parent::__construct($number, $text);
-        $this->setIcon($instance);
+        $this->icon($icon);
+    }
+    
+    protected function addIconClass() {
+        $this->header->getClassAttribute()->before(Header::CLASS_NAME, Icon::CLASS_NAME);
+        return $this;
+    }
+    
+    protected function removeIconClass() {
+        $this->header->removeClass(Icon::CLASS_NAME);
+        return $this;
     }
     
     public function removeIcon() {
@@ -19,32 +31,34 @@ class EmphasizedIcon extends Content {
     }
 
     public function unsetIcon() {
-        if ($this->icon === NULL) {
+        if (!isset($this->icon)) {
             return FALSE;
         }
         
-        $this->removeChild($this->icon);
-
         $icon = $this->icon;
-        $this->icon = NULL;
+        
+        $this->removeChild($this->icon);
+        $this->removeIconClass();
 
         return $icon;
     }
 
     public function setIcon($instance) {
+        $this->unsetIcon();
+        
         if ($instance instanceof Icon) {
             $this->icon = $instance;
         } else {
             $this->icon = new Icon($instance);
         }
 
-        $this->unsetIcon();
-        $this->prepend($this->icon);
+        $this->header->prepend($this->icon);
+        $this->addIconClass();
     }
 
     public function icon($instance = FALSE) {
         if ($instance === FALSE) {
-            return $this->icon instanceof Icon ? $this->icon : FALSE;
+            return isset($this->icon) ? $this->icon : FALSE;
         }
 
         $this->setIcon($instance);

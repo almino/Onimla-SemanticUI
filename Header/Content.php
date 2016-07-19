@@ -28,6 +28,10 @@ class Content extends Node implements Appendable {
 
         $this->header->append($this->content);
     }
+    
+    public function __toString() {
+        return call_user_func(array($this->header, __FUNCTION__));
+    }
 
     public function prepend($children) {
         call_user_func_array(array($this->content, __FUNCTION__), func_get_args());
