@@ -143,7 +143,7 @@ class Modal extends Node implements HasAttribute, Appendable {
     }
 
     public function unsetSize() {
-        $this->removeClass($this->sizes);
+        $this->container->removeClass($this->sizes);
     }
 
     public function isSize() {
