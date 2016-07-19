@@ -6,11 +6,12 @@ use Onimla\HTML\Node;
 use Onimla\HTML\HasAttribute;
 use Onimla\HTML\Appendable;
 use Onimla\HTML\Element;
+use Onimla\SemanticUI\Content;
 use Onimla\SemanticUI\Icon\Close as Dismiss;
 
 /**
  * @property Element $container .ui.message
- * @property Element $content .content
+ * @property Content $content .content
  * @property Icon $icon .icon
  * @property Element $header .header
  * @property Dismiss $dismiss .close.icon
@@ -27,13 +28,11 @@ class Message extends Node implements HasAttribute, Appendable {
 
         # Instâncias ================================================================= #
         $this->container = new Element('div');
-        $this->content = new Element('div');
+        $this->content = new Content;
 
         # Atributos ================================================================== #
         $this->setComponent($this->container);
         $this->container->addClass(self::CLASS_NAME);
-
-        $this->content->addClass('content');
 
         # Árvore ===================================================================== #
         call_user_func_array(array($this, 'text'), func_get_args());
