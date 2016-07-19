@@ -23,15 +23,16 @@ class Modal extends Node implements HasAttribute, Appendable {
 
     protected $sizes = array('small', 'large');
 
-    public function __construct($children = FALSE) {
+    public function __construct($id = FALSE) {
         parent::__construct();
 
         # Instâncias ================================================================= #
         $this->container = new Component;
-        $this->content = new Content(...func_get_args());
+        $this->content = new Content;
 
         # Atributos ================================================================== #
         $this->container->addClass(self::CLASS_NAME);
+        $this->container->id($id);
 
         # Árvore ===================================================================== #
         $this->container->append($this->content);
