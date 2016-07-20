@@ -1,8 +1,8 @@
 <?php
 
 namespace Onimla\SemanticUI\Traits;
-use Onimla\HTML\Attribute\Klass;
 
+use Onimla\HTML\Attribute\Klass;
 use Onimla\SemanticUI\Constant;
 
 trait Colored {
@@ -23,18 +23,7 @@ trait Colored {
         'black',
     );
 
-    public function color($color = FALSE) {
-        if ($color === FALSE) {
-            return Klass::outputValue($this->getClassAttribute()->hasAny(Constant::INVERTED, ...$this->colors));
-        }
-
-        $this->setColor($color);
-        return $this;
-    }
-
-    public function setColor($color) {
-        $this->unsetColor();
-        
+    private function coloredAddClass($color) {
         $method = 'after';
         $search = \Onimla\SemanticUI\Component::CLASS_NAME;
 
@@ -55,9 +44,27 @@ trait Colored {
 
         call_user_func_array(array($this->getClassAttribute(), $method), array($search, $color));
     }
+    
+    public function getColor() {
+        return Klass::outputValue($this->getClassAttribute()->hasAny(Constant::INVERTED, ...$this->colors));
+    }
+
+    public function setColor($color) {
+        $this->unsetColor();
+        $this->coloredAddClass($color);
+    }
 
     public function unsetColor() {
         $this->removeClass($this->colors);
+    }
+
+    public function color($color = FALSE) {
+        if ($color === FALSE) {
+            return $this->getColor();
+        }
+
+        $this->setColor($color);
+        return $this;
     }
 
     public function setInverted() {
