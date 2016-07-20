@@ -24,7 +24,7 @@ trait Colored {
 
     public function color($color = FALSE) {
         if ($color === FALSE) {
-            return $this->getClassAttribute()->hasAny(Constant::INVERTED, ...$this->colors);
+            return implode(' ', $this->getClassAttribute()->hasAny(Constant::INVERTED, ...$this->colors));
         }
 
         $this->setColor($color);
