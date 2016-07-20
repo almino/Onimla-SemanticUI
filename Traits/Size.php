@@ -26,7 +26,7 @@ trait Size {
             $search = $this->color();
         }
 
-        call_user_func_array(array($this->getClassAttribute(), $method), array($search, func_get_args()));
+        call_user_func_array(array($this->getClassAttribute(), $method), array($search, $size));
     }
 
     public function unsetSize() {
