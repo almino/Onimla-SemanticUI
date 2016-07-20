@@ -1,6 +1,7 @@
 <?php
 
 namespace Onimla\SemanticUI\Traits;
+use Onimla\HTML\Attribute\Klass;
 
 trait Size {
 
@@ -43,7 +44,7 @@ trait Size {
             return $this;
         }
 
-        return $this->getClassAttribute()->hasAny($this->sizes);
+        return Klass::outputValue($this->getClassAttribute()->hasAny($this->sizes));
     }
 
     public function mini() {
