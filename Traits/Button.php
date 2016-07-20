@@ -89,5 +89,43 @@ trait Button {
 
         $instance->attr('tabindex', 0);
     }
+    
+    public function setPositive() {
+        $this->unsetColor();
+        $this->unsetNegative();
+        $this->getClassAttribute()->before(\Onimla\SemanticUI\Component::CLASS_NAME, Constant::POSITIVE);
+    }
+
+    public function unsetPositive() {
+        $this->removeClass(Constant::POSITIVE);
+    }
+
+    public function isPositive() {
+        return $this->hasClass(Constant::POSITIVE);
+    }
+
+    public function positive() {
+        $this->setPositive();
+        return $this;
+    }
+    
+    public function setNegative() {
+        $this->unsetColor();
+        $this->unsetPositive();
+        $this->getClassAttribute()->before(\Onimla\SemanticUI\Component::CLASS_NAME, Constant::NEGATIVE);
+    }
+
+    public function unsetNegative() {
+        $this->removeClass(Constant::NEGATIVE);
+    }
+
+    public function isNegative() {
+        return $this->hasClass(Constant::NEGATIVE);
+    }
+
+    public function negative() {
+        $this->setNegative();
+        return $this;
+    }
 
 }
