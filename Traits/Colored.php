@@ -66,10 +66,62 @@ trait Colored {
             $method = 'before';
             $search = Constant::INVERTED;
         }
-        
+
         call_user_func_array(array($this->getClassAttribute(), $method), array($search, func_get_args()));
 
         return $this;
+    }
+
+    public function red() {
+        $this->color(__FUNCTION__);
+    }
+
+    public function orange() {
+        $this->color(__FUNCTION__);
+    }
+
+    public function yellow() {
+        $this->color(__FUNCTION__);
+    }
+
+    public function olive() {
+        $this->color(__FUNCTION__);
+    }
+
+    public function green() {
+        $this->color(__FUNCTION__);
+    }
+
+    public function teal() {
+        $this->color(__FUNCTION__);
+    }
+
+    public function blue() {
+        $this->color(__FUNCTION__);
+    }
+
+    public function violet() {
+        $this->color(__FUNCTION__);
+    }
+
+    public function purple() {
+        $this->color(__FUNCTION__);
+    }
+
+    public function pink() {
+        $this->color(__FUNCTION__);
+    }
+
+    public function brown() {
+        $this->color(__FUNCTION__);
+    }
+
+    public function grey() {
+        $this->color(__FUNCTION__);
+    }
+
+    public function black() {
+        $this->color(__FUNCTION__);
     }
 
 }
