@@ -21,7 +21,7 @@ trait Size {
         $method = 'after';
         $search = \Onimla\SemanticUI\Component::CLASS_NAME;
 
-        if (method_exists($this, 'color') AND $this->color() !== FALSE) {
+        if (method_exists($this, 'color') AND strlen($this->color()) > 0) {
             $method = 'before';
             $search = $this->color();
         }
