@@ -38,7 +38,7 @@ trait Size {
     }
 
     public function size($size = FALSE) {
-        if (in_array($sie, $this->sizes)) {
+        if (in_array($size, $this->sizes)) {
             $this->setSize();
             return $this;
         }
