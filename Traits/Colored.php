@@ -1,6 +1,7 @@
 <?php
 
 namespace Onimla\SemanticUI\Traits;
+use Onimla\HTML\Attribute\Klass;
 
 use Onimla\SemanticUI\Constant;
 
@@ -24,7 +25,7 @@ trait Colored {
 
     public function color($color = FALSE) {
         if ($color === FALSE) {
-            return implode(' ', $this->getClassAttribute()->hasAny(Constant::INVERTED, ...$this->colors));
+            return Klass::outputValue($this->getClassAttribute()->hasAny(Constant::INVERTED, ...$this->colors));
         }
 
         $this->setColor($color);
