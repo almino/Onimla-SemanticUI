@@ -16,9 +16,18 @@ class Grid extends Component {
         $this->selectorToComment(TRUE);
         $this->getClassAttribute()->append(self::CLASS_NAME);
     }
-    
+
     public function addClass($class) {
         $this->getClassAttribute()->before(self::CLASS_NAME, func_get_args());
+    }
+
+    public function centered() {
+        $this->getClassAttribute()->before(self::CLASS_NAME, __FUNCTION__);
+        return $this;
+    }
+    
+    public function center() {
+        return $this->centered();
     }
 
 }
