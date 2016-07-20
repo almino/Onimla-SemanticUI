@@ -26,5 +26,11 @@ abstract class Constant {
     
     # http://semantic-ui.com/elements/segment.html#circular
     const CIRCULAR = 'circular';
+    
+    # http://semantic-ui.com/elements/button.html#positive
+    const POSITIVE = 'positive';
+    
+    # http://semantic-ui.com/elements/button.html#negative
+    const NEGATIVE = 'negative';
 
 }
