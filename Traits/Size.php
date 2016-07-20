@@ -15,6 +15,10 @@ trait Size {
         'huge',
         'massive',
     );
+    
+    public function getSize() {
+        return Klass::outputValue($this->getClassAttribute()->hasAny($this->sizes));
+    }
 
     public function setSize($size) {
         $this->unsetSize();
@@ -44,7 +48,7 @@ trait Size {
             return $this;
         }
 
-        return Klass::outputValue($this->getClassAttribute()->hasAny($this->sizes));
+        return $this->getSize();
     }
 
     public function mini() {
