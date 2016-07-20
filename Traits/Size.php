@@ -17,7 +17,16 @@ trait Size {
 
     public function setSize($size) {
         $this->unsetSize();
-        $this->getClassAttribute()->after(\Onimla\SemanticUI\Component::CLASS_NAME, $size);
+
+        $method = 'after';
+        $search = \Onimla\SemanticUI\Component::CLASS_NAME;
+
+        if (method_exists($this, 'color') AND $this->color() !== FALSE) {
+            $method = 'before';
+            $search = $this->color();
+        }
+
+        call_user_func_array(array($this->getClassAttribute(), $method), array($search, func_get_args()));
     }
 
     public function unsetSize() {
@@ -33,7 +42,7 @@ trait Size {
             $this->setSize();
             return $this;
         }
-        
+
         return $this->getClassAttribute()->hasAny($this->sizes);
     }
 
