@@ -10,6 +10,7 @@ trait Button {
         Colored,
         Component,
         Emphasis,
+        Fluid,
         Size;
     
     public function addClass($classes) {
