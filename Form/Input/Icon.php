@@ -37,5 +37,22 @@ class Icon extends Input {
         $this->setIcon(...func_get_args());
         return $this;
     }
+    
+    public function setLeft() {
+        $this->getClassAttribute()->before(self::CLASS_NAME, Constant::LEFT);
+    }
+
+    public function unsetLeft() {
+        $this->removeClass(Constant::LEFT);
+    }
+
+    public function isLeft() {
+        return $this->hasClass(Constant::LEFT);
+    }
+
+    public function left() {
+        $this->setLeft();
+        return $this;
+    }
 
 }
