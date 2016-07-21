@@ -7,6 +7,7 @@ abstract class Constant {
     const STACKABLE = 'stackable';
     const BASIC = 'basic';
     const INVERTED = 'inverted';
+    const FLUID = 'fluid';
     
     # http://semantic-ui.com/elements/button.html
     const BUTTON = 'button';
