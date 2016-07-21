@@ -4,6 +4,7 @@ namespace Onimla\SemanticUI\Form\Input;
 
 use Onimla\SemanticUI\Form\Input;
 use Onimla\SemanticUI\Icon as Glyph;
+use Onimla\HTML\Element;
 
 /**
  * @property \Onimla\SemanticUI\Icon $icon .icon
