@@ -41,7 +41,7 @@ class Icon extends Input {
     }
     
     public function setLeft() {
-        $this->getClassAttribute()->before(self::CLASS_NAME, Constant::LEFT);
+        $this->getClassAttribute()->before(Glyph::CLASS_NAME, Constant::LEFT);
     }
 
     public function unsetLeft() {
