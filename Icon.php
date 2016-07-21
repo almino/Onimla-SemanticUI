@@ -203,7 +203,7 @@ class Icon extends Element {
 
     public function setIcon($class) {
         $this->unsetIcon();
-        $this->getClassAttribute()->before(self::CLASS_NAME, func_get_args());
+        $this->getClassAttribute()->before(self::CLASS_NAME, ...func_get_args());
     }
 
     public function unsetIcon() {
