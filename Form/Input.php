@@ -15,7 +15,7 @@ class Input extends Component {
     public function __construct($name = FALSE, $value = FALSE, $type = 'text') {
         parent::__construct('div');
         $this->getClassAttribute()->append(self::CLASS_NAME);
-        $this->input(...func_get_args());
+        $this->field(...func_get_args());
     }
 
     public function createField() {
