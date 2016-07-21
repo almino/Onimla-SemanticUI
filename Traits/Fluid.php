@@ -3,11 +3,26 @@
 namespace Onimla\SemanticUI\Traits;
 
 use Onimla\SemanticUI\Constant;
+use Onimla\SemanticUI\Form\Input;
 
 trait Fluid {
 
     public function setFluid() {
-        $this->getClassAttribute()->before(self::CLASS_NAME, Constant::FLUID);
+
+        $method = 'after';
+        $search = \Onimla\SemanticUI\Component::CLASS_NAME;
+
+        if ($this->hasClass(Input::CLASS_NAME)) {
+            $method = 'before';
+            $search = Input::CLASS_NAME;
+        }
+        
+        if ($this->hasClass(Constant::BUTTON)) {
+            $method = 'before';
+            $search = Constant::BUTTON;
+        }
+
+        call_user_func_array(array($this->getClassAttribute(), $method), array($search, Constant::FLUID));
     }
 
     public function unsetFluid() {
