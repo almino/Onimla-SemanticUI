@@ -4,11 +4,15 @@ namespace Onimla\SemanticUI;
 
 abstract class Constant {
 
-    const DOUBLING = 'doubling';
     const STACKABLE = 'stackable';
-    const BUTTON = 'button';
     const BASIC = 'basic';
     const INVERTED = 'inverted';
+    
+    # http://semantic-ui.com/elements/button.html
+    const BUTTON = 'button';
+
+    # http://semantic-ui.com/collections/grid.html#doubling
+    const DOUBLING = 'doubling';
 
     # http://semantic-ui.com/elements/label.html
     const BELOW = 'below';
@@ -23,13 +27,13 @@ abstract class Constant {
 
     # http://semantic-ui.com/elements/segment.html#raised
     const RAISED = 'raised';
-    
+
     # http://semantic-ui.com/elements/segment.html#circular
     const CIRCULAR = 'circular';
-    
+
     # http://semantic-ui.com/elements/button.html#positive
     const POSITIVE = 'positive';
-    
+
     # http://semantic-ui.com/elements/button.html#negative
     const NEGATIVE = 'negative';
 

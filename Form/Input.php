@@ -3,13 +3,16 @@
 namespace Onimla\SemanticUI\Form;
 
 use Onimla\SemanticUI\Component;
+use Onimla\SemanticUI\Traits\Fluid;
 use Onimla\HTML\Element;
 
 /**
  * @property \Onimla\HTML\Input $field
  */
 class Input extends Component {
-
+    
+    use Fluid;
+    
     const CLASS_NAME = 'input';
 
     public function __construct($name = FALSE, $value = FALSE, $type = 'text') {
