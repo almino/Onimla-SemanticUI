@@ -164,6 +164,17 @@ class Icon extends Element {
             'warning circle',
             'warning sign',
         ),
+        # Icons can represent types of people
+        # http://semantic-ui.com/elements/icon.html#user-types
+        'user-types' => array(
+            'child',
+            'doctor',
+            'handicap',
+            'spy',
+            'student',
+            'user',
+            'users',
+        ),
         # Icons can show whether an item is included in a set
         # http://semantic-ui.com/elements/icon.html#item-selection
         'item-selection' => array(
