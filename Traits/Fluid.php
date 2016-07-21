@@ -4,7 +4,7 @@ namespace Onimla\SemanticUI\Traits;
 
 use Onimla\SemanticUI\Constant;
 
-class Fluid {
+trait Fluid {
 
     public function setFluid() {
         $this->getClassAttribute()->before(self::CLASS_NAME, Constant::FLUID);
