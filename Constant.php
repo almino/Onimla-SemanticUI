@@ -8,7 +8,7 @@ abstract class Constant {
     const BASIC = 'basic';
     const INVERTED = 'inverted';
     const FLUID = 'fluid';
-    
+
     # http://semantic-ui.com/elements/button.html
     const BUTTON = 'button';
 
@@ -37,5 +37,8 @@ abstract class Constant {
 
     # http://semantic-ui.com/elements/button.html#negative
     const NEGATIVE = 'negative';
+
+    # http://semantic-ui.com/collections/message.html#list-message
+    const LYST = 'list';
 
 }
