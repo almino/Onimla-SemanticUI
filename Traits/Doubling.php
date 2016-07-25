@@ -3,6 +3,7 @@
 namespace Onimla\SemanticUI\Traits;
 
 use Onimla\SemanticUI\Constant;
+use Onimla\SemanticUI\Row;
 
 trait Doubling {
 
@@ -12,7 +13,15 @@ trait Doubling {
     }
 
     public function setDoubling() {
-        $this->getClassAttribute()->after(\Onimla\SemanticUI\Component::CLASS_NAME, Constant::DOUBLING);
+        $method = 'after';
+        $search = \Onimla\SemanticUI\Component::CLASS_NAME;
+
+        if ($this->hasClass(Row::CLASS_NAME)) {
+            $method = 'before';
+            $search = Row::CLASS_NAME;
+        }
+
+        call_user_func_array(array($this->getClassAttribute(), $method), array($search, Constant::DOUBLING));
     }
 
     public function unsetDoubling() {
