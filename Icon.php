@@ -205,7 +205,8 @@ class Icon extends Element {
     public function __construct($class) {
         parent::__construct('i');
         $this->getClassAttribute()->append(self::CLASS_NAME);
-        call_user_func_array(array($this, 'setIcon'), func_get_args());
+        $this->setIcon(...func_get_args());
+        $this->selfClose(FALSE);
     }
 
     public function addClass($class) {
