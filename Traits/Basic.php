@@ -4,6 +4,7 @@ namespace Onimla\SemanticUI\Traits;
 
 use Onimla\SemanticUI\Constant;
 use Onimla\SemanticUI\Label;
+use Onimla\SemanticUI\Segment;
 
 trait Basic {
 
@@ -19,6 +20,11 @@ trait Basic {
         if ($this->hasClass(Label::CLASS_NAME)) {
             $method = 'before';
             $search = Label::CLASS_NAME;
+        }
+
+        if ($this->hasClass(Segment::CLASS_NAME)) {
+            $method = 'before';
+            $search = Segment::CLASS_NAME;
         }
 
         call_user_func_array(array($this->getClassAttribute(), $method), array($search, func_get_args()));

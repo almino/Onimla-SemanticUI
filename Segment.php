@@ -11,6 +11,7 @@ class Segment extends Component {
 
     use Traits\Alignment,
         Traits\Attached,
+        Traits\Basic,
         Traits\Colored;
 
     const CLASS_NAME = 'segment';
