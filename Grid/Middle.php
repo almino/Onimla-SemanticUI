@@ -1,5 +1,5 @@
 <?php
-namespace Onimla\SemanticUI\Grid\Doubling;
+namespace Onimla\SemanticUI\Grid;
 
 use Onimla\SemanticUI\Grid as BaseGrid;
 

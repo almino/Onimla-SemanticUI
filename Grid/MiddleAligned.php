@@ -1,6 +1,6 @@
 <?php
 
-namespace Onimla\SemanticUI\Grid\Doubling;
+namespace Onimla\SemanticUI\Grid;
 
 class MiddleAligned extends Middle {
     
