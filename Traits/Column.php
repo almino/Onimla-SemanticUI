@@ -32,6 +32,7 @@ trait Column {
 
     public function column($number, $plural = FALSE) {
         $this->setColumn($number, $plural);
+        return $this;
     }
 
     public function setColumn($number, $plural = FALSE) {
@@ -42,8 +43,6 @@ trait Column {
         } else {
             $this->addClass($classes);
         }
-        
-        return $this;
     }
 
     public function unsetColumn() {

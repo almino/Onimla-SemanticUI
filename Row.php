@@ -7,7 +7,8 @@ class Row extends \Onimla\HTML\Element {
     use Traits\Colored,
         Traits\Alignment,
         Traits\Column,
-        Traits\Divided;
+        Traits\Divided,
+        Traits\Doubling;
     
     const CLASS_NAME = 'row';
 
