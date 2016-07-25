@@ -15,6 +15,7 @@ class Grid extends Component {
         parent::__construct('div', FALSE, func_get_args());
         $this->selectorToComment(TRUE);
         $this->getClassAttribute()->append(self::CLASS_NAME);
+        $this->selfClose(FALSE);
     }
 
     public function addClass($class) {
