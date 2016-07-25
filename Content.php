@@ -11,6 +11,7 @@ class Content extends Element {
     public function __construct($children = FALSE) {
         parent::__construct('div', FALSE, $children);
         $this->addClass(self::CLASS_NAME);
+        $this->selfClose(FALSE);
     }
 
 }
