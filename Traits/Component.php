@@ -38,12 +38,23 @@ trait Component {
         $instance->removeClass(\Onimla\SemanticUI\Component::CLASS_NAME);
     }
 
-
     /**
      * @param \Onimla\HTML\Element $instance
      */
     public function state($state) {
         
+    }
+
+    /**
+     * Forces visbility of a component
+     * @param mixed $instance [optional] Component to be force visibility.
+     */
+    public function visible($instance = FALSE) {
+        if (!is_object($instance)) {
+            $instance = $this;
+        }
+
+        $instance->getClassAttribute()->prepend(__FUNCTION__);
     }
 
 }
