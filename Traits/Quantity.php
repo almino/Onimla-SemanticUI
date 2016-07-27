@@ -39,5 +39,9 @@ trait Quantity {
         $this->setQuantity();
         return $this;
     }
+    
+    public function qty($number = FALSE) {
+        return $this->quantity($number);
+    }
 
 }
