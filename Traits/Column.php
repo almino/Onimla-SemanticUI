@@ -2,42 +2,29 @@
 
 namespace Onimla\SemanticUI\Traits;
 
+use Onimla\SemanticUI\Column as tColumn;
+use Onimla\SemanticUI\Grid as tGrid;
+
+/**
+ * @method \Onimla\HTML\Attribute\Klass getClassAttribute()
+ */
 trait Column {
 
-    private $column = 'column';
-    private $columns = 'columns';
-    private $numbers = array(
-        'zero',
-        'one',
-        'two',
-        'three',
-        'four',
-        'five',
-        'six',
-        'seven',
-        'eight',
-        'nine',
-        'ten',
-        'eleven',
-        'twelve',
-        'thirteen',
-        'fourteen',
-        'fifteen',
-        'sixteen',
-        'seventeen',
-        'eighteen',
-        'nineteen',
-        'twenty',
-    );
+    use Number;
 
-    public function column($number, $plural = FALSE) {
-        $this->setColumn($number, $plural);
-        return $this;
-    }
+    public function setColumn($number) {
+        $number = $this->cleanNumber($number);
 
-    public function setColumn($number, $plural = FALSE) {
-        $classes = array($this->number($number), $this->column);
-        
+        if ($number > 16) {
+            $number = 16;
+        }
+
+        if ($number < 1) {
+            $number = 1;
+        }
+
+        $classes = array($this->spellNumber($number), tColumn::CLASS_NAME);
+
         if ($this->getClassAttribute()->isValueSet()) {
             $this->getClassAttribute()->before($this->columnAddClassBefore(), $classes);
         } else {
@@ -49,13 +36,14 @@ trait Column {
         $this->removeClass($this->column, $this->columns, $this->numbers);
     }
 
-    protected function number($int) {
-        return $this->numbers[(int) $int];
+    public function column($number, $plural = FALSE) {
+        $this->setColumn($number, $plural);
+        return $this;
     }
 
     private function columnAddClassBefore() {
-        if ($this->hasClass(\Onimla\SemanticUI\Grid::CLASS_NAME)) {
-            return \Onimla\SemanticUI\Grid::CLASS_NAME;
+        if ($this->hasClass(tGrid::CLASS_NAME)) {
+            return tGrid::CLASS_NAME;
         }
 
         return self::CLASS_NAME;
