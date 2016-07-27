@@ -27,19 +27,33 @@ trait Quantity {
         $this->getClassAttribute()->removeClass(...$this->cardinal);
     }
 
+    /**
+     * 
+     * @return boolean
+     */
     public function isQuantitySet() {
         return count($this->getClassAttribute()->hasAny(...$this->cardinal)) > 0;
     }
 
+    /**
+     * 
+     * @param int $number
+     * @return self|string
+     */
     public function quantity($number = FALSE) {
         if ($number === FALSE AND $this->isQuantitySet()) {
             return implode(' ', $this->getClassAttribute()->hasAny(...$this->cardinal));
         }
 
-        $this->setQuantity();
+        $this->setQuantity($number);
         return $this;
     }
-    
+
+    /**
+     * 
+     * @param int $number
+     * @return self|string
+     */
     public function qty($number = FALSE) {
         return $this->quantity($number);
     }
