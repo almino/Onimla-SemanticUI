@@ -35,13 +35,17 @@ trait Number {
         '9' => 'ninth',
         '12' => 'twelfth',
     );
+    
+    protected function cleanNumber($number) {
+        return preg_replace('/[^\d]/', '', $number);
+    }
 
     protected function spellNumber($number) {
-        return $this->cardinal[preg_replace('/[^\d]/', '', $number)];
+        return $this->cardinal[$this->cleanNumber($number)];
     }
 
     protected function spellOrdinalNumber($number) {
-        $number = preg_replace('/[^\d]/', '', $number);
+        $number = $this->cleanNumber($number);
 
         if (key_exists($number, $this->ordinal)) {
             return $this->ordinal[$number];

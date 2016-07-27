@@ -10,6 +10,16 @@ trait Quantity {
     use Number;
 
     public function setQuantity($number) {
+        $number = $this->cleanNumber($number);
+
+        if ($number > 10) {
+            $number = 10;
+        }
+
+        if ($number < 2) {
+            $number = 2;
+        }
+
         $this->getClassAttribute()->before(self::CLASS_NAME, $this->spellNumber($number));
     }
 
@@ -25,7 +35,7 @@ trait Quantity {
         if ($number === FALSE AND $this->isQuantitySet()) {
             return implode(' ', $this->getClassAttribute()->hasAny(...$this->cardinal));
         }
-        
+
         $this->setQuantity();
         return $this;
     }
