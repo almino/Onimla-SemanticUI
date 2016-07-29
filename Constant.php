@@ -46,5 +46,9 @@ abstract class Constant {
     const COMPUTER = 'computer';
     const TABLET = 'tablet';
     const MOBILE = 'mobile';
+    
+    # http://semantic-ui.com/collections/grid.html#column-width
+    const WIDE = 'wide';
+
 
 }

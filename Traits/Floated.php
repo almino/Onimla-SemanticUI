@@ -50,7 +50,7 @@ trait Floated {
     public function getFloatedClasses() {
         $matches = array();
 
-        $this->getClassAttribute()->matchValue($this->columnRegEx(), $matches);
+        $this->getClassAttribute()->matchValue($this->floatedRegEx(), $matches);
 
         return count($matches) > 1 ? "{$matches[1]} {$matches[2]}" : NULL;
     }
