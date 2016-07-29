@@ -2,6 +2,9 @@
 
 namespace Onimla\SemanticUI\Traits;
 
+/**
+ * @method \Onimla\HTML\Attribute\Klass getClassAttribute()
+ */
 trait Floated {
 
     private $floated = 'floated';
@@ -22,6 +25,10 @@ trait Floated {
         return $this;
     }
 
+    protected function unsetFloated() {
+        $this->removeFloatedClasses();
+    }
+
     protected function setFloated($class) {
         $this->removeFloatedClasses();
 
@@ -32,12 +39,37 @@ trait Floated {
         return $this;
     }
 
+    private function floatedRegEx($side = FALSE) {
+        if ($side === FALSE) {
+            $side = implode('|', array($this->leftFloated, $this->rightFloated));
+        }
+        
+        return "/([{$side}])\s+(" . $this->floated . ')/';
+    }
+
+    public function getFloatedClasses() {
+        $matches = array();
+
+        $this->getClassAttribute()->matchValue($this->columnRegEx(), $matches);
+
+        return count($matches) > 1 ? "{$matches[1]} {$matches[2]}" : NULL;
+    }
+
+    public function isFloated($side = FALSE) {
+        return (bool) $this->getClassAttribute()->matchValue($this->floatedRegEx($side));
+    }
+
     public function leftFloated() {
         $this->setFloated($this->leftFloated);
     }
 
-    public function floated() {
+    public function floated($side = FALSE) {
+        if ($side === FALSE) {
+            return $this->isFloated();
+        }
+        
         $this->setFloated($this->floated);
+        return $this;
     }
 
     public function rightFloated() {
