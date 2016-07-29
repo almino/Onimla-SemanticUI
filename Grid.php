@@ -9,7 +9,8 @@ class Grid extends Component {
     use Traits\Alignment,
         Traits\Column,
         Traits\Doubling,
-        Traits\Stackable;
+        Traits\Stackable,
+        Traits\Reversed;
 
     const CLASS_NAME = 'grid';
 

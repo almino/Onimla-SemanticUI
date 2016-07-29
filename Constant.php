@@ -41,4 +41,10 @@ abstract class Constant {
     # http://semantic-ui.com/collections/message.html#list-message
     const LYST = 'list';
 
+    # http://semantic-ui.com/collections/grid.html#reversed
+    const REVERSED = 'reversed';
+    const COMPUTER = 'computer';
+    const TABLET = 'tablet';
+    const MOBILE = 'mobile';
+
 }
