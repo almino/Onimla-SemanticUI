@@ -40,6 +40,10 @@ trait Number {
         return preg_replace('/[^\d]/', '', $number);
     }
 
+    protected function spelledCardinalNumbertoInt($spelledCardinalNumber) {
+        return array_search($spelledCardinalNumber, $this->cardinal);
+    }
+
     protected function spellNumber($number) {
         return $this->cardinal[$this->cleanNumber($number)];
     }

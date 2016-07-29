@@ -10,7 +10,15 @@ use Onimla\SemanticUI\Constant;
 trait Reversed {
 
     public function setReversed($device) {
-        $this->getClassAttribute()->after(\Onimla\SemanticUI\Component::CLASS_NAME, $device, Constant::REVERSED);
+        $method = 'after';
+        $search = \Onimla\SemanticUI\Component::CLASS_NAME;
+
+        if ($this->hasClass(\Onimla\SemanticUI\Row::CLASS_NAME)) {
+            $method = 'before';
+            $search = \Onimla\SemanticUI\Row::CLASS_NAME;
+        }
+        
+        call_user_func_array(array($this->getClassAttribute(), $method), array($device, Constant::REVERSED));
     }
 
     public function unsetReversed() {
@@ -19,11 +27,11 @@ trait Reversed {
 
     private function getReversedRegex($device = FALSE) {
         if ($device === FALSE) {
-            return implode('|', array(
+            return '[' . implode('|', array(
                 Constant::COMPUTER,
                 Constant::TABLET,
                 Constant::MOBILE,
-            ));
+            )) . ']';
         }
         return "/{$device}\s+" . Constant::REVERSED . '/';
     }

@@ -12,6 +12,14 @@ trait Column {
 
     use Number;
 
+    private function columnAddClassBefore() {
+        if ($this->hasClass(tGrid::CLASS_NAME)) {
+            return tGrid::CLASS_NAME;
+        }
+
+        return self::CLASS_NAME;
+    }
+
     public function setColumn($number) {
         $number = $this->cleanNumber($number);
 
@@ -36,17 +44,48 @@ trait Column {
         $this->removeClass($this->column, $this->columns, $this->numbers);
     }
 
-    public function column($number, $plural = FALSE) {
-        $this->setColumn($number, $plural);
-        return $this;
-    }
+    private function columnRegEx() {
 
-    private function columnAddClassBefore() {
-        if ($this->hasClass(tGrid::CLASS_NAME)) {
-            return tGrid::CLASS_NAME;
+        $quantity = array();
+
+        for ($i = 1; $i <= 16; $i++) {
+            $quantity[] = preg_quote($this->spellNumber($i));
         }
 
-        return self::CLASS_NAME;
+        return '/([' . implode('|', $quantity) . '])\s+(' . tColumn::CLASS_NAME . ')/';
+    }
+
+    public function isColumnSet() {
+        return (bool) $this->getClassAttribute()->matchValue($this->columnRegEx());
+    }
+
+    public function getColumnClasses() {
+        $matches = array();
+        
+        $this->getClassAttribute()->matchValue($this->columnRegEx(), $matches);
+        
+        return count($matches) > 1 ? "{$matches[1]} {$matches[2]}" : NULL;
+    }
+    
+    public function columnQuantity() {
+        $matches = array();
+        
+        $this->getClassAttribute()->matchValue($this->columnRegEx(), $matches);
+        
+        return count($matches) > 1 ? $this->spelledCardinalNumbertoInt($matches[1]) : NULL;
+    }
+    
+    public function columnQty() {
+        return $this->columnQuantity();
+    }
+    
+    public function columnCount() {
+        return $this->columnQuantity();
+    }
+
+    public function column($number) {
+        $this->setColumn($number);
+        return $this;
     }
 
 }
