@@ -21,25 +21,23 @@ trait Alignment {
             $method = 'before';
             $search = \Onimla\SemanticUI\Row::CLASS_NAME;
         }
-        
+
         if ($this->hasClass(\Onimla\SemanticUI\Column::CLASS_NAME)) {
             call_user_func_array(array($this->getClassAttribute(), 'prepend'), func_get_args());
             return $this;
         }
-        
-        call_user_func_array(array($this->getClassAttribute(), $method), array($search, func_get_args()));
 
-        return $this;
+        call_user_func_array(array($this->getClassAttribute(), $method), array($search, func_get_args()));
     }
 
     protected function setAlignment($class) {
         $this->removeAlignmentClasses();
-        
+
         if ($class == $this->justifiedAlignment) {
             return $this->alignmentAddClass($this->justifiedAlignment);
         }
-        
-        return $this->alignmentAddClass($class, $this->aligned);
+
+        $this->alignmentAddClass($class, $this->aligned);
     }
 
     private function removeAlignmentClasses() {
@@ -53,31 +51,38 @@ trait Alignment {
     }
 
     public function bottom() {
-        return $this->setAlignment(__FUNCTION__);
+        $this->setAlignment(__FUNCTION__);
+        return $this;
     }
 
     public function center() {
-        return $this->setAlignment(__FUNCTION__);
+        $this->setAlignment(__FUNCTION__);
+        return $this;
     }
 
     public function justified() {
-        return $this->setAlignment(__FUNCTION__);
+        $this->setAlignment(__FUNCTION__);
+        return $this;
     }
 
     public function left() {
-        return $this->setAlignment(__FUNCTION__);
+        $this->setAlignment(__FUNCTION__);
+        return $this;
     }
 
     public function middle() {
-        return $this->setAlignment(__FUNCTION__);
+        $this->setAlignment(__FUNCTION__);
+        return $this;
     }
 
     public function right() {
-        return $this->setAlignment(__FUNCTION__);
+        $this->setAlignment(__FUNCTION__);
+        return $this;
     }
 
     public function top() {
-        return $this->setAlignment(__FUNCTION__);
+        $this->setAlignment(__FUNCTION__);
+        return $this;
     }
 
 }
