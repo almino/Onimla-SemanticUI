@@ -2,11 +2,13 @@
 
 namespace Onimla\SemanticUI;
 
-#require_once substr(__DIR__, 0, strpos(__DIR__, 'Menu')) . 'Component.class.php';
-
 class Container extends \Onimla\SemanticUI\Component {
-    public function __construct($children = FALSE, $attr = FALSE) {
-        parent::__construct('div', $attr, $children);
-        $this->addClass('container');
+
+    const CLASS_NAME = 'container';
+
+    public function __construct($children = FALSE) {
+        parent::__construct('div', FALSE, ...func_get_args());
+        $this->addClass(self::CLASS_NAME);
     }
+
 }

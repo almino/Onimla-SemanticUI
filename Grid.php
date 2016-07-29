@@ -2,6 +2,8 @@
 
 namespace Onimla\SemanticUI;
 
+use Onimla\SemanticUI\Container;
+
 class Grid extends Component {
 
     use Traits\Alignment,
@@ -29,6 +31,23 @@ class Grid extends Component {
     
     public function center() {
         return $this->centered();
+    }
+    
+    public function setContainer() {
+        $this->getClassAttribute()->before(self::CLASS_NAME, Container::CLASS_NAME);
+    }
+
+    public function unsetContainer() {
+        $this->removeClass(Container::CLASS_NAME);
+    }
+
+    public function isContainer() {
+        return $this->hasClass(Container::CLASS_NAME);
+    }
+
+    public function container() {
+        $this->setContainer();
+        return $this;
     }
 
 }
