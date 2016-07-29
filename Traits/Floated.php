@@ -44,7 +44,7 @@ trait Floated {
             $side = implode('|', array($this->leftFloated, $this->rightFloated));
         }
         
-        return "/([{$side}])\s+(" . $this->floated . ')/';
+        return "/({$side})\s+({$this->floated})/";
     }
 
     public function getFloatedClasses() {

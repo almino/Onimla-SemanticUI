@@ -51,7 +51,7 @@ trait Column {
             $quantity[] = preg_quote($this->spellNumber($i));
         }
 
-        return '/([' . implode('|', $quantity) . '])\s+(' . tColumn::CLASS_NAME . ')/';
+        return '/(' . implode('|', $quantity) . ')\s+(' . tColumn::CLASS_NAME . ')/';
     }
 
     public function isColumnSet() {
