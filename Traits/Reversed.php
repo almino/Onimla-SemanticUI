@@ -18,6 +18,11 @@ trait Reversed {
             $search = \Onimla\SemanticUI\Row::CLASS_NAME;
         }
         
+        if (method_exists($this, 'getColumnClasses') AND strlen($this->getColumnClasses()) > 0) {
+            $method = 'before';
+            $search = $this->getColumnClasses();
+        }
+        
         call_user_func_array(array($this->getClassAttribute(), $method), array($device, Constant::REVERSED));
     }
 
