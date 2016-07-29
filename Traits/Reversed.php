@@ -9,23 +9,23 @@ use Onimla\SemanticUI\Constant;
  */
 trait Reversed {
 
-    public function setReversed() {
-        $this->getClassAttribute()->before(self::CLASS_NAME, Constant::REVERSED);
+    public function setReversed($device) {
+        $this->getClassAttribute()->after(\Onimla\SemanticUI\Component::CLASS_NAME, $device, Constant::REVERSED);
     }
 
     public function unsetReversed() {
         $this->removeClass(Constant::REVERSED);
     }
 
-    private function getReversedRegex($viewport = FALSE) {
-        if ($viewport === FALSE) {
+    private function getReversedRegex($device = FALSE) {
+        if ($device === FALSE) {
             return implode('|', array(
                 Constant::COMPUTER,
                 Constant::TABLET,
                 Constant::MOBILE,
             ));
         }
-        return "/{$viewport}\s+" . Constant::REVERSED . '/';
+        return "/{$device}\s+" . Constant::REVERSED . '/';
     }
 
     public function isComputerReversed() {
