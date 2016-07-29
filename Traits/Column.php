@@ -61,29 +61,38 @@ trait Column {
 
     public function getColumnClasses() {
         $matches = array();
-        
+
         $this->getClassAttribute()->matchValue($this->columnRegEx(), $matches);
-        
+
         return count($matches) > 1 ? "{$matches[1]} {$matches[2]}" : NULL;
     }
-    
+
     public function columnQuantity() {
         $matches = array();
-        
+
         $this->getClassAttribute()->matchValue($this->columnRegEx(), $matches);
-        
+
         return count($matches) > 1 ? $this->spelledCardinalNumbertoInt($matches[1]) : NULL;
     }
-    
+
     public function columnQty() {
         return $this->columnQuantity();
     }
-    
+
     public function columnCount() {
         return $this->columnQuantity();
     }
 
-    public function column($number) {
+    /**
+     * Get or set the quantity of columns
+     * @param integer $number
+     * @return self|integer
+     */
+    public function column($number = FALSE) {
+        if ($number === FALSE) {
+            return $this->columnQuantity();
+        }
+
         $this->setColumn($number);
         return $this;
     }
