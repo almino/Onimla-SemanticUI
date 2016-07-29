@@ -23,7 +23,7 @@ trait Reversed {
             $search = $this->getColumnClasses();
         }
         
-        call_user_func_array(array($this->getClassAttribute(), $method), array($device, Constant::REVERSED));
+        call_user_func_array(array($this->getClassAttribute(), $method), array($search, $device, Constant::REVERSED));
     }
 
     public function unsetReversed() {
