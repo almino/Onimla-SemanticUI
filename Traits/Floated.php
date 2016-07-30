@@ -11,7 +11,20 @@ trait Floated {
     private $leftFloated = 'left';
     private $rightFloated = 'right';
 
-    private function floatedAddClass($class) {
+    private function removeFloatedClasses() {
+        $this->getClassAttribute()->strictRemoveClass($this->leftFloated, $this->floated);
+        $this->getClassAttribute()->strictRemoveClass($this->rightFloated, $this->floated);
+
+        return $this;
+    }
+
+    public function unsetFloated() {
+        $this->removeFloatedClasses();
+    }
+
+    public function setFloated($class) {
+        $this->removeFloatedClasses();
+        
         $method = 'after';
         $search = \Onimla\SemanticUI\Component::CLASS_NAME;
 
@@ -21,20 +34,6 @@ trait Floated {
         }
 
         call_user_func_array(array($this->getClassAttribute(), $method), array($search, func_get_args()));
-
-        return $this;
-    }
-
-    protected function unsetFloated() {
-        $this->removeFloatedClasses();
-    }
-
-    protected function setFloated($class) {
-        $this->removeFloatedClasses();
-
-        $this->floatedAddClass($class, $this->floated);
-
-        #$this->getClassAttribute()->after($class, $this->floated);
 
         return $this;
     }
@@ -74,13 +73,6 @@ trait Floated {
 
     public function rightFloated() {
         $this->setFloated($this->rightFloated);
-    }
-
-    private function removeFloatedClasses() {
-        $this->getClassAttribute()->strictRemoveClass($this->leftFloated, $this->floated);
-        $this->getClassAttribute()->strictRemoveClass($this->rightFloated, $this->floated);
-
-        return $this;
     }
 
 }
