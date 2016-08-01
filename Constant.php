@@ -49,5 +49,8 @@ abstract class Constant {
 
     # http://semantic-ui.com/collections/grid.html#column-width
     const WIDE = 'wide';
+    
+    # http://semantic-ui.com/collections/grid.html#automatic-column-count
+    const EQUAL_WIDTH = 'equal width';
 
 }

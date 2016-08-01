@@ -9,6 +9,7 @@ class Row extends \Onimla\HTML\Element {
         Traits\Column,
         Traits\Divided,
         Traits\Doubling,
+        Traits\EqualWidth,
         Traits\Reversed,
         Traits\Stackable;
     

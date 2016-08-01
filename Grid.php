@@ -9,6 +9,7 @@ class Grid extends Component {
     use Traits\Alignment,
         Traits\Column,
         Traits\Doubling,
+        Traits\EqualWidth,
         Traits\Stackable,
         Traits\Reversed;
 
