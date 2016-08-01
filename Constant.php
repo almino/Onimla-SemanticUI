@@ -4,7 +4,6 @@ namespace Onimla\SemanticUI;
 
 abstract class Constant {
 
-    const STACKABLE = 'stackable';
     const BASIC = 'basic';
     const INVERTED = 'inverted';
     const FLUID = 'fluid';
@@ -43,12 +42,12 @@ abstract class Constant {
 
     # http://semantic-ui.com/collections/grid.html#reversed
     const REVERSED = 'reversed';
+    const STACKABLE = 'stackable';
     const COMPUTER = 'computer';
     const TABLET = 'tablet';
     const MOBILE = 'mobile';
-    
+
     # http://semantic-ui.com/collections/grid.html#column-width
     const WIDE = 'wide';
-
 
 }

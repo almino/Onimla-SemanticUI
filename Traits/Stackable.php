@@ -2,16 +2,12 @@
 
 namespace Onimla\SemanticUI\Traits;
 
+use Onimla\SemanticUI\Constant;
+
 /**
  * @method \Onimla\HTML\Attribute\Klass getClassAttribute()
  */
 trait Stackable {
-
-    private $stackable = 'stackable';
-
-    public function stackable() {
-        return $this->setStackable();
-    }
 
     public function setStackable() {
         $method = 'after';
@@ -22,11 +18,19 @@ trait Stackable {
             $search = \Onimla\SemanticUI\Row::CLASS_NAME;
         }
 
-        call_user_func_array(array($this->getClassAttribute(), $method), array($search, $this->spellNumber($width), Constant::WIDE, $device));
+        call_user_func_array(array($this->getClassAttribute(), $method), array($search, Constant::STACKABLE));
     }
 
     public function unsetStackable() {
         $this->removeClass($this->stackable);
+    }
+    
+    public function isStackable() {
+        return $this->hasClass(Constant::STACKABLE);
+    }
+
+    public function stackable() {
+        return $this->setStackable();
     }
 
 }
