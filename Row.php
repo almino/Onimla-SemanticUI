@@ -9,7 +9,8 @@ class Row extends \Onimla\HTML\Element {
         Traits\Column,
         Traits\Divided,
         Traits\Doubling,
-        Traits\Reversed;
+        Traits\Reversed,
+        Traits\Stackable;
     
     const CLASS_NAME = 'row';
 
