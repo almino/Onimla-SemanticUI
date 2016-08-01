@@ -22,7 +22,7 @@ trait Stackable {
     }
 
     public function unsetStackable() {
-        $this->removeClass($this->stackable);
+        $this->removeClass(Constant::STACKABLE);
     }
     
     public function isStackable() {
