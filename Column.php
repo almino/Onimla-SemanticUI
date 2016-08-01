@@ -157,5 +157,17 @@ class Column extends Element {
         $this->setWidth($width, $device);
         return $this;
     }
+    
+    public function mobileWidth($width = FALSE) {
+        return $this->width($width, Constant::MOBILE);
+    }
+    
+    public function tabletWidth($width = FALSE) {
+        return $this->width($width, Constant::TABLET);
+    }
+    
+    public function computerWidth($width = FALSE) {
+        return $this->width($width, Constant::COMPUTER);
+    }
 
 }
