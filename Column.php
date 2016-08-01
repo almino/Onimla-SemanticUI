@@ -29,20 +29,56 @@ class Column extends Element {
         if ($width < 1) {
             $width = 1;
         }
-        
+
         $this->unsetWidth($device);
 
         $method = 'before';
         $search = self::CLASS_NAME;
 
-        if (method_exists($this, 'getFloatedClasses') AND strlen($this->getFloatedClasses()) > 0) {
+        if ($this->isFloated()) {
             $method = 'before';
             $search = $this->getFloatedClasses();
         }
-        
-        // @todo melhorar a ordem do dispositivos ($device)
+
+        $isMobileSet = $this->isWidthSet(Constant::MOBILE);
+        $isTabletSet = $this->isWidthSet(Constant::TABLET);
+        $isComputerSet = $this->isWidthSet(Constant::COMPUTER);
+
+        $isMobileDevice = $device == Constant::MOBILE;
+        $isTabletDevice = $device == Constant::TABLET;
+        $isComputerDevice = $device == Constant::COMPUTER;
+
+        if ($isComputerSet) {
+            $method = 'before';
+            $search = $this->getWidthClasses(Constant::COMPUTER);
+        }
+
+        if ($isTabletSet AND $isComputerDevice) {
+            $method = 'after';
+            $search = $this->getWidthClasses(Constant::TABLET);
+        }
+
+        if ($isTabletSet AND $isMobileDevice) {
+            $method = 'before';
+            $search = $this->getWidthClasses(Constant::TABLET);
+        }
+
+        if ($isMobileSet AND $isComputerSet) {
+            $method = 'before';
+            $search = $this->getWidthClasses(Constant::COMPUTER);
+        }
+
+        if ($isMobileSet AND $isTabletSet) {
+            $method = 'after';
+            $search = $this->getWidthClasses(Constant::TABLET);
+        }
+
+        #var_dump($this->selector('css'));
+        #var_dump($method);
+        #var_dump($search);
 
         call_user_func_array(array($this->getClassAttribute(), $method), array($search, $this->spellNumber($width), Constant::WIDE, $device));
+        #var_dump($this->selector('css'));
     }
 
     public function unsetWidth($device = FALSE) {
@@ -57,10 +93,6 @@ class Column extends Element {
         for ($i = 1; $i <= 16; $i++) {
             $this->getClassAttribute()->strictRemoveClass($this->spellNumber($i), Constant::WIDE, $device);
         }
-    }
-
-    public function isWidth() {
-        return $this->hasClass(Constant::WIDTH);
     }
 
     private function widthRegEx($device = FALSE) {
@@ -83,10 +115,19 @@ class Column extends Element {
         return $regex;
     }
 
-    public function isWidthSet() {
-        return (bool) $this->getClassAttribute()->matchValue($this->widthRegEx());
+    public function isWidthSet($device = FALSE) {
+        return (bool) $this->getClassAttribute()->matchValue($this->widthRegEx($device));
     }
 
+    public function isWidth($device = FALSE) {
+        return $this->isWidthSet($device);
+    }
+
+    /**
+     * 
+     * @param string $device
+     * @return string Classes use to define the column's width
+     */
     public function getWidthClasses($device = FALSE) {
         $matches = array();
 
@@ -95,6 +136,11 @@ class Column extends Element {
         return count($matches) > 0 ? trim($matches[0]) : NULL;
     }
 
+    /**
+     * 
+     * @param string $device
+     * @return integer Number representing the column's width
+     */
     public function getWidth($device = FALSE) {
         $matches = array();
 
