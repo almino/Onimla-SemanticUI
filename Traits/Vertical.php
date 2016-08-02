@@ -27,7 +27,7 @@ trait Vertical {
             $search = Constant::POINTING;
         }
 
-        call_user_func_array(array($this->getClassAttribute(), $method), array($search, func_get_args()));
+        call_user_func_array(array($this->getClassAttribute(), $method), array($search, Constant::VERTICAL));
     }
 
     public function unsetVertical() {
