@@ -2,6 +2,7 @@
 
 namespace Onimla\SemanticUI\Traits;
 use Onimla\HTML\Attribute\Klass;
+use Onimla\SemanticUI\Header;
 
 trait Size {
 
@@ -26,6 +27,11 @@ trait Size {
         $method = 'after';
         $search = \Onimla\SemanticUI\Component::CLASS_NAME;
 
+        if ($this->hasClass(Header::CLASS_NAME)) {
+            $method = 'before';
+            $search = Header::CLASS_NAME;
+        }
+
         if (method_exists($this, 'color') AND strlen($this->color()) > 0) {
             $method = 'before';
             $search = $this->color();
@@ -38,7 +44,12 @@ trait Size {
         $this->removeClass($this->sizes);
     }
 
-    public function isSize() {
+    /**
+     * 
+     * @param string $class Will be converted to an valid regular expression
+     * @return boolean
+     */
+    public function isSizeSet() {
         return $this->hasClass('/' . implode('|', $this->sizes) . '/');
     }
 
