@@ -13,6 +13,7 @@ class Component extends Element {
     public function __construct($name = 'div', $attr = FALSE, $children = FALSE) {
         parent::__construct($name, $attr, $children);
         $this->setComponent();
+        $this->selfClose(FALSE);
     }
 
 }
