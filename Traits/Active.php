@@ -23,7 +23,11 @@ trait Active {
           echo ".</p>";
          */
 
-        call_user_func_array(array($this->getClassAttribute(), $method), array($search, Constant::ACTIVE));
+        if ($this->hasClass($search)) {
+            call_user_func_array(array($this->getClassAttribute(), $method), array($search, Constant::ACTIVE));
+        } else {
+            $this->addClass(Constant::ACTIVE);
+        }
     }
 
     public function unsetActive() {
