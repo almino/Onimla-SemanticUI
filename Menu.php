@@ -6,8 +6,7 @@ class Menu extends Component {
 
     const CLASS_NAME = 'menu';
 
-    use Trais\Active,
-        Traits\Attached,
+    use Traits\Attached,
         Traits\Colored,
         Traits\Fixed,
         Traits\Fluid,
