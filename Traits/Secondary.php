@@ -3,6 +3,7 @@
 namespace Onimla\SemanticUI\Traits;
 
 use Onimla\SemanticUI\Constant;
+use Onimla\SemanticUI\Menu as tMenu;
 
 trait Secondary {
 
@@ -15,9 +16,9 @@ trait Secondary {
             $search = Constant::BUTTON;
         }
 
-        if ($this->hasClass(Constant::MENU)) {
+        if ($this->hasClass(tMenu::CLASS_NAME)) {
             $method = 'before';
-            $search = Constant::MENU;
+            $search = tMenu::CLASS_NAME;
         }
         
         if (method_exists($this, 'isPointing') AND $this->isPointing()) {
