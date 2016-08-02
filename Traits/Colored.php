@@ -4,6 +4,7 @@ namespace Onimla\SemanticUI\Traits;
 
 use Onimla\HTML\Attribute\Klass;
 use Onimla\SemanticUI\Constant;
+use Onimla\SemanticUI\Header;
 
 trait Colored {
 
@@ -27,6 +28,11 @@ trait Colored {
         $method = 'after';
         $search = \Onimla\SemanticUI\Component::CLASS_NAME;
 
+        if ($this->hasClass(Header::CLASS_NAME)) {
+            $method = 'before';
+            $search = Header::CLASS_NAME;
+        }
+
         if (method_exists($this, 'size') AND strlen($this->size()) > 0) {
             $method = 'after';
             $search = $this->size();
@@ -41,6 +47,14 @@ trait Colored {
             $method = 'before';
             $search = Constant::INVERTED;
         }
+        
+        /*
+        echo "<p>";
+        echo "<em>" . microtime(TRUE) . "</em>";
+        echo " <code style=\"color: grey;\">{$this->selector('css')}</code>: ";
+        echo "&ensp;Insert <strong>{$color}</strong> {$method} <code>{$search}</code>";
+        echo ".</p>";
+         */
 
         call_user_func_array(array($this->getClassAttribute(), $method), array($search, $color));
     }

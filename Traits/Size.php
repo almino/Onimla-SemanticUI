@@ -1,6 +1,7 @@
 <?php
 
 namespace Onimla\SemanticUI\Traits;
+
 use Onimla\HTML\Attribute\Klass;
 use Onimla\SemanticUI\Header;
 
@@ -16,7 +17,7 @@ trait Size {
         'huge',
         'massive',
     );
-    
+
     public function getSize() {
         return Klass::outputValue($this->getClassAttribute()->hasAny($this->sizes));
     }
@@ -36,6 +37,14 @@ trait Size {
             $method = 'before';
             $search = $this->color();
         }
+
+        /*
+          echo "<p>";
+          echo "<em>" . microtime(TRUE) . "</em>";
+          echo " <code style=\"color: grey;\">{$this->selector('css')}</code>: ";
+          echo "&ensp;Insert <strong>{$size}</strong> {$method} <code>{$search}</code>";
+          echo ".</p>";
+         */
 
         call_user_func_array(array($this->getClassAttribute(), $method), array($search, $size));
     }
