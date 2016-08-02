@@ -3,7 +3,7 @@
 namespace Onimla\SemanticUI\Traits;
 
 use Onimla\HTML\Attribute\Klass;
-use Onimla\SemanticUI\Header;
+use Onimla\SemanticUI\Header as sHeader;
 
 trait Size {
 
@@ -28,9 +28,9 @@ trait Size {
         $method = 'after';
         $search = \Onimla\SemanticUI\Component::CLASS_NAME;
 
-        if ($this->hasClass(Header::CLASS_NAME)) {
+        if ($this->hasClass(sHeader::CLASS_NAME)) {
             $method = 'before';
-            $search = Header::CLASS_NAME;
+            $search = sHeader::CLASS_NAME;
         }
 
         if (method_exists($this, 'color') AND strlen($this->color()) > 0) {

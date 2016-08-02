@@ -4,7 +4,7 @@ namespace Onimla\SemanticUI\Traits;
 
 use Onimla\HTML\Attribute\Klass;
 use Onimla\SemanticUI\Constant;
-use Onimla\SemanticUI\Header;
+use Onimla\SemanticUI\Header as cHeader;
 
 trait Colored {
 
@@ -28,9 +28,9 @@ trait Colored {
         $method = 'after';
         $search = \Onimla\SemanticUI\Component::CLASS_NAME;
 
-        if ($this->hasClass(Header::CLASS_NAME)) {
+        if ($this->hasClass(cHeader::CLASS_NAME)) {
             $method = 'before';
-            $search = Header::CLASS_NAME;
+            $search = cHeader::CLASS_NAME;
         }
 
         if (method_exists($this, 'size') AND strlen($this->size()) > 0) {
