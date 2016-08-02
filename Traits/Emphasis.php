@@ -2,49 +2,67 @@
 
 namespace Onimla\SemanticUI\Traits;
 
+use Onimla\SemanticUI\Constant;
+use Onimla\HTML\Attribute\Klass;
+
+/**
+ * @method \Onimla\HTML\Attribute\Klass getClassAttribute()
+ */
 trait Emphasis {
-    
-    private $primary = 'primary';
-    private $secondary = 'secondary';
+
+    use Primary,
+        Secondary;
+
+    private function removeEmphasisClasses() {
+        $this->removeClass(Constant::PRIMARY, Constant::SECONDARY);
+    }
+
+    public function removeEmphasis() {
+        $this->removeEmphasisClasses();
+    }
 
     private function emphasisAddClass($class) {
         $method = 'after';
         $search = \Onimla\SemanticUI\Component::CLASS_NAME;
 
-        if ($this->hasClass(\Onimla\SemanticUI\Constant::BUTTON)) {
+        if ($this->hasClass(Constant::BUTTON)) {
             $method = 'before';
-            $search = \Onimla\SemanticUI\Constant::BUTTON;
+            $search = Constant::BUTTON;
         }
 
         call_user_func_array(array($this->getClassAttribute(), $method), array($search, func_get_args()));
-
-        return $this;
     }
 
-    protected function setEmphasis($class) {
+    public function unsetEmphasis() {
+        $this->removeEmphasisClasses();
+    }
+
+    public function setEmphasis($class) {
         $this->removeEmphasisClasses();
 
         $this->emphasisAddClass($class);
-
-        return $this;
     }
 
-    public function removeEmphasis($class) {
-        return $this->removeEmphasisClasses();
+    public function getEmphasisClass() {
+        return Klass::outputValue($this->getClassAttribute()->hasAny(Constant::PRIMARY, Constant::SECONDARY));
     }
 
-    public function primary() {
-        $this->setEmphasis($this->primary);
+    public function getEmphasis() {
+        return $this->getEmphasisClass();
     }
 
-    public function secondary() {
-        $this->setEmphasis($this->secondary);
+    public function isEmphasized() {
+        return $this->getClassAttribute()->matchValue('/' . implode('|', array(Constant::PRIMARY, Constant::SECONDARY)) . '/');
     }
 
-    private function removeEmphasisClasses() {
-        $this->removeClass($this->primary, $this->secondary);
+    public function isEmphasisSet() {
+        return $this->isEmphasized();
+    }
 
-        return $this;
+    public function emphasis($class = FALSE) {
+        if ($class === FALSE) {
+            return $this->getEmphasis();
+        }
     }
 
 }

@@ -3,18 +3,22 @@
 namespace Onimla\SemanticUI\Traits;
 
 use Onimla\SemanticUI\Constant;
-use Onimla\SemanticUI\Form\Input;
+use Onimla\SemanticUI\Form\Input as tInput;
+use Onimla\SemanticUI\Menu as tMenu;
 
 trait Fluid {
 
-    public function setFluid() {
+    public function unsetFluid() {
+        $this->removeClass(Constant::FLUID);
+    }
 
+    public function setFluid() {
         $method = 'after';
         $search = \Onimla\SemanticUI\Component::CLASS_NAME;
 
-        if ($this->hasClass(Input::CLASS_NAME)) {
+        if ($this->hasClass(tInput::CLASS_NAME)) {
             $method = 'before';
-            $search = Input::CLASS_NAME;
+            $search = tInput::CLASS_NAME;
         }
         
         if ($this->hasClass(Constant::BUTTON)) {
@@ -22,11 +26,17 @@ trait Fluid {
             $search = Constant::BUTTON;
         }
 
-        call_user_func_array(array($this->getClassAttribute(), $method), array($search, Constant::FLUID));
-    }
+        if ($this->hasClass(tMenu::CLASS_NAME)) {
+            $method = 'before';
+            $search = tMenu::CLASS_NAME;
+        }
 
-    public function unsetFluid() {
-        $this->removeClass(Constant::FLUID);
+        if (method_exists($this, 'isVertical') AND $this->isVertical()) {
+            $method = 'before';
+            $search = Constant::VERTICAL;
+        }
+
+        call_user_func_array(array($this->getClassAttribute(), $method), array($search, Constant::FLUID));
     }
 
     public function isFluid() {

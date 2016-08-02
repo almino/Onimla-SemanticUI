@@ -3,13 +3,22 @@
 namespace Onimla\SemanticUI;
 
 abstract class Constant {
+    # http://semantic-ui.com/elements/button.html#basic
 
     const BASIC = 'basic';
+
+    # http://semantic-ui.com/elements/button.html#inverted
     const INVERTED = 'inverted';
+
+    # http://semantic-ui.com/elements/button.html#fluid
     const FLUID = 'fluid';
 
     # http://semantic-ui.com/elements/button.html
     const BUTTON = 'button';
+    
+    # http://semantic-ui.com/elements/button.html#emphasis
+    const PRIMARY = 'primary';
+    const SECONDARY = 'secondary';
 
     # http://semantic-ui.com/collections/grid.html#doubling
     const DOUBLING = 'doubling';
@@ -49,8 +58,25 @@ abstract class Constant {
 
     # http://semantic-ui.com/collections/grid.html#column-width
     const WIDE = 'wide';
-    
+
     # http://semantic-ui.com/collections/grid.html#automatic-column-count
     const EQUAL_WIDTH = 'equal width';
+
+    # http://semantic-ui.com/collections/menu.html .item
+    const ITEM = 'item';
+
+    # http://semantic-ui.com/collections/menu.html#active
+    const ACTIVE = 'active';
+
+    # http://semantic-ui.com/elements/header.html#attached
+    const TOP = 'top';
+    const BOTTOM = 'bottom';
+    const ATTACHED = 'attached';
+    
+    # http://semantic-ui.com/elements/label.html#pointing
+    const POINTING = 'pointing';
+    
+    # http://semantic-ui.com/collections/menu.html#fixed
+    const FIXED = 'fixed';
 
 }

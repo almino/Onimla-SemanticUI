@@ -2,24 +2,20 @@
 
 namespace Onimla\SemanticUI\Menu;
 
-/*
-require_once implode(DIRECTORY_SEPARATOR, array(
-            substr(__DIR__, 0, strpos(__DIR__, 'Onimla') + 6),
-            'HTML',
-            'Element.class.php',
-        ));
-require_once substr(__DIR__, 0, strpos(__DIR__, 'Menu')) . 'IsItem.trait.php';
- */
+use Onimla\HTML\Element;
+use Onimla\SemanticUI\Traits\Item;
+use Onimla\SemanticUI\Constant;
+use Onimla\SemanticUI\Header as cHeader;
 
-class Header extends \Onimla\HTML\Element {
+class Header extends Element {
 
-    use \Onimla\SemanticUI\Traits\Item;
+    use Item;
 
     public function __construct($text = FALSE) {
         parent::__construct('div');
-        $this->addClass('header');
         $this->setItem();
-        $this->text($text);
+        $this->getClassAttribute()->before(Constant::ITEM, cHeader::CLASS_NAME);
+        $this->text(...func_get_args());
     }
 
 }

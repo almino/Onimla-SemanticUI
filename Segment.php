@@ -12,7 +12,8 @@ class Segment extends Component {
     use Traits\Alignment,
         Traits\Attached,
         Traits\Basic,
-        Traits\Colored;
+        Traits\Colored,
+        Traits\Vertical;
 
     const CLASS_NAME = 'segment';
 
@@ -23,22 +24,6 @@ class Segment extends Component {
     
     public function addClass($class) {
         $this->getClassAttribute()->before(self::CLASS_NAME, ...func_get_args());
-    }
-    
-    public function setVertical() {
-        $this->getClassAttribute()->before(self::CLASS_NAME, Constant::VERTICAL);
-    }
-
-    public function unsetVertical() {
-        $this->removeClass(Constant::VERTICAL);
-    }
-
-    public function isVertical() {
-        return $this->hasClass(Constant::VERTICAL);
-    }
-
-    public function vertical() {
-        $this->setVertical();
     }
     
     public function setRaised() {
