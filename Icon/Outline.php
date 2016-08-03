@@ -10,7 +10,7 @@ abstract class Outline extends Icon {
 
     public function __construct($class) {
         parent::__construct($class);
-        $this->addClass(self::CLASS_NAME);
+        $this->getClassAttribute()->before(Icon::CLASS_NAME, self::CLASS_NAME);
     }
 
 }
