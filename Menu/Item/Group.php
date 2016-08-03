@@ -19,6 +19,11 @@ class Group extends Item {
         return $this;
     }
 
+    public function append($children) {
+        isset($this->items) ? $this->append(...func_get_args()) : $this->items(...func_num_args());
+        return $this;
+    }
+
     /**
      * @param string|Element $text optional
      * @return \Onimla\SemanticUI\Menu\Item|\Onimla\SemanticUI\Content\Header
