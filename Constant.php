@@ -78,5 +78,11 @@ abstract class Constant {
     
     # http://semantic-ui.com/collections/menu.html#fixed
     const FIXED = 'fixed';
+    
+    # http://semantic-ui.com/collections/menu.html
+    const MENU = 'menu';
+    
+    # http://semantic-ui.com/elements/header.html
+    const HEADER = 'header';
 
 }

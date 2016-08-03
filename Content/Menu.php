@@ -3,14 +3,13 @@
 namespace Onimla\SemanticUI\Content;
 
 use Onimla\HTML\Element;
+use Onimla\SemanticUI\Constant;
 
-class Actions extends Element {
-
-    const CLASS_NAME = 'actions';
+class Menu extends Element {
 
     public function __construct($children = FALSE) {
-        parent::__construct('div', FALSE, $children);
-        $this->addClass(self::CLASS_NAME);
+        parent::__construct('div', FALSE, ...func_get_args());
+        $this->addClass(Constant::MENU);
         $this->selfClose(FALSE);
     }
 

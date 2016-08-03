@@ -7,6 +7,9 @@ use Onimla\SemanticUI\Traits\Item;
 use Onimla\SemanticUI\Constant;
 use Onimla\SemanticUI\Header as cHeader;
 
+/**
+ * A menu item may itself be a header
+ */
 class Header extends Element {
 
     use Item;

@@ -3,7 +3,6 @@
 namespace Onimla\SemanticUI\Traits;
 
 use Onimla\SemanticUI\Constant;
-use Onimla\SemanticUI\Menu as tMenu;
 
 /**
  * @method \Onimla\HTML\Attribute\Klass getClassAttribute()
@@ -27,9 +26,9 @@ trait Fixed {
         $method = 'after';
         $search = \Onimla\SemanticUI\Component::CLASS_NAME;
 
-        if ($this->hasClass(tMenu::CLASS_NAME)) {
+        if ($this->hasClass(Constant::MENU)) {
             $method = 'before';
-            $search = tMenu::CLASS_NAME;
+            $search = Constant::MENU;
         }
 
         if (method_exists($this, 'isVertical') AND $this->isVertical()) {

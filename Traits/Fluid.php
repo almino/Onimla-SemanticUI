@@ -4,7 +4,6 @@ namespace Onimla\SemanticUI\Traits;
 
 use Onimla\SemanticUI\Constant;
 use Onimla\SemanticUI\Form\Input as tInput;
-use Onimla\SemanticUI\Menu as tMenu;
 
 trait Fluid {
 
@@ -26,9 +25,9 @@ trait Fluid {
             $search = Constant::BUTTON;
         }
 
-        if ($this->hasClass(tMenu::CLASS_NAME)) {
+        if ($this->hasClass(Constant::MENU)) {
             $method = 'before';
-            $search = tMenu::CLASS_NAME;
+            $search = Constant::MENU;
         }
 
         if (method_exists($this, 'isVertical') AND $this->isVertical()) {

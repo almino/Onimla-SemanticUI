@@ -11,8 +11,6 @@ use Onimla\SemanticUI\Header\Sub;
  */
 class Header extends Heading {
 
-    const CLASS_NAME = 'header';
-
     /**
      * @var Icon
      */
@@ -27,17 +25,17 @@ class Header extends Heading {
     public function __construct($number, $text = FALSE, $class = FALSE) {
         parent::__construct($number, $text, $class);
         $this->setComponent();
-        $this->addClass(self::CLASS_NAME);
+        $this->addClass(Constant::HEADER);
     }
 
     public function dividing() {
-        return $this->getClassAttribute()->before(self::CLASS_NAME, __FUNCTION__);
+        return $this->getClassAttribute()->before(Constant::HEADER, __FUNCTION__);
     }
 
     public function block() {
-        return $this->getClassAttribute()->before(self::CLASS_NAME, __FUNCTION__);
+        return $this->getClassAttribute()->before(Constant::HEADER, __FUNCTION__);
     }
-    
+
     public function setSub($text) {
         $this->removeSub();
 
@@ -54,7 +52,7 @@ class Header extends Heading {
             $this->removeChild($this->sub);
             return $sub;
         }
-        
+
         return FALSE;
     }
 
@@ -66,12 +64,12 @@ class Header extends Heading {
         if ($text === FALSE) {
             return isset($this->sub) ? $this->sub : FALSE;
         }
-        
+
         $this->setSub($text);
 
         return $this;
     }
-    
+
     public function removeIcon() {
         return $this->unsetIcon();
     }
@@ -80,7 +78,7 @@ class Header extends Heading {
         if ($this->icon === NULL) {
             return FALSE;
         }
-        
+
         $this->removeChild($this->icon);
 
         $icon = $this->icon;
