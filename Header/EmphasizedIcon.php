@@ -2,9 +2,8 @@
 
 namespace Onimla\SemanticUI\Header;
 
-use Onimla\SemanticUI\Header;
+use Onimla\SemanticUI\Constant;
 use Onimla\SemanticUI\Icon;
-
 
 /**
  * @property Icon $icon .icon
@@ -15,17 +14,17 @@ class EmphasizedIcon extends Content {
         parent::__construct($number, $text);
         $this->icon($icon);
     }
-    
+
     protected function addIconClass() {
-        $this->header->getClassAttribute()->before(Header::CLASS_NAME, Icon::CLASS_NAME);
+        $this->header->getClassAttribute()->before(Constant::HEADER, Icon::CLASS_NAME);
         return $this;
     }
-    
+
     protected function removeIconClass() {
         $this->header->removeClass(Icon::CLASS_NAME);
         return $this;
     }
-    
+
     public function removeIcon() {
         return $this->unsetIcon();
     }
@@ -34,9 +33,9 @@ class EmphasizedIcon extends Content {
         if (!isset($this->icon)) {
             return FALSE;
         }
-        
+
         $icon = $this->icon;
-        
+
         $this->removeChild($this->icon);
         $this->removeIconClass();
 
@@ -45,7 +44,7 @@ class EmphasizedIcon extends Content {
 
     public function setIcon($instance) {
         $this->unsetIcon();
-        
+
         if ($instance instanceof Icon) {
             $this->icon = $instance;
         } else {

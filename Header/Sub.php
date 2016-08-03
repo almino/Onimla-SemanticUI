@@ -3,7 +3,7 @@
 namespace Onimla\SemanticUI\Header;
 
 use Onimla\HTML\Element;
-use Onimla\SemanticUI\Header;
+use Onimla\SemanticUI\Constant;
 
 class Sub extends Element {
 
@@ -12,7 +12,7 @@ class Sub extends Element {
     public function __construct($text = FALSE, $class = FALSE) {
         parent::__construct('div');
         $this->text($text);
-        $this->addClass($class, self::CLASS_NAME, Header::CLASS_NAME);
+        $this->addClass($class, self::CLASS_NAME, Constant::HEADER);
     }
 
 }
