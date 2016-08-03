@@ -44,8 +44,8 @@ trait Attached {
             return \Onimla\SemanticUI\Segment::CLASS_NAME;
         }
 
-        if ($this->hasClass(\Onimla\SemanticUI\Header::CLASS_NAME)) {
-            return \Onimla\SemanticUI\Header::CLASS_NAME;
+        if ($this->hasClass(Constant::HEADER)) {
+            return Constant::HEADER;
         }
 
         return self::CLASS_NAME;
