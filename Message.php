@@ -97,12 +97,40 @@ class Message extends Node implements HasAttribute, Appendable {
     }
 
     public function prepend($children) {
-        call_user_func_array(array($this->container, __FUNCTION__), func_get_args());
+        call_user_func_array(array($this->content, __FUNCTION__), func_get_args());
         return $this;
     }
 
     public function append($children) {
-        call_user_func_array(array($this->container, __FUNCTION__), func_get_args());
+        call_user_func_array(array($this->content->last(), __FUNCTION__), func_get_args());
+        return $this;
+    }
+
+    public function appendText($text) {
+        call_user_func_array(array($this->content->last(), __FUNCTION__), func_get_args());
+    }
+
+    public function removeContent() {
+        return $this->content->removeChildren();
+    }
+
+    public function text($string = FALSE) {
+        $params = self::filterChildren(func_get_args());
+
+        if (count($params) < 1) {
+            return $this->content->text();
+        }
+
+        $this->removeContent();
+
+        foreach ($params as $text) {
+            if (!$text instanceof Node) {
+                $text = new \Onimla\HTML\Paragraph($text);
+            }
+
+            $this->content->append($text);
+        }
+
         return $this;
     }
 
@@ -209,34 +237,6 @@ class Message extends Node implements HasAttribute, Appendable {
 
     public function unsetHeader() {
         return $this->removeHeader();
-    }
-
-    public function appendText($text) {
-        call_user_func_array(array($this->container, __FUNCTION__), func_get_args());
-    }
-
-    public function text($string = FALSE) {
-        $params = self::filterChildren(func_get_args());
-
-        if (count($params) < 1) {
-            return $this->container->text();
-        }
-
-        $this->removeContent();
-
-        foreach ($params as $text) {
-            if (!$text instanceof Node) {
-                $text = new \Onimla\HTML\Paragraph($text);
-            }
-
-            $this->content->append($text);
-        }
-
-        return $this;
-    }
-
-    public function removeContent() {
-        return $this->content->removeChildren();
     }
 
 }
