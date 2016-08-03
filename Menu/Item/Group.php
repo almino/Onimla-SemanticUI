@@ -11,7 +11,7 @@ class Group extends Item {
 
     public function __construct($children = FALSE) {
         parent::__construct();
-        $this->items(...func_num_args());
+        $this->items(...func_get_args());
     }
 
     public function each($callableOrMethod, $params = FALSE) {
