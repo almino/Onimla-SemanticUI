@@ -9,9 +9,28 @@ use Onimla\SemanticUI\Content\Menu;
 
 class Group extends Item {
 
+    protected $header = NULL;
+    protected $menu = NULL;
+
     public function __construct($children = FALSE) {
         parent::__construct();
         $this->items(...func_get_args());
+    }
+
+    public function __get($name) {
+        call_user_func_array(array($this->items(), __FUNCTION__), func_get_args());
+    }
+
+    public function __set($name, $value) {
+        call_user_func_array(array($this->items(), __FUNCTION__), func_get_args());
+    }
+
+    public function __unset($name) {
+        call_user_func_array(array($this->items(), __FUNCTION__), func_get_args());
+    }
+
+    public function __isset($name) {
+        call_user_func_array(array($this->items(), __FUNCTION__), func_get_args());
     }
 
     public function each($callableOrMethod, $params = FALSE) {
@@ -19,9 +38,33 @@ class Group extends Item {
         return $this;
     }
 
-    public function append($children) {
-        isset($this->items) ? $this->append(...func_get_args()) : $this->items(...func_num_args());
+    public function isChild($child) {
+        call_user_func_array(array($this->items(), __FUNCTION__), func_get_args());
+    }
+
+    public function prepend($children) {
+        call_user_func_array(array($this->items(), __FUNCTION__), func_get_args());
         return $this;
+    }
+
+    public function append($children) {
+        call_user_func_array(array($this->items(), __FUNCTION__), func_get_args());
+        return $this;
+    }
+
+    public function unsetHeader() {
+        parent::removeChild($this->header);
+        $this->header = NULL;
+    }
+
+    public function setHeader($text = FALSE) {
+        $this->unsetHeader();
+        $this->header = $text instanceof Element ? $text : new Header($text);
+        $this->unshiftChildren($this->header);
+    }
+
+    public function isHeaderSet() {
+        return $this->header instanceof Element AND parent::isChild($this->header);
     }
 
     /**
@@ -30,20 +73,35 @@ class Group extends Item {
      */
     public function header($text = FALSE) {
         if ($text === FALSE) {
-            return isset($this->header) ? $this->header : FALSE;
+            if (!$this->isHeaderSet()) {
+                $this->setHeader();
+            }
+            
+            return $this->header;
         }
-
-        $this->header = $text instanceof Element ? $text : new Header($text);
+        
+        $this->setHeader($text);
 
         return $this;
     }
 
     public function items($children = FALSE) {
-        if (count(self::filterChildren(func_get_args())) < 1) {
-            return isset($this->menu) ? $this->menu : FALSE;
+        if (!isset($this->menu)) {
+            $this->menu = new Menu;
+            parent::addChildren($this->menu);
         }
 
-        $this->header = func_num_args() == 1 AND $children instanceof Element ? $children : new Menu(...func_get_args());
+        if (count(self::filterChildren(func_get_args())) < 1) {
+            return $this->menu;
+        }
+
+        if (func_num_args() == 1 AND $children instanceof Element) {
+            parent::removeChild($this->menu);
+            $this->menu = $children;
+            parent::addChildren($this->menu);
+        } else {
+            $this->append(...func_get_args());
+        }
 
         return $this;
     }
