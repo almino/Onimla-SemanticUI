@@ -15,6 +15,11 @@ class Input extends Component {
     
     const CLASS_NAME = 'input';
 
+    /**
+     * @param string|\Onimla\HTML\Element $name optional
+     * @param string $value optional
+     * @param string $type optional
+     */
     public function __construct($name = FALSE, $value = FALSE, $type = 'text') {
         parent::__construct('div');
         $this->getClassAttribute()->append(self::CLASS_NAME);
@@ -39,7 +44,6 @@ class Input extends Component {
     }
 
     /**
-     * 
      * @param string|\Onimla\HTML\Element $name optional
      * @param string $value optional
      * @param string $type optional
