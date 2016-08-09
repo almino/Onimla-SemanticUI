@@ -17,6 +17,7 @@ class Menu extends Component {
     public function __construct($children = FALSE) {
         parent::__construct('nav', FALSE, func_get_args());
         $this->addClass(Constant::MENU);
+        $this->role('navigation');
     }
 
 }
