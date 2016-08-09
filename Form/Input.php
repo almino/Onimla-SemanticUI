@@ -38,6 +38,13 @@ class Input extends Component {
         $this->field = $name instanceof Element ? $name : new \Onimla\HTML\Input(...func_get_args());
     }
 
+    /**
+     * 
+     * @param string|\Onimla\HTML\Element $name optional
+     * @param string $value optional
+     * @param string $type optional
+     * @return \Onimla\SemanticUI\Form\Input
+     */
     public function field($name = FALSE, $value = FALSE, $type = 'text') {
         if (func_num_args() < 1) {
             return isset($this->field) ? $this->field : $this->createField();
