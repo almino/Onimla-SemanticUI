@@ -15,6 +15,7 @@ class Group extends Item {
     public function __construct($children = FALSE) {
         parent::__construct();
         $this->items(...func_get_args());
+        $this->role('menu');
     }
 
     public function __get($name) {

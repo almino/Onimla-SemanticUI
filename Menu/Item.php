@@ -16,6 +16,7 @@ class Item extends Anchor {
     public function __construct($text = FALSE, $href = FALSE, $title = FALSE) {
         parent::__construct($text, $href, $title);
         $this->setItem();
+        $this->role('menuitem');
     }
 
 }
