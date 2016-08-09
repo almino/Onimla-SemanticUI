@@ -26,7 +26,6 @@ class Field extends Node implements HasAttribute, Appendable {
         $this->container = new Element('div');
         $this->input = new Input($name, $value);
         $this->label = new Label($this->input, $label);
-        $this->id = $this->input->id();
 
         # Atributos ================================================================== #
         $this->container->addClass(self::CLASS_NAME);
@@ -65,11 +64,16 @@ class Field extends Node implements HasAttribute, Appendable {
     }
 
     public function id($value = FALSE) {
+        if (strlen($this->input->id()) < 1) {
+            $this->input->uniqid();
+        }
+
         if ($value === FALSE) {
             return call_user_func(array($this->input, __FUNCTION__));
         }
 
         call_user_func(array($this->input, __FUNCTION__), $value);
+        $this->label->for($this->input->id());
         return $this;
     }
 
@@ -137,6 +141,8 @@ class Field extends Node implements HasAttribute, Appendable {
 
         $this->input = $instance;
         $this->container->input = $this->input;
+
+        $this->label->for($this->input->id());
 
         return $this;
     }
