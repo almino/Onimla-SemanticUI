@@ -19,13 +19,18 @@ class Field extends Node implements HasAttribute, Appendable {
 
     const CLASS_NAME = 'field';
 
+    /**
+     * @param string|\Onimla\HTML\Element $label
+     * @param string|\Onimla\HTML\Element $name
+     * @param string $value
+     */
     public function __construct($label = FALSE, $name = FALSE, $value = FALSE) {
         parent::__construct();
 
         # Instâncias ================================================================= #
         $this->container = new Element('div');
-        $this->input = new Input($name, $value);
-        $this->label = new Label($this->input, $label);
+        $this->input = $name instanceof Element ? $name : new Input($name, $value);
+        $this->label = $label instanceof Element ? $label : new Label($this->input, $label);
 
         # Atributos ================================================================== #
         $this->container->addClass(self::CLASS_NAME);
@@ -134,6 +139,11 @@ class Field extends Node implements HasAttribute, Appendable {
         return $this;
     }
 
+    /**
+     * 
+     * @param \Onimla\HTML\Element $instance optional
+     * @return \Onimla\SemanticUI\Form\Field|\Onimla\HTML\Input
+     */
     public function input(Element $instance = NULL) {
         if ($instance === NULL) {
             return isset($this->input) ? $this->input : FALSE;
