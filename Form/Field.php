@@ -140,6 +140,45 @@ class Field extends Node implements HasAttribute, Appendable {
     }
 
     /**
+     * @param string|\Onimla\HTML\Element $text
+     * @return string|\Onimla\SemanticUI\Form\Field
+     */
+    public function text($text = FALSE) {
+        $params = self::filterChildren(...func_get_args());
+
+        if (count($params) < 1) {
+            return $this->container->text();
+        }
+
+        $this->label->text(...func_get_args());
+        return $this;
+    }
+
+    /**
+     * 
+     * @param string|\Onimla\HTML\Element $text optional
+     * @return \Onimla\SemanticUI\Form\Field|\Onimla\HTML\Label
+     */
+    public function label($text = FALSE) {
+        $params = self::filterChildren(...func_get_args());
+
+        if (count($params) < 1) {
+            return isset($this->label) ? $this->label : FALSE;
+        }
+
+        if (!$text instanceof Element) {
+            $text = new Label(FALSE, func_get_args());
+        }
+
+        $this->label = $text;
+        $this->container->label = $this->label;
+
+        $this->label->for($this->input());
+
+        return $this;
+    }
+
+    /**
      * 
      * @param \Onimla\HTML\Element $instance optional
      * @return \Onimla\SemanticUI\Form\Field|\Onimla\HTML\Input
