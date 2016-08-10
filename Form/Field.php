@@ -44,6 +44,15 @@ class Field extends Node implements HasAttribute, Appendable {
         return call_user_func(array($this->container, __FUNCTION__));
     }
 
+    /**
+     * <code>$label</code> and <code>$input</code> are references for <code>$container</code>'s children.
+     */
+    public function __clone() {
+        $this->container = clone $this->container;
+        $this->label = $this->container->label;
+        $this->input = $this->container->input;
+    }
+
     public function attr($name, $value = FALSE, $output = FALSE) {
         return call_user_func_array(array($this->input, __FUNCTION__), func_get_args());
     }
@@ -78,6 +87,12 @@ class Field extends Node implements HasAttribute, Appendable {
         }
 
         call_user_func(array($this->input, __FUNCTION__), $value);
+        $this->label->for($this->input->id());
+        return $this;
+    }
+
+    public function uniqid($prefix = '', $more_entropy = FALSE) {
+        call_user_func_array(array($this->input, __FUNCTION__), func_get_args());
         $this->label->for($this->input->id());
         return $this;
     }
@@ -154,6 +169,11 @@ class Field extends Node implements HasAttribute, Appendable {
         return $this;
     }
 
+    public function appendText($text) {
+        call_user_func_array(array($this->label, __FUNCTION__), func_get_args());
+        return $this;
+    }
+
     /**
      * 
      * @param string|\Onimla\HTML\Element $text optional
@@ -194,6 +214,11 @@ class Field extends Node implements HasAttribute, Appendable {
         $this->label->for($this->input->id());
 
         return $this;
+    }
+
+    public function path() {
+        return call_user_func(array($this->label, __FUNCTION__))
+                . ', ' . call_user_func(array($this->input, __FUNCTION__));
     }
 
 }
