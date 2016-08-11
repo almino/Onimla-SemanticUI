@@ -56,6 +56,25 @@ class Field extends Node implements HasAttribute, Appendable {
     public function attr($name, $value = FALSE, $output = FALSE) {
         return call_user_func_array(array($this->input, __FUNCTION__), func_get_args());
     }
+    
+    public function removeAttr($name) {
+        $this->input->removeAttr(...func_get_args());
+        return $this;
+    }
+
+    public function getClassAttribute() {
+        return $this->container->getClassAttribute();
+    }
+
+    public function addClass($class) {
+        $this->container->addClass(...func_get_args());
+        return $this;
+    }
+
+    public function removeClass($class) {
+        $this->container->removeClass(...func_get_args());
+        return $this;
+    }
 
     public function &findByAttr($attr, $value) {
         return call_user_func_array(array($this->container, __FUNCTION__), func_get_args());
