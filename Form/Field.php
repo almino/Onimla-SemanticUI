@@ -116,10 +116,18 @@ class Field extends Node implements HasAttribute, Appendable {
         return $this;
     }
 
+    /**
+     * Individual fields may display an error state
+     */
     public function error() {
         $this->container->getClassAttribute()->after(self::CLASS_NAME, 'error');
     }
 
+    /**
+     * Get / set value for <code>name</code> attribute
+     * @param string $value
+     * @return string|\Onimla\SemanticUI\Form\Field
+     */
     public function name($value = FALSE) {
         if ($value === FALSE) {
             return call_user_func(array($this->input, __FUNCTION__));
