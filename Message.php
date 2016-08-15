@@ -43,8 +43,17 @@ class Message extends Node implements HasAttribute, Appendable {
         return call_user_func(array($this->container, __FUNCTION__));
     }
 
+    public function count() {
+        return call_user_func(array($this->content, __FUNCTION__));
+    }
+
     public function attr($name, $value = FALSE, $output = FALSE) {
         return call_user_func_array(array($this->container, __FUNCTION__), func_get_args());
+    }
+
+    public function removeAttr($name) {
+        call_user_func_array(array($this->container, __FUNCTION__), func_get_args());
+        return $this;
     }
 
     public function &findByAttr($attr, $value) {
@@ -66,7 +75,25 @@ class Message extends Node implements HasAttribute, Appendable {
     public function &matchClass($classes, $level = FALSE) {
         return call_user_func_array(array($this->container, __FUNCTION__), func_get_args());
     }
-    
+
+    public function getClassAttribute() {
+        return call_user_func_array(array($this->container, __FUNCTION__), func_get_args());
+    }
+
+    public function addClass($class) {
+        call_user_func_array(array($this->container, __FUNCTION__), func_get_args());
+        return $this;
+    }
+
+    public function removeClass($class) {
+        call_user_func_array(array($this->container, __FUNCTION__), func_get_args());
+        return $this;
+    }
+
+    public function id($value = FALSE) {
+        return call_user_func_array(array($this->container, __FUNCTION__), func_get_args());
+    }
+
     public function visible() {
         $this->container->visible();
         return $this;
