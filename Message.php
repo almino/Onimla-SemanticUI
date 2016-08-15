@@ -177,8 +177,8 @@ class Message extends Node implements HasAttribute, Appendable {
     }
 
     public function setDismissable($instance = FALSE) {
-        $this->dismiss = $instance === FALSE ? new Dismiss : $instance;
-        $this->prepend($this->dismiss);
+        $this->dismiss = ($instance === FALSE) ? new Dismiss : $instance;
+        $this->container->prepend($this->dismiss);
     }
 
     public function unsetDismissable() {
