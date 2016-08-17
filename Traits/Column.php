@@ -21,6 +21,8 @@ trait Column {
     }
 
     public function setColumn($number) {
+        $this->unsetColumn();
+        
         $number = $this->cleanNumber($number);
 
         if ($number > 16) {
@@ -41,7 +43,7 @@ trait Column {
     }
 
     public function unsetColumn() {
-        $this->removeClass($this->column, $this->columns, $this->numbers);
+        $this->getClassAttribute()->strictRemoveClass($this->getColumnClasses());
     }
 
     private function columnRegEx() {
@@ -91,7 +93,7 @@ trait Column {
         if ($number === FALSE) {
             return $this->columnQuantity();
         }
-
+        
         $this->setColumn($number);
         return $this;
     }
