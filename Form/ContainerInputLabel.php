@@ -164,6 +164,11 @@ abstract class ContainerInputLabel extends Node implements HasAttribute {
         $value = $this->input->getAttribute('value');
         return $value ? $value->isValueSet() : FALSE;
     }
+    
+    public function prepend($children) {
+        call_user_func_array(array($this->container, __FUNCTION__), func_get_args());
+        return $this;
+    }
 
     public function append($children) {
         call_user_func_array(array($this->container, __FUNCTION__), func_get_args());
