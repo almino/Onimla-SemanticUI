@@ -3,7 +3,6 @@
 namespace Onimla\SemanticUI\Form;
 
 use Onimla\HTML\Checkbox as BaseCheckbox;
-use Onimla\HTML\Constant;
 
 /**
  * A field is a form element containing a label and an input
@@ -12,6 +11,8 @@ use Onimla\HTML\Constant;
  * @property \Onimla\HTML\Label $label
  */
 class Checkbox extends ContainerInputLabel {
+    
+    const CLASS_NAME = 'checkbox';
 
     public function __construct($label = FALSE, $name = FALSE, $value = FALSE) {
         parent::__construct($label, $name, $value);
@@ -20,7 +21,7 @@ class Checkbox extends ContainerInputLabel {
         $this->input = $name instanceof Element ? $name : new BaseCheckbox($name, $value);
 
         # Atributos ================================================================== #
-        $this->container->addClass(Constant::CHECKED);
+        $this->container->addClass(self::CLASS_NAME);
 
         # Árvore ===================================================================== #
         $this->container->input = $this->input;
