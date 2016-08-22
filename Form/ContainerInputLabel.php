@@ -229,7 +229,7 @@ abstract class ContainerInputLabel extends Node implements HasAttribute {
 
         $this->input = $instance;
         $this->container->input = $this->input;
-
+        
         if ($this->input->id() === FALSE) {
             $this->input()->uniqid();
         }
