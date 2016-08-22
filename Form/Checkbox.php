@@ -2,7 +2,7 @@
 
 namespace Onimla\SemanticUI\Form;
 
-use Onimla\HTML\Checkbox as PureCheckbox;
+use Onimla\HTML\Checkbox as BaseCheckbox;
 use Onimla\HTML\Constant;
 
 /**
@@ -17,7 +17,7 @@ class Checkbox extends ContainerInputLabel {
         parent::__construct($label, $name, $value);
 
         # Instâncias ================================================================= #
-        $this->input = $name instanceof Element ? $name : new PureCheckbox($name, $value);
+        $this->input = $name instanceof Element ? $name : new BaseCheckbox($name, $value);
 
         # Atributos ================================================================== #
         $this->container->addClass(Constant::CHECKED);
