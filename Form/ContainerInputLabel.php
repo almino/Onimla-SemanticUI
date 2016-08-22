@@ -199,7 +199,7 @@ abstract class ContainerInputLabel extends Node implements HasAttribute {
      * @return \Onimla\SemanticUI\Form\Field|\Onimla\HTML\Label
      */
     public function label($text = FALSE) {
-        $params = self::filterChildren(...func_get_args());
+        $params = self::filterChildren(func_get_args());
 
         if (count($params) < 1) {
             return isset($this->label) ? $this->label : FALSE;
