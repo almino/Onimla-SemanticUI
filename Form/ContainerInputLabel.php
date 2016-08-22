@@ -17,6 +17,7 @@ use Onimla\HTML\Label;
 abstract class ContainerInputLabel extends Node implements HasAttribute {
 
     /**
+     * Don't you forget to set up the tree order.
      * @param string|\Onimla\HTML\Element $label
      * @param string|\Onimla\HTML\Element $name
      * @param string $value
@@ -29,9 +30,8 @@ abstract class ContainerInputLabel extends Node implements HasAttribute {
         $this->input = $name instanceof Element ? $name : new Input($name, $value);
         $this->label = $label instanceof Element ? $label : new Label($this->input, $label);
 
+        # Atributos ================================================================== #
         # Árvore ===================================================================== #
-        $this->container->label = $this->label;
-        $this->container->input = $this->input;
     }
 
     public function __toString() {
@@ -50,7 +50,7 @@ abstract class ContainerInputLabel extends Node implements HasAttribute {
     public function attr($name, $value = FALSE, $output = FALSE) {
         return call_user_func_array(array($this->input, __FUNCTION__), func_get_args());
     }
-    
+
     public function removeAttr($name) {
         $this->input->removeAttr(...func_get_args());
         return $this;
@@ -162,7 +162,7 @@ abstract class ContainerInputLabel extends Node implements HasAttribute {
         $value = $this->input->getAttribute('value');
         return $value ? $value->isValueSet() : FALSE;
     }
-    
+
     public function prepend($children) {
         call_user_func_array(array($this->container, __FUNCTION__), func_get_args());
         return $this;
