@@ -4,6 +4,7 @@ namespace Onimla\SemanticUI\Form;
 
 use Onimla\HTML\Checkbox as BaseCheckbox;
 use Onimla\SemanticUI\Traits\Togglable;
+use Onimla\SemanticUI\Traits\Checked;
 
 /**
  * A field is a form element containing a label and an input
@@ -13,7 +14,8 @@ use Onimla\SemanticUI\Traits\Togglable;
  */
 class Checkbox extends ContainerInputLabel {
 
-    use Togglable;
+    use Checked,
+        Togglable;
 
     const CLASS_NAME = 'checkbox';
 
