@@ -178,7 +178,7 @@ abstract class ContainerInputLabel extends Node implements HasAttribute {
      * @return string|\Onimla\SemanticUI\Form\Field
      */
     public function text($text = FALSE) {
-        $params = self::filterChildren(...func_get_args());
+        $params = self::filterChildren(func_get_args());
 
         if (count($params) < 1) {
             return $this->container->text();
