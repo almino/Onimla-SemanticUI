@@ -4,7 +4,7 @@ namespace Onimla\SemanticUI\Form;
 
 use Onimla\HTML\Node;
 use Onimla\HTML\HasAttribute;
-use Onimla\HTML\Element;
+use Onimla\SemanticUI\Component;
 use Onimla\HTML\Input;
 use Onimla\HTML\Label;
 
@@ -25,7 +25,7 @@ abstract class ContainerInputLabel extends Node implements HasAttribute {
         parent::__construct();
 
         # Instâncias ================================================================= #
-        $this->container = new Element('div');
+        $this->container = new Component;
         $this->input = $name instanceof Element ? $name : new Input($name, $value);
         $this->label = $label instanceof Element ? $label : new Label($this->input, $label);
 
