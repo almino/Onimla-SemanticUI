@@ -16,8 +16,6 @@ use Onimla\HTML\Label;
  */
 abstract class ContainerInputLabel extends Node implements HasAttribute {
 
-    const CLASS_NAME = 'field';
-
     /**
      * @param string|\Onimla\HTML\Element $label
      * @param string|\Onimla\HTML\Element $name
