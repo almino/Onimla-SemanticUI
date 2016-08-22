@@ -2,9 +2,8 @@
 
 namespace Onimla\SemanticUI\Form;
 
-use Onimla\HTML\Element;
-use Onimla\HTML\Input;
-use Onimla\HTML\Label;
+use Onimla\HTML\Checkbox;
+use Onimla\HTML\Constant;
 
 /**
  * A field is a form element containing a label and an input
@@ -12,32 +11,22 @@ use Onimla\HTML\Label;
  * @property \Onimla\HTML\Input $input
  * @property \Onimla\HTML\Label $label
  */
-class Field extends ContainerInputLabel {
+class Checkbox extends ContainerInputLabel {
 
-    const CLASS_NAME = 'field';
-
-    /**
-     * @param string|\Onimla\HTML\Element $label
-     * @param string|\Onimla\HTML\Element $name
-     * @param string $value
-     */
     public function __construct($label = FALSE, $name = FALSE, $value = FALSE) {
         parent::__construct($label, $name, $value);
 
         # Instâncias ================================================================= #
+        $this->input = $name instanceof Element ? $name : new Checkbox($name, $value);
+
         # Atributos ================================================================== #
-        $this->container->addClass(self::CLASS_NAME);
+        $this->container->addClass(Constant::CHECKED);
 
         # Árvore ===================================================================== #
-        $this->container->label = $this->label;
         $this->container->input = $this->input;
+        $this->container->label = $this->label;
     }
-
-    /**
-     * Individual fields may display an error state
-     */
-    public function error() {
-        $this->container->getClassAttribute()->after(self::CLASS_NAME, 'error');
-    }
+    
+    
 
 }
