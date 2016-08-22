@@ -3,6 +3,7 @@
 namespace Onimla\SemanticUI\Form;
 
 use Onimla\HTML\Checkbox as BaseCheckbox;
+use Onimla\SemanticUI\Traits\Togglable;
 
 /**
  * A field is a form element containing a label and an input
@@ -11,7 +12,9 @@ use Onimla\HTML\Checkbox as BaseCheckbox;
  * @property \Onimla\HTML\Label $label
  */
 class Checkbox extends ContainerInputLabel {
-    
+
+    use Togglable;
+
     const CLASS_NAME = 'checkbox';
 
     public function __construct($label = FALSE, $name = FALSE, $value = FALSE) {
@@ -27,7 +30,5 @@ class Checkbox extends ContainerInputLabel {
         $this->container->input = $this->input;
         $this->container->label = $this->label;
     }
-    
-    
 
 }

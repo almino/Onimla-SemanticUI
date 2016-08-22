@@ -15,7 +15,7 @@ abstract class Constant {
 
     # http://semantic-ui.com/elements/button.html
     const BUTTON = 'button';
-    
+
     # http://semantic-ui.com/elements/button.html#emphasis
     const PRIMARY = 'primary';
     const SECONDARY = 'secondary';
@@ -72,17 +72,20 @@ abstract class Constant {
     const TOP = 'top';
     const BOTTOM = 'bottom';
     const ATTACHED = 'attached';
-    
+
     # http://semantic-ui.com/elements/label.html#pointing
     const POINTING = 'pointing';
-    
+
     # http://semantic-ui.com/collections/menu.html#fixed
     const FIXED = 'fixed';
-    
+
     # http://semantic-ui.com/collections/menu.html
     const MENU = 'menu';
-    
+
     # http://semantic-ui.com/elements/header.html
     const HEADER = 'header';
+
+    # http://semantic-ui.com/modules/checkbox.html#toggle
+    const TOGGLE = 'toggle';
 
 }
