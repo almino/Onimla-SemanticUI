@@ -103,7 +103,7 @@ class Message extends Node implements HasAttribute, Appendable {
         $this->container->visible();
         return $this;
     }
-    
+
     public function setWarning() {
         $this->getClassAttribute()->before(self::CLASS_NAME, Constant::WARNING);
     }
@@ -212,7 +212,10 @@ class Message extends Node implements HasAttribute, Appendable {
     }
 
     public function append($children) {
-        call_user_func_array(array($this->content->last(), __FUNCTION__), func_get_args());
+        call_user_func_array(array(
+            $this->content->last() === FALSE ? $this->content : $this->content->last(),
+            __FUNCTION__,
+                ), func_get_args());
         return $this;
     }
 
