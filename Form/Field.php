@@ -2,10 +2,6 @@
 
 namespace Onimla\SemanticUI\Form;
 
-use Onimla\HTML\Element;
-use Onimla\HTML\Input;
-use Onimla\HTML\Label;
-
 /**
  * A field is a form element containing a label and an input
  * @property \Onimla\SemanticUI\Component $container
