@@ -8,6 +8,8 @@ use Onimla\SemanticUI\Label as InputLabel;
 
 class Labeled extends Input {
 
+    protected $label;
+
     public function __construct($label = FALSE, $input = FALSE) {
         parent::__construct($input);
         $this->label($label);
@@ -15,16 +17,26 @@ class Labeled extends Input {
 
     public function unsetLabel() {
         $this->unsetLabeled();
-        unset($this->label);
+        $this->removeChild($this->label());
+
+        $tmp = $this->label;
+        $this->label = NULL;
+        return $tmp;
     }
 
     public function removeLabel() {
-        $this->unsetLabel();
+        return $this->unsetLabel();
     }
 
     public function setLabel($label = FALSE, $position = FALSE) {
+        $this->unsetLabel();
         $this->setLabeled($position);
-        $this->label = $label instanceof Element ? $label : new InputLabel($label);
+        $this->label = (is_object($label) AND method_exists($label, '__toString')) ? $label : new InputLabel('div', $label);
+
+
+        $method = $this->isRightLabeled() ? 'append' : 'prepend';
+
+        $this->$method($this->label);
     }
 
     public function label($label = FALSE, $position = FALSE) {
