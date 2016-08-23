@@ -4,15 +4,17 @@ namespace Onimla\SemanticUI\Form;
 
 use Onimla\SemanticUI\Component;
 use Onimla\SemanticUI\Traits\Fluid;
+use Onimla\SemanticUI\Traits\Labeled;
 use Onimla\HTML\Element;
 
 /**
  * @property \Onimla\HTML\Input $field
  */
 class Input extends Component {
-    
-    use Fluid;
-    
+
+    use Fluid,
+        Labeled;
+
     const CLASS_NAME = 'input';
 
     /**

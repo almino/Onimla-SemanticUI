@@ -107,4 +107,6 @@ abstract class Constant {
     # http://semantic-ui.com/collections/message.html#visible
     const VISIBLE = 'visible';
 
+    # http://semantic-ui.com/elements/input.html#labeled
+    const LABELED = 'labeled';
 }
