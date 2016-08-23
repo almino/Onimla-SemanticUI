@@ -87,5 +87,9 @@ abstract class Constant {
 
     # http://semantic-ui.com/modules/checkbox.html#toggle
     const TOGGLE = 'toggle';
+    
+    # http://semantic-ui.com/modules/popup.html#using-a-pre-existing-popup
+    const POPUP = 'popup';
+    const SPECIAL = 'special';
 
 }
