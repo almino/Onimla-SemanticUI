@@ -10,6 +10,7 @@ class Labeled extends Input {
 
     public function __construct($label = FALSE, $input = FALSE) {
         parent::__construct($input);
+        $this->label($label);
     }
 
     public function unsetLabel() {
