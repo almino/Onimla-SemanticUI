@@ -7,7 +7,6 @@ use Onimla\HTML\Constant;
 trait Checked {
 
     public function setChecked() {
-        $this->setChecked();
         $this->getClassAttribute()->before(self::CLASS_NAME, Constant::CHECKED);
     }
 
