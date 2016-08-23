@@ -67,7 +67,7 @@ class Input extends Component implements UserInput {
 
     public function name($value = FALSE) {
         if ($value === FALSE) {
-            returncall_user_func(array($this->field(), __FUNCTION__));
+            return call_user_func(array($this->field(), __FUNCTION__));
         }
 
         call_user_func_array(array($this->field(), __FUNCTION__), func_get_args());
