@@ -87,9 +87,24 @@ abstract class Constant {
 
     # http://semantic-ui.com/modules/checkbox.html#toggle
     const TOGGLE = 'toggle';
-    
+
     # http://semantic-ui.com/modules/popup.html#using-a-pre-existing-popup
     const POPUP = 'popup';
     const SPECIAL = 'special';
+
+    # http://semantic-ui.com/modules/popup.html#using-a-pre-existing-popup
+    const INFO = 'info';
+
+    # http://semantic-ui.com/collections/message.html#positive--success
+    const SUCCESS = 'success';
+    
+    # http://semantic-ui.com/collections/message.html#negative--error
+    const ERROR = 'error';
+    
+    # http://semantic-ui.com/collections/message.html#warning
+    const WARNING = 'warning';
+    
+    # http://semantic-ui.com/collections/message.html#visible
+    const VISIBLE = 'visible';
 
 }

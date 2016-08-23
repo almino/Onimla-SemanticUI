@@ -9,6 +9,7 @@ use Onimla\SemanticUI\Component;
 use Onimla\SemanticUI\Content;
 use Onimla\SemanticUI\Content\Header as MessageHeader;
 use Onimla\SemanticUI\Icon\Close as Dismiss;
+use Onimla\SemanticUI\Constant;
 
 /**
  * @property Element $container .ui.message
@@ -102,28 +103,106 @@ class Message extends Node implements HasAttribute, Appendable {
         $this->container->visible();
         return $this;
     }
+    
+    public function setWarning() {
+        $this->getClassAttribute()->before(self::CLASS_NAME, Constant::WARNING);
+    }
+
+    public function unsetWarning() {
+        $this->removeClass(Constant::WARNING);
+    }
+
+    public function isWarning() {
+        return $this->hasClass(Constant::WARNING);
+    }
+
+    public function warning() {
+        $this->setWarning();
+        return $this;
+    }
+
+    public function setInfo() {
+        $this->getClassAttribute()->before(self::CLASS_NAME, Constant::INFO);
+    }
+
+    public function unsetInfo() {
+        $this->removeClass(Constant::INFO);
+    }
+
+    public function isInfo() {
+        return $this->hasClass(Constant::INFO);
+    }
+
+    public function info() {
+        $this->setInfo();
+        return $this;
+    }
+
+    public function setSuccess() {
+        $this->getClassAttribute()->before(self::CLASS_NAME, Constant::SUCCESS);
+    }
+
+    public function unsetSuccess() {
+        $this->removeClass(Constant::SUCCESS);
+    }
+
+    public function isSuccess() {
+        return $this->hasClass(Constant::SUCCESS);
+    }
 
     public function success() {
-        $class = $this->container->getClassAttribute();
-        $class->before(self::CLASS_NAME, __FUNCTION__);
+        $this->setSuccess();
         return $this;
+    }
+
+    public function setPositive() {
+        $this->getClassAttribute()->before(self::CLASS_NAME, Constant::POSITIVE);
+    }
+
+    public function unsetPositive() {
+        $this->removeClass(Constant::POSITIVE);
+    }
+
+    public function isPositive() {
+        return $this->hasClass(Constant::POSITIVE);
     }
 
     public function positive() {
-        $class = $this->container->getClassAttribute();
-        $class->before(self::CLASS_NAME, __FUNCTION__);
+        $this->setPositive();
         return $this;
+    }
+
+    public function setError() {
+        $this->getClassAttribute()->before(self::CLASS_NAME, Constant::ERROR);
+    }
+
+    public function unsetError() {
+        $this->removeClass(Constant::ERROR);
+    }
+
+    public function isError() {
+        return $this->hasClass(Constant::ERROR);
     }
 
     public function error() {
-        $class = $this->container->getClassAttribute();
-        $class->before(self::CLASS_NAME, __FUNCTION__);
+        $this->setError();
         return $this;
     }
 
+    public function setNegative() {
+        $this->getClassAttribute()->before(self::CLASS_NAME, Constant::NEGATIVE);
+    }
+
+    public function unsetNegative() {
+        $this->removeClass(Constant::NEGATIVE);
+    }
+
+    public function isNegative() {
+        return $this->hasClass(Constant::NEGATIVE);
+    }
+
     public function negative() {
-        $class = $this->container->getClassAttribute();
-        $class->before(self::CLASS_NAME, __FUNCTION__);
+        $this->setNegative();
         return $this;
     }
 
