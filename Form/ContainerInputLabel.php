@@ -223,10 +223,10 @@ abstract class ContainerInputLabel extends Node implements HasAttribute {
 
     /**
      * 
-     * @param \Onimla\HTML\Element $instance optional
+     * @param object $instance optional
      * @return \Onimla\SemanticUI\Form\Field|\Onimla\HTML\Input
      */
-    public function input(Element $instance = NULL) {
+    public function input($instance = NULL) {
         if ($instance === NULL) {
             return isset($this->input) ? $this->input : FALSE;
         }
