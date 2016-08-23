@@ -28,6 +28,15 @@ class Input extends Component implements UserInput {
         $this->getClassAttribute()->append(self::CLASS_NAME);
         $this->field(...func_get_args());
     }
+    
+    public function id($value = FALSE) {
+        if ($value === FALSE) {
+            return $this->field()->id();
+        }
+        
+        $this->field()->id($value);
+        return $this;
+    }
 
     public function isDisabled() {
         call_user_func(array($this->field(), __FUNCTION__));
@@ -123,7 +132,7 @@ class Input extends Component implements UserInput {
         call_user_func_array(array($this->field(), __FUNCTION__), func_get_args());
         return $this;
     }
-
+    
     public function createField() {
         $this->field = new \Onimla\HTML\Input;
         return $this->field;
