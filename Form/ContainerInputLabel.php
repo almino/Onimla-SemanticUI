@@ -51,6 +51,10 @@ abstract class ContainerInputLabel extends Node implements HasAttribute {
         return call_user_func_array(array($this->input, __FUNCTION__), func_get_args());
     }
 
+    public function data($key, $value = FALSE, $output = 'encode') {
+        return call_user_func_array(array($this->container, __FUNCTION__), func_get_args());
+    }
+
     public function removeAttr($name) {
         $this->input->removeAttr(...func_get_args());
         return $this;
