@@ -4,16 +4,21 @@ namespace Onimla\SemanticUI;
 
 use Onimla\SemanticUI\Component;
 use Onimla\SemanticUI\Constant;
-use Onimla\SemanticUI\Content\Header;
+use Onimla\SemanticUI\Content\Header as PopupHeader;
 
 class Popup extends Component {
 
     protected $header;
 
-    public function __construct($children = FALSE) {
-        parent::__construct('div', FALSE, func_get_args());
+    public function __construct($text = FALSE) {
+        # Instâncias ================================================================= #
+        parent::__construct('div');
 
+        # Atributos ================================================================== #
         $this->addClass(Constant::SPECIAL, Constant::POPUP);
+
+        # Árvore ===================================================================== #
+        $this->text(...func_get_args());
     }
 
     public function unsetHeader() {
@@ -23,7 +28,7 @@ class Popup extends Component {
 
     public function setHeader($text = FALSE) {
         $this->unsetHeader();
-        $this->header = $text instanceof Element ? $text : new Header($text);
+        $this->header = $text instanceof Element ? $text : new PopupHeader($text);
         $this->unshiftChildren($this->header);
     }
 
