@@ -7,6 +7,8 @@ use Onimla\SemanticUI\Constant;
 use Onimla\SemanticUI\Content\Header as PopupHeader;
 
 class Popup extends Component {
+    
+    use Traits\Fluid;
 
     protected $header;
 
