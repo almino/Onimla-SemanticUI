@@ -51,6 +51,10 @@ class Message extends Node implements HasAttribute, Appendable {
         return call_user_func_array(array($this->container, __FUNCTION__), func_get_args());
     }
 
+    public function data($key, $value = FALSE, $output = 'encode') {
+        return call_user_func_array(array($this->container, __FUNCTION__), func_get_args());
+    }
+
     public function removeAttr($name) {
         call_user_func_array(array($this->container, __FUNCTION__), func_get_args());
         return $this;
