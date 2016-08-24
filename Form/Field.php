@@ -2,6 +2,8 @@
 
 namespace Onimla\SemanticUI\Form;
 
+use Onimla\HTML\Constant;
+
 /**
  * A field is a form element containing a label and an input
  * @property \Onimla\SemanticUI\Component $container
@@ -34,6 +36,16 @@ class Field extends ContainerInputLabel {
      */
     public function error() {
         $this->container->getClassAttribute()->after(self::CLASS_NAME, 'error');
+    }
+
+    public function setDisabled() {
+        $this->container->getClassAttribute()->before(self::CLASS_NAME, Constant::DISABLED);
+        parent::setDisabled();
+    }
+
+    public function unsetDisabled() {
+        $this->container->removeClass(Constant::DISABLED);
+        parent::unsetDisabled();
     }
 
 }

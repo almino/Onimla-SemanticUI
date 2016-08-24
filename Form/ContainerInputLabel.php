@@ -115,6 +115,59 @@ abstract class ContainerInputLabel extends Node implements HasAttribute, UserInp
         return $this;
     }
 
+    public function disable() {
+        call_user_func(array($this->input, __FUNCTION__));
+    }
+
+    public function disabled() {
+        return call_user_func(array($this->input, __FUNCTION__));
+    }
+
+    public function enable() {
+        call_user_func(array($this->input, __FUNCTION__));
+    }
+
+    public function isDisabled() {
+        return call_user_func(array($this->input, __FUNCTION__));
+    }
+
+    public function isNotReadOnly() {
+        return call_user_func(array($this->input, __FUNCTION__));
+    }
+
+    public function isReadOnly() {
+        return call_user_func(array($this->input, __FUNCTION__));
+    }
+
+    public function readOnly() {
+        return call_user_func(array($this->input, __FUNCTION__));
+    }
+
+    public function setDisabled() {
+        call_user_func(array($this->input, __FUNCTION__));
+    }
+
+    public function setReadOnly() {
+        call_user_func(array($this->input, __FUNCTION__));
+    }
+
+    public function type($value = FALSE) {
+        if ($value === FALSE) {
+            return call_user_func(array($this->input, __FUNCTION__));
+        }
+
+        call_user_func(array($this->input, __FUNCTION__), $value);
+        return $this;
+    }
+
+    public function unsetDisabled() {
+        call_user_func(array($this->input, __FUNCTION__));
+    }
+
+    public function unsetReadOnly() {
+        call_user_func(array($this->input, __FUNCTION__));
+    }
+
     /**
      * Get / set value for <code>name</code> attribute
      * @param string $value
@@ -234,7 +287,7 @@ abstract class ContainerInputLabel extends Node implements HasAttribute, UserInp
 
         $this->input = $instance;
         $this->container->input = $this->input;
-        
+
         if ($this->input->id() === FALSE) {
             $this->input()->uniqid();
         }
