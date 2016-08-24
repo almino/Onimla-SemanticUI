@@ -15,7 +15,7 @@ use Onimla\HTML\Polymorphism\UserInput;
  * @property \Onimla\HTML\Input $input
  * @property \Onimla\HTML\Label $label
  */
-abstract class ContainerInputLabel extends Node implements HasAttribute {
+abstract class ContainerInputLabel extends Node implements HasAttribute, UserInput {
 
     /**
      * Don't you forget to set up the tree order.
