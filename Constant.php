@@ -97,16 +97,23 @@ abstract class Constant {
 
     # http://semantic-ui.com/collections/message.html#positive--success
     const SUCCESS = 'success';
-    
+
     # http://semantic-ui.com/collections/message.html#negative--error
     const ERROR = 'error';
-    
+
     # http://semantic-ui.com/collections/message.html#warning
     const WARNING = 'warning';
-    
+
     # http://semantic-ui.com/collections/message.html#visible
     const VISIBLE = 'visible';
 
     # http://semantic-ui.com/elements/input.html#labeled
     const LABELED = 'labeled';
+
+    # http://semantic-ui.com/elements/image.html
+    const IMAGE = 'image';
+
+    # http://semantic-ui.com/elements/image.html#groups
+    const IMAGES = 'images';
+
 }
