@@ -9,8 +9,9 @@ class Image extends BaseHeader {
 
     protected $header;
 
-    public function __construct($image = FALSE, $number, $text = FALSE) {
+    public function __construct($number, $text = FALSE, $image = FALSE) {
         parent::__construct($number, $text);
+        $this->image($image);
     }
 
     public function removeImage() {
