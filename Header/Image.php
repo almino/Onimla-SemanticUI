@@ -38,6 +38,7 @@ class Image extends BaseHeader {
         }
 
         $this->unsetImage();
+        $this->unsetIcon();
         $this->prepend($this->image);
     }
 
