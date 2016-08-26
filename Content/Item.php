@@ -4,7 +4,6 @@ namespace Onimla\SemanticUI\Content;
 
 use Onimla\HTML\Element;
 use Onimla\SemanticUI\Traits\Item as tItem;
-use Onimla\SemanticUI\Content\Header;
 
 class Item extends Element {
 
@@ -15,4 +14,5 @@ class Item extends Element {
         $this->setItem();
         $this->selfClose(FALSE);
     }
+
 }
