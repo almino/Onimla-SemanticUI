@@ -11,7 +11,7 @@ class Item extends Element {
     use tItem;
 
     public function __construct($children = FALSE) {
-        parent::__construct('div', FALSE, ...func_get_args());
+        parent::__construct('div', FALSE, func_get_args());
         $this->setItem();
         $this->selfClose(FALSE);
     }
