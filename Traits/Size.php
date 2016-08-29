@@ -38,6 +38,11 @@ trait Size {
             $search = $this->color();
         }
 
+        if ($this->hasClass(\Onimla\SemanticUI\Icon::CLASS_NAME)) {
+            call_user_func_array(array($this->getClassAttribute(), 'prepend'), func_get_args());
+            return $this;
+        }
+
         /*
           echo "<p>";
           echo "<em>" . microtime(TRUE) . "</em>";
