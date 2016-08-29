@@ -7,7 +7,15 @@ use Onimla\SemanticUI\Constant;
 trait Horizontal {
 
     public function setHorizontal() {
-        $this->getClassAttribute()->before(self::CLASS_NAME, Constant::HORIZONTAL);
+        $method = 'after';
+        $search = \Onimla\SemanticUI\Component::CLASS_NAME;
+
+        if ($this->hasClass(Constant::LYST)) {
+            $method = 'before';
+            $search = Constant::LYST;
+        }
+
+        call_user_func_array(array($this->getClassAttribute(), $method), array($search, Constant::HORIZONTAL));
     }
 
     public function unsetHorizontal() {
