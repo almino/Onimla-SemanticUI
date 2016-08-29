@@ -13,7 +13,7 @@ trait PrependIcon {
 
     public function unsetIcon() {
         if (method_exists(__CLASS__, 'getContainer')) {
-            $this->container->removeChild($this->icon);
+            $this->getContainer()->removeChild($this->icon);
         } else {
             $this->removeChild($this->icon);
         }
@@ -27,21 +27,25 @@ trait PrependIcon {
 
     public function setIcon($icon = FALSE) {
         $this->icon = $icon instanceof Element ? $icon : new BaseIcon($icon);
-        
+
         if (method_exists(__CLASS__, 'getContainer')) {
-            $this->container->prepend($this->icon);
+            $this->getContainer()->prepend($this->icon);
         } else {
             $this->prepend($this->icon);
         }
     }
 
+    /**
+     * Get and/or set an icon
+     * @param string|\Onimla\SemanticUI\Icon $icon
+     * @return \Onimla\SemanticUI\Icon
+     */
     public function icon($icon = FALSE) {
-        if (func_num_args() < 1) {
-            return is_null($this->icon) ? FALSE : $this->icon;
+        if (func_num_args() > 0) {
+            $this->setIcon(...func_get_args());
         }
 
-        $this->setIcon(...func_get_args());
-        return $this;
+        return $this->icon;
     }
 
 }
