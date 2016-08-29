@@ -9,7 +9,7 @@ trait PrependIcon {
     /**
      * @var \Onimla\SemanticUI\Icon
      */
-    protected $icon;
+    protected $icon = NULL;
 
     public function unsetIcon() {
         if (property_exists($this, 'container')) {
