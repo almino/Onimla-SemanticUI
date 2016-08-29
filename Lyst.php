@@ -2,7 +2,7 @@
 
 namespace Onimla\SemanticUI;
 
-use Traits\Lyst as tLyst;
+use Onimla\SemanticUI\Traits\Lyst as tLyst;
 
 class Lyst extends Component {
 

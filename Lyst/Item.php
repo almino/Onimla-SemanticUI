@@ -46,15 +46,15 @@ class Item extends Node implements HasAttribute {
         return $this;
     }
 
-    public function findByAttr($attr, $value) {
+    public function &findByAttr($attr, $value) {
         return call_user_func_array(array($this->container, __FUNCTION__), func_get_args());
     }
 
-    public function findById($value) {
+    public function &findById($value) {
         return call_user_func_array(array($this->container, __FUNCTION__), func_get_args());
     }
 
-    public function findByName($value) {
+    public function &findByName($value) {
         return call_user_func_array(array($this->container, __FUNCTION__), func_get_args());
     }
 
