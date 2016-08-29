@@ -3,7 +3,7 @@
 namespace Onimla\SemanticUI\Menu;
 
 use Onimla\HTML\Element;
-use Onimla\SemanticUI\Traits\Item;
+use Onimla\SemanticUI\Traits\Item as tItem;
 use Onimla\SemanticUI\Constant;
 use Onimla\SemanticUI\Header as cHeader;
 
@@ -12,7 +12,7 @@ use Onimla\SemanticUI\Header as cHeader;
  */
 class Header extends Element {
 
-    use Item;
+    use tItem;
 
     public function __construct($text = FALSE) {
         parent::__construct('div');
