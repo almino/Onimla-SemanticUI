@@ -89,13 +89,8 @@ class Item extends Node implements HasAttribute {
         return $this;
     }
 
-    public function removeChildren() {
-        return call_user_func_array(array($this->content, __FUNCTION__), func_get_args());
-    }
-
-    public function removeChild($grandchildren) {
-        call_user_func_array(array($this->content, __FUNCTION__), func_get_args());
-        return $this;
+    public function getContainer() {
+        return $this->container;
     }
 
     public function append($children) {
@@ -106,6 +101,15 @@ class Item extends Node implements HasAttribute {
     public function prepend($children) {
         call_user_func_array(array($this->content, __FUNCTION__), func_get_args());
         return $this;
+    }
+
+    public function removeChild($grandchildren) {
+        call_user_func_array(array($this->content, __FUNCTION__), func_get_args());
+        return $this;
+    }
+
+    public function removeChildren() {
+        return call_user_func_array(array($this->content, __FUNCTION__), func_get_args());
     }
 
 }
