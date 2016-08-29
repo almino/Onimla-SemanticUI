@@ -12,7 +12,12 @@ trait PrependIcon {
     protected $icon;
 
     public function unsetIcon() {
-        $this->removeChild($this->icon);
+        if (property_exists($this, 'container')) {
+            $this->container->removeChild($this->icon);
+        } else {
+            $this->removeChild($this->icon);
+        }
+
         $this->icon = NULL;
     }
 
@@ -22,7 +27,12 @@ trait PrependIcon {
 
     public function setIcon($icon = FALSE) {
         $this->icon = $icon instanceof Element ? $icon : new BaseIcon($icon);
-        $this->prepend($this->icon);
+
+        if (property_exists($this, 'container')) {
+            $this->container->prepend($this->icon);
+        } else {
+            $this->prepend($this->icon);
+        }
     }
 
     public function icon($icon = FALSE) {
