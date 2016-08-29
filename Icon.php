@@ -6,6 +6,10 @@ use Onimla\HTML\Element;
 
 class Icon extends Element {
 
+    use Traits\Alignment,
+        Traits\Colored,
+        Traits\Size;
+
     const CLASS_NAME = 'icon';
 
     protected $classes = array(
