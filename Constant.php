@@ -115,5 +115,8 @@ abstract class Constant {
 
     # http://semantic-ui.com/elements/image.html#groups
     const IMAGES = 'images';
+    
+    # http://semantic-ui.com/elements/list.html#horizontal
+    const HORIZONTAL = 'horizontal';
 
 }
