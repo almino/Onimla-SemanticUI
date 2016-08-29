@@ -27,6 +27,11 @@ trait Alignment {
             return $this;
         }
 
+        if ($this->hasClass(\Onimla\SemanticUI\Icon::CLASS_NAME)) {
+            $method = 'before';
+            $search = \Onimla\SemanticUI\Icon::CLASS_NAME;
+        }
+
         call_user_func_array(array($this->getClassAttribute(), $method), array($search, func_get_args()));
     }
 
