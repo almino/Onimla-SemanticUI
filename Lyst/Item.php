@@ -5,6 +5,7 @@ namespace Onimla\SemanticUI\Lyst;
 use Onimla\HTML\Node;
 use Onimla\HTML\HasAttribute;
 use Onimla\SemanticUI\Traits\PrependIcon;
+use Onimla\SemanticUI\Traits\PrependHeader;
 use Onimla\SemanticUI\Content\Item as Container;
 use Onimla\SemanticUI\Content;
 
@@ -14,7 +15,8 @@ use Onimla\SemanticUI\Content;
  */
 class Item extends Node implements HasAttribute {
 
-    use PrependIcon;
+    use PrependHeader,
+        PrependIcon;
 
     public function __construct($children = FALSE) {
         parent::__construct();
