@@ -33,9 +33,13 @@ class Group extends Item {
     public function __isset($name) {
         call_user_func_array(array($this->items(), __FUNCTION__), func_get_args());
     }
+    
+    public function count() {
+        return $this->items()->count();
+    }
 
     public function each($callableOrMethod, $params = FALSE) {
-        $this->items()->each($callableOrMethod, $params);
+        $this->items()->each(...func_get_args());
         return $this;
     }
 
