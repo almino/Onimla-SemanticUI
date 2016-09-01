@@ -210,10 +210,10 @@ abstract class ContainerInputLabel extends Node implements HasAttribute, UserInp
 
     public function value($value = FALSE) {
         if ($value === FALSE) {
-            return $this->input()->value();
+            return $this->getInput()->value();
         }
 
-        $this->input()->value($value);
+        $this->getInput()->value($value);
 
         return $this;
     }
