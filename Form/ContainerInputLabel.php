@@ -276,17 +276,17 @@ abstract class ContainerInputLabel extends Node implements HasAttribute, UserInp
 
         return $this;
     }
-
-    /**
-     * 
-     * @param \Onimla\HTML\Polymorphism\UserInput $instance optional
-     * @return \Onimla\SemanticUI\Form\Field|\Onimla\HTML\Input
-     */
-    public function input(UserInput $instance = NULL) {
-        if ($instance === NULL) {
-            return isset($this->input) ? $this->input : FALSE;
-        }
-
+    
+    public function getInput() {
+        return isset($this->input) ? $this->input : FALSE;
+    }
+    
+    public function unsetInput() {
+        unset($this->input);
+        $this->container->input = NULL;
+    }
+    
+    public function setInput(UserInput $instance = NULL) {
         $this->input = $instance;
         $this->container->input = $this->input;
 
@@ -295,6 +295,19 @@ abstract class ContainerInputLabel extends Node implements HasAttribute, UserInp
         }
 
         $this->label->for($this->input->id());
+    }
+
+    /**
+     * 
+     * @param \Onimla\HTML\Polymorphism\UserInput $instance optional
+     * @return \Onimla\SemanticUI\Form\Field|\Onimla\HTML\Input
+     */
+    public function input(UserInput $instance = NULL) {
+        if ($instance === NULL) {
+            return $this->getInput();
+        }
+        
+        $this->setInput($instance);
 
         return $this;
     }
