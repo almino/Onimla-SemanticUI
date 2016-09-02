@@ -33,7 +33,7 @@ class Group extends Item {
     public function __isset($name) {
         call_user_func_array(array($this->items(), __FUNCTION__), func_get_args());
     }
-    
+
     public function count() {
         return $this->items()->count();
     }
@@ -81,10 +81,10 @@ class Group extends Item {
             if (!$this->isHeaderSet()) {
                 $this->setHeader();
             }
-            
+
             return $this->header;
         }
-        
+
         $this->setHeader($text);
 
         return $this;
@@ -109,6 +109,12 @@ class Group extends Item {
         }
 
         return $this;
+    }
+
+    public function unsetActive() {
+        foreach ($this->items() as $item) {
+            call_user_func(array($item, __FUNCTION__));
+        }
     }
 
 }
