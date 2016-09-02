@@ -13,6 +13,7 @@ class Segment extends Component {
         Traits\Attached,
         Traits\Basic,
         Traits\Colored,
+        Traits\Secondary,
         Traits\Vertical;
 
     const CLASS_NAME = 'segment';

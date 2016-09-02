@@ -19,6 +19,11 @@ trait Secondary {
             $method = 'before';
             $search = Constant::MENU;
         }
+
+        if ($this->hasClass(\Onimla\SemanticUI\Segment::CLASS_NAME)) {
+            $method = 'before';
+            $search = \Onimla\SemanticUI\Segment::CLASS_NAME;
+        }
         
         if (method_exists($this, 'isPointing') AND $this->isPointing()) {
             $method = 'before';
