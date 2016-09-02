@@ -13,6 +13,7 @@ class Segment extends Component {
         Traits\Attached,
         Traits\Basic,
         Traits\Colored,
+        Traits\Disabled,
         Traits\Secondary,
         Traits\Vertical;
 

@@ -118,5 +118,8 @@ abstract class Constant {
     
     # http://semantic-ui.com/elements/list.html#horizontal
     const HORIZONTAL = 'horizontal';
+    
+    # http://semantic-ui.com/elements/segment.html#disabled
+    const DISABLED = 'disabled';
 
 }
