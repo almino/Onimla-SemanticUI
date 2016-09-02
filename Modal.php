@@ -65,6 +65,10 @@ class Modal extends Node implements HasAttribute, Appendable {
     public function id($value = FALSE) {
         return call_user_func_array(array($this->container, __FUNCTION__), func_get_args());
     }
+    
+    public function data($key, $value = FALSE, $output = 'encode') {
+        return call_user_func_array(array($this->container, __FUNCTION__), func_get_args());
+    }
 
     public function &findByAttr($attr, $value) {
         return call_user_func_array(array($this->container, __FUNCTION__), func_get_args());
