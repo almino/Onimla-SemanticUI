@@ -116,7 +116,7 @@ abstract class ContainerInputLabel extends Node implements HasAttribute, UserInp
     }
 
     public function disable() {
-        call_user_func(array($this->input, __FUNCTION__));
+        $this->setDisabled();
         return $this;
     }
 
@@ -125,7 +125,7 @@ abstract class ContainerInputLabel extends Node implements HasAttribute, UserInp
     }
 
     public function enable() {
-        call_user_func(array($this->input, __FUNCTION__));
+        $this->unsetDisabled();
         return $this;
     }
 
