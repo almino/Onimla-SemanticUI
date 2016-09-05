@@ -22,7 +22,8 @@ class Message extends Node implements HasAttribute, Appendable {
 
     const CLASS_NAME = 'message';
 
-    use Traits\Colored;
+    use Traits\Colored,
+        Traits\Size;
 
     public function __construct($text = FALSE) {
         parent::__construct();
