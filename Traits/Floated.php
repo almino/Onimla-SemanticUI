@@ -11,7 +11,7 @@ trait Floated {
 
     public function unsetFloated() {
         $this->getClassAttribute()->strictRemoveClass(Constant::LEFT, Constant::FLOATED);
-        $this->getClassAttribute()->strictRemoveClass(Constant::RIGHT, constant::floated);
+        $this->getClassAttribute()->strictRemoveClass(Constant::RIGHT, constant::FLOATED);
     }
 
     public function setFloated($side) {
