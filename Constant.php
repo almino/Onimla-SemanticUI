@@ -135,5 +135,11 @@ abstract class Constant {
     
     # http://semantic-ui.com/elements/list.html#animated
     const ANIMATED = 'animated';
+    
+    # http://semantic-ui.com/elements/list.html#selection
+    const SELECTION = 'selection';
+    
+    # http://semantic-ui.com/elements/list.html#relaxed
+    const RELAXED = 'relaxed';
 
 }
