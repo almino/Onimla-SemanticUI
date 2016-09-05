@@ -15,9 +15,7 @@ trait Animated {
             $search = Constant::LYST;
         }
 
-        call_user_func_array(array($this->getClassAttribute(), $method), array($search, func_get_args()));
-
-        return $this;
+        call_user_func_array(array($this->getClassAttribute(), $method), array($search, Constant::ANIMATED));
     }
     
     public function animate() {
