@@ -10,9 +10,9 @@ trait Animated {
         $method = 'after';
         $search = \Onimla\SemanticUI\Component::CLASS_NAME;
 
-        if ($this->hasClass(Constant::ITEM)) {
+        if ($this->hasClass(Constant::LYST)) {
             $method = 'before';
-            $search = Constant::ITEM;
+            $search = Constant::LYST;
         }
 
         call_user_func_array(array($this->getClassAttribute(), $method), array($search, func_get_args()));
