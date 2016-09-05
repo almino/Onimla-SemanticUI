@@ -2,23 +2,21 @@
 
 namespace Onimla\SemanticUI\Traits;
 
+use Onimla\SemanticUI\Constant;
+
 /**
  * @method \Onimla\HTML\Attribute\Klass getClassAttribute()
  */
 trait Floated {
 
-    private $floated = 'floated';
-    private $leftFloated = 'left';
-    private $rightFloated = 'right';
-
     public function unsetFloated() {
-        $this->getClassAttribute()->strictRemoveClass($this->leftFloated, $this->floated);
-        $this->getClassAttribute()->strictRemoveClass($this->rightFloated, $this->floated);
+        $this->getClassAttribute()->strictRemoveClass(Constant::LEFT, Constant::FLOATED);
+        $this->getClassAttribute()->strictRemoveClass(Constant::RIGHT, constant::floated);
     }
 
     public function setFloated($side) {
         $this->unsetFloated();
-        
+
         $method = 'after';
         $search = \Onimla\SemanticUI\Component::CLASS_NAME;
 
@@ -27,15 +25,15 @@ trait Floated {
             $search = \Onimla\SemanticUI\Column::CLASS_NAME;
         }
 
-        call_user_func_array(array($this->getClassAttribute(), $method), array($search, $side, $this->floated));
+        call_user_func_array(array($this->getClassAttribute(), $method), array($search, $side, Constant::FLOATED));
     }
 
     private function floatedRegEx($side = FALSE) {
         if ($side === FALSE) {
-            $side = implode('|', array($this->leftFloated, $this->rightFloated));
+            $side = implode('|', array(Constant::LEFT, Constant::RIGHT));
         }
-        
-        return "/({$side})\s+({$this->floated})/";
+
+        return "/({$side})\s+(" . Constant::FLOATED . ')/';
     }
 
     public function getFloatedClasses() {
@@ -51,20 +49,20 @@ trait Floated {
     }
 
     public function leftFloated() {
-        $this->setFloated($this->leftFloated);
+        $this->setFloated(Constant::LEFT);
     }
 
     public function floated($side = FALSE) {
         if ($side === FALSE) {
             return $this->isFloated();
         }
-        
+
         $this->setFloated($side);
         return $this;
     }
 
     public function rightFloated() {
-        $this->setFloated($this->rightFloated);
+        $this->setFloated(Constant::RIGHT);
     }
 
 }

@@ -121,5 +121,16 @@ abstract class Constant {
     
     # http://semantic-ui.com/elements/segment.html#disabled
     const DISABLED = 'disabled';
+    
+    # http://semantic-ui.com/elements/list.html#floated
+    const FLOATED = 'floated';
+    
+    # http://semantic-ui.com/elements/list.html#vertically-aligned
+    const ALIGNED = 'aligned';
+    const MIDDLE = 'middle';
+    
+    # http://semantic-ui.com/collections/grid.html#text-alignment
+    const JUSTIFIED = 'justified';
+    const CENTER = 'center';
 
 }
