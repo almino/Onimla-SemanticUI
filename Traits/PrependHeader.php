@@ -12,8 +12,8 @@ trait PrependHeader {
     protected $header = NULL;
 
     public function unsetHeader() {
-        if (property_exists($this, 'content')) {
-            $this->content->removeChild($this->header);
+        if (method_exists(__CLASS__, 'getContent')) {
+            $this->getContent()->removeChild($this->header);
         } else {
             $this->removeChild($this->header);
         }
@@ -28,8 +28,8 @@ trait PrependHeader {
     public function setHeader($header = FALSE) {
         $this->header = $header instanceof Element ? $header : new BaseHeader($header);
 
-        if (property_exists($this, 'content')) {
-            $this->content->prepend($this->header);
+        if (method_exists(__CLASS__, 'getContent')) {
+            $this->getContent()->prepend($this->header);
         } else {
             $this->prepend($this->header);
         }
