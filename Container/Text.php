@@ -3,11 +3,8 @@
 namespace Onimla\SemanticUI\Container;
 
 use Onimla\SemanticUI\Container as BaseContainer;
-use Onimla\SemanticUI\Traits\Fluid;
 
 class Text extends BaseContainer {
-
-    use Fluid;
 
     const CLASS_NAME = 'text';
 

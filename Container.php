@@ -2,7 +2,11 @@
 
 namespace Onimla\SemanticUI;
 
+use Onimla\SemanticUI\Traits\Fluid;
+
 class Container extends \Onimla\SemanticUI\Component {
+
+    use Fluid;
 
     const CLASS_NAME = 'container';
 
