@@ -2,12 +2,14 @@
 
 namespace Onimla\SemanticUI;
 
+use Onimla\SemanticUI\Traits\Animated;
 use Onimla\SemanticUI\Traits\Lyst as tLyst;
 use Onimla\SemanticUI\Traits\Horizontal;
 
 class Lyst extends Component {
 
-    use Horizontal,
+    use Animated,
+        Horizontal,
         tLyst;
 
     public function __construct($children = FALSE) {
