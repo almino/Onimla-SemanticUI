@@ -59,7 +59,7 @@ trait Alignment {
     public function getAlignmentClasses($position) {
         $matches = array();
 
-        $this->getClassAttribute()->matchValue($this->labeledRegEx($position), $matches);
+        $this->getClassAttribute()->matchValue($this->alignmentRegEx($position), $matches);
 
         return count($matches) > 1 ? implode(' ', array_slice($matches, 1)) : NULL;
     }
