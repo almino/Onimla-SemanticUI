@@ -4,9 +4,9 @@ namespace Onimla\SemanticUI\Icon;
 
 use Onimla\SemanticUI\Icon;
 
-abstract class Outline extends Icon {
+abstract class Circle extends Icon {
 
-    const CLASS_NAME = 'outline';
+    const CLASS_NAME = 'circle';
 
     public function __construct($class) {
         parent::__construct(...func_get_args());
