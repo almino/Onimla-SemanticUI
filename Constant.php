@@ -132,5 +132,8 @@ abstract class Constant {
     # http://semantic-ui.com/collections/grid.html#text-alignment
     const JUSTIFIED = 'justified';
     const CENTER = 'center';
+    
+    # http://semantic-ui.com/elements/list.html#animated
+    const ANIMATED = 'animated';
 
 }
