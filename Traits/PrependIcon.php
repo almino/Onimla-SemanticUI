@@ -26,7 +26,7 @@ trait PrependIcon {
     }
 
     public function setIcon($icon = FALSE) {
-        $this->icon = $icon instanceof Element ? $icon : new BaseIcon($icon);
+        $this->icon = $icon instanceof BaseIcon ? $icon : new BaseIcon($icon);
 
         if (method_exists(__CLASS__, 'getContainer')) {
             $this->getContainer()->prepend($this->icon);
