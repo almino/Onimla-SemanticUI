@@ -5,6 +5,9 @@ namespace Onimla\SemanticUI\Traits;
 use Onimla\HTML\Attribute\Klass;
 use Onimla\SemanticUI\Constant;
 
+/**
+ * @method \Onimla\HTML\Attribute\Klass getClassAttribute()
+ */
 trait Size {
 
     protected $sizes = array(
@@ -28,7 +31,7 @@ trait Size {
         $method = 'after';
         $search = \Onimla\SemanticUI\Component::CLASS_NAME;
 
-        if ($this->hasClass(Constant::HEADER)) {
+        if ($this->getClassAttribute()->matchValue(Constant::HEADER)) {
             $method = 'before';
             $search = Constant::HEADER;
         }
@@ -38,7 +41,7 @@ trait Size {
             $search = $this->color();
         }
 
-        if ($this->hasClass(\Onimla\SemanticUI\Icon::CLASS_NAME)) {
+        if ($this->getClassAttribute()->matchValue(\Onimla\SemanticUI\Icon::CLASS_NAME)) {
             call_user_func_array(array($this->getClassAttribute(), 'prepend'), func_get_args());
             return $this;
         }
