@@ -254,6 +254,13 @@ abstract class ContainerInputLabel extends Node implements HasAttribute, UserInp
     }
 
     /**
+     * @return \Onimla\SemanticUI\Container
+     */
+    public function getContainer() {
+        return $this->container;
+    }
+
+    /**
      * 
      * @param string|\Onimla\HTML\Element $text optional
      * @return \Onimla\SemanticUI\Form\Field|\Onimla\HTML\Label
@@ -276,16 +283,16 @@ abstract class ContainerInputLabel extends Node implements HasAttribute, UserInp
 
         return $this;
     }
-    
+
     public function getInput() {
         return isset($this->input) ? $this->input : FALSE;
     }
-    
+
     public function unsetInput() {
         unset($this->input);
         $this->container->input = NULL;
     }
-    
+
     public function setInput(UserInput $instance = NULL) {
         $this->input = $instance;
         $this->container->input = $this->input;
@@ -306,7 +313,7 @@ abstract class ContainerInputLabel extends Node implements HasAttribute, UserInp
         if ($instance === NULL) {
             return $this->getInput();
         }
-        
+
         $this->setInput($instance);
 
         return $this;
