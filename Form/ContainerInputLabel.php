@@ -265,7 +265,7 @@ abstract class ContainerInputLabel extends Node implements HasAttribute, UserInp
             return isset($this->label) ? $this->label : FALSE;
         }
 
-        if (!$text instanceof Element) {
+        if (!(is_object($text) AND method_exists($text, 'attrFor'))) {
             $text = new Label(FALSE, func_get_args());
         }
 
