@@ -65,7 +65,7 @@ class Modal extends Node implements HasAttribute, Appendable {
     public function id($value = FALSE) {
         return call_user_func_array(array($this->container, __FUNCTION__), func_get_args());
     }
-    
+
     public function data($key, $value = FALSE, $output = 'encode') {
         return call_user_func_array(array($this->container, __FUNCTION__), func_get_args());
     }
@@ -111,11 +111,11 @@ class Modal extends Node implements HasAttribute, Appendable {
         $this->setSize($size);
         return $this;
     }
-    
+
     public function small() {
         return $this->size(__FUNCTION__);
     }
-    
+
     public function large() {
         return $this->size(__FUNCTION__);
     }
@@ -187,10 +187,17 @@ class Modal extends Node implements HasAttribute, Appendable {
         return $this;
     }
 
+    /**
+     * @return \Onimla\SemanticUI\Content;
+     */
+    public function getContent() {
+        return $this->content;
+    }
+
     public function removeContent() {
         return $this->content->removeChildren();
     }
-    
+
     /**
      * 
      * @param mixed $children
