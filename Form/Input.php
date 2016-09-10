@@ -37,6 +37,11 @@ class Input extends Component implements UserInput {
         $this->field()->id($value);
         return $this;
     }
+    
+    public function uniqid($prefix = '', $moreEntropy = FALSE) {
+        $this->field()->uniqid(...func_get_args());
+        return $this;
+    }
 
     public function isDisabled() {
         call_user_func(array($this->field(), __FUNCTION__));

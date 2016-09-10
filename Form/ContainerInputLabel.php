@@ -109,7 +109,7 @@ abstract class ContainerInputLabel extends Node implements HasAttribute, UserInp
         return $this;
     }
 
-    public function uniqid($prefix = '', $more_entropy = FALSE) {
+    public function uniqid($prefix = '', $moreEntropy = FALSE) {
         call_user_func_array(array($this->input, __FUNCTION__), func_get_args());
         $this->label->for($this->input->id());
         return $this;
