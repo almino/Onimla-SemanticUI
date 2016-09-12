@@ -13,7 +13,7 @@ class Label extends Component {
         Traits\Colored,
         Traits\Component;
 
-    public function __construct($element, $text) {
+    public function __construct($element, $text = FALSE) {
         parent::__construct($element);
         $this->addClass(self::CLASS_NAME);
         $this->text($text);
