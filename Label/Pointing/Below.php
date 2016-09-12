@@ -6,7 +6,7 @@ use Onimla\SemanticUI\Label;
 use Onimla\SemanticUI\Constant;
 
 class Below extends Label {
-    public function __construct($element, $text) {
+    public function __construct($element, $text = FALSE) {
         parent::__construct($element, $text);
         $this->pointing(Constant::BELOW);
     }
