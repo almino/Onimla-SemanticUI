@@ -43,4 +43,30 @@ class Label extends Component {
         return $this;
     }
 
+    public function getDetail() {
+        return isset($this->detail) ? $this->detail : FALSE;
+    }
+
+    public function setDetail($text = FALSE) {
+        $this->detail = new Label\Detail(...func_get_args());
+    }
+
+    public function unsetDetail() {
+        unset($this->detail);
+    }
+
+    public function hasDetail() {
+        return $this->isChild($this->getDetail());
+    }
+
+    public function detail($text = FALSE) {
+        $text = self::filterChildren(func_get_args());
+
+        if (count($text) < 1) {
+            return $this->getDetail();
+        }
+
+        $this->setDetail($text);
+    }
+
 }
