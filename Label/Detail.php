@@ -10,7 +10,7 @@ class Detail extends Element {
 
     public function __construct($text = FALSE) {
         parent::__construct('div');
-        $this->addClass('detail');
+        $this->addClass(self::CLASS_NAME);
         $this->text(...func_get_args());
     }
 

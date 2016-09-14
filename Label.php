@@ -11,7 +11,8 @@ class Label extends Component {
 
     use Traits\Basic,
         Traits\Colored,
-        Traits\Component;
+        Traits\Component,
+        Traits\Size;
 
     public function __construct($element, $text = FALSE) {
         parent::__construct($element);
@@ -48,6 +49,7 @@ class Label extends Component {
     }
 
     public function setDetail($text = FALSE) {
+        $this->unsetDetail();
         $this->detail = new Label\Detail(...func_get_args());
     }
 
@@ -66,7 +68,8 @@ class Label extends Component {
             return $this->getDetail();
         }
 
-        $this->setDetail($text);
+        $this->setDetail(...$text);
+        return $this;
     }
 
 }
