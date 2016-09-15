@@ -28,16 +28,16 @@ class Input extends Component implements UserInput {
         $this->getClassAttribute()->append(self::CLASS_NAME);
         $this->field(...func_get_args());
     }
-    
+
     public function id($value = FALSE) {
         if ($value === FALSE) {
             return $this->field()->id();
         }
-        
+
         $this->field()->id($value);
         return $this;
     }
-    
+
     public function uniqid($prefix = '', $moreEntropy = FALSE) {
         $this->field()->uniqid(...func_get_args());
         return $this;
@@ -137,7 +137,7 @@ class Input extends Component implements UserInput {
         call_user_func_array(array($this->field(), __FUNCTION__), func_get_args());
         return $this;
     }
-    
+
     public function createField() {
         $this->field = new \Onimla\HTML\Input;
         return $this->field;
@@ -149,6 +149,10 @@ class Input extends Component implements UserInput {
 
     public function removeField() {
         $this->unsetField();
+    }
+
+    public function getField() {
+        return isset($this->field) ? $this->field : $this->createField();
     }
 
     public function setField($name = FALSE, $value = FALSE, $type = 'text') {
@@ -163,7 +167,7 @@ class Input extends Component implements UserInput {
      */
     public function field($name = FALSE, $value = FALSE, $type = 'text') {
         if (func_num_args() < 1) {
-            return isset($this->field) ? $this->field : $this->createField();
+            return $this->getField();
         }
 
         $this->setField(...func_get_args());
