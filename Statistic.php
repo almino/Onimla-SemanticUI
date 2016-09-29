@@ -7,7 +7,86 @@ use Onimla\SemanticUI\Component;
 use Onimla\HTML\HasAttribute;
 use Onimla\HTML\Appendable;
 
-class Statistic extends Node {
+class Statistic extends Node implements HasAttribute {
+
+    public function __construct($value = FALSE, $label = FALSE) {
+        parent::__construct();
+
+        $this->container = new Component;
+        $this->value($value);
+        $this->label($label);
+
+        $this->container->value = $this->getValue();
+        $this->container->label = $this->getLabel();
+    }
+
+    public function __clone() {
+        $this->container = clone $this->container;
+
+        $this->value = $this->container->value;
+        $this->label = $this->container->label;
+    }
+
+    public function __toString() {
+        return call_user_func(array($this->container, __FUNCTION__));
+    }
+
+    public function addClass($class) {
+        call_user_func_array(array($this->container, __FUNCTION__), func_get_args());
+        return $this;
+    }
+
+    public function attr($name, $value = FALSE, $output = FALSE) {
+        call_user_func_array(array($this->container, __FUNCTION__), func_get_args());
+        return strlen($value) < 1 ? call_user_func_array(array($this->container, __FUNCTION__), func_get_args()) : $this;
+    }
+
+    public function data($key, $value = FALSE, $output = 'encode') {
+        call_user_func_array(array($this->container, __FUNCTION__), func_get_args());
+        return strlen($value) < 1 ? call_user_func_array(array($this->container, __FUNCTION__), func_get_args()) : $this;
+    }
+
+    public function findByAttr($attr, $value) {
+        return call_user_func_array(array($this->container, __FUNCTION__), func_get_args());
+    }
+
+    public function findById($value) {
+        return call_user_func_array(array($this->container, __FUNCTION__), func_get_args());
+    }
+
+    public function findByName($value) {
+        return call_user_func_array(array($this->container, __FUNCTION__), func_get_args());
+    }
+
+    public function getClassAttribute() {
+        return call_user_func_array(array($this->container, __FUNCTION__), func_get_args());
+    }
+
+    public function id($value = FALSE) {
+        call_user_func_array(array($this->container, __FUNCTION__), func_get_args());
+        return strlen($value) < 1 ? call_user_func_array(array($this->container, __FUNCTION__), func_get_args()) : $this;
+    }
+
+    public function matchAttr($attr, $regexOrString, $level = FALSE) {
+        return call_user_func_array(array($this->container, __FUNCTION__), func_get_args());
+    }
+
+    public function matchClass($classes, $level = FALSE) {
+        return call_user_func_array(array($this->container, __FUNCTION__), func_get_args());
+    }
+
+    public function removeAttr($name) {
+        return call_user_func_array(array($this->container, __FUNCTION__), func_get_args());
+    }
+
+    public function removeClass($class) {
+        call_user_func_array(array($this->container, __FUNCTION__), func_get_args());
+        return $this;
+    }
+
+    public function getContainer() {
+        return $this->container;
+    }
 
     public function getValue() {
         if (!isset($this->value)) {
