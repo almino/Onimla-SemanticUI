@@ -4,18 +4,27 @@ namespace Onimla\SemanticUI;
 
 use Onimla\HTML\Node;
 use Onimla\SemanticUI\Component;
+use Onimla\SemanticUI\Constant;
 use Onimla\HTML\HasAttribute;
 use Onimla\HTML\Appendable;
 
 class Statistic extends Node implements HasAttribute {
+    
+    use Traits\Colored,
+    Traits\Horizontal;
 
     public function __construct($value = FALSE, $label = FALSE) {
         parent::__construct();
 
+        /* Instâncias =============================================================== */
         $this->container = new Component;
         $this->value($value);
         $this->label($label);
 
+        /* Atributos ================================================================ */
+        $this->container->getClassAttribute()->append(Constant::STATISTIC);
+
+        /* Árvore =================================================================== */
         $this->container->value = $this->getValue();
         $this->container->label = $this->getLabel();
     }
