@@ -115,31 +115,43 @@ abstract class Constant {
 
     # http://semantic-ui.com/elements/image.html#groups
     const IMAGES = 'images';
-    
+
     # http://semantic-ui.com/elements/list.html#horizontal
     const HORIZONTAL = 'horizontal';
-    
+
     # http://semantic-ui.com/elements/segment.html#disabled
     const DISABLED = 'disabled';
-    
+
     # http://semantic-ui.com/elements/list.html#floated
     const FLOATED = 'floated';
-    
+
     # http://semantic-ui.com/elements/list.html#vertically-aligned
     const ALIGNED = 'aligned';
     const MIDDLE = 'middle';
-    
+
     # http://semantic-ui.com/collections/grid.html#text-alignment
     const JUSTIFIED = 'justified';
     const CENTER = 'center';
-    
+
     # http://semantic-ui.com/elements/list.html#animated
     const ANIMATED = 'animated';
-    
+
     # http://semantic-ui.com/elements/list.html#selection
     const SELECTION = 'selection';
-    
+
     # http://semantic-ui.com/elements/list.html#relaxed
     const RELAXED = 'relaxed';
+
+    # http://semantic-ui.com/views/statistic.html#statistic
+    const STATISTIC = 'statistic';
+
+    # http://semantic-ui.com/views/statistic.html#statistic-group
+    const STATISTICS = 'statistics';
+
+    # http://semantic-ui.com/views/statistic.html#statistic
+    const VALUE = 'value';
+
+    # http://semantic-ui.com/views/statistic.html#statistic
+    const LABEL = 'label';
 
 }
