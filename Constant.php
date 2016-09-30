@@ -48,6 +48,9 @@ abstract class Constant {
 
     # http://semantic-ui.com/collections/message.html#list-message
     const LYST = 'list';
+    
+    # http://semantic-ui.com/elements/list.html
+    const DESCRIPTION = 'description';
 
     # http://semantic-ui.com/collections/grid.html#reversed
     const REVERSED = 'reversed';
@@ -156,5 +159,6 @@ abstract class Constant {
 
     # http://semantic-ui.com/elements/label.html#group-size
     const LABELS = 'labels';
+    
 
 }
