@@ -49,7 +49,7 @@ abstract class Constant {
     # http://semantic-ui.com/collections/message.html#list-message
     const LYST = 'list';
     
-    # http://semantic-ui.com/elements/list.html
+    # http://semantic-ui.com/elements/list.html#description
     const DESCRIPTION = 'description';
 
     # http://semantic-ui.com/collections/grid.html#reversed
