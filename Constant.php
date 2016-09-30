@@ -154,4 +154,7 @@ abstract class Constant {
     # http://semantic-ui.com/views/statistic.html#statistic
     const LABEL = 'label';
 
+    # http://semantic-ui.com/elements/label.html#group-size
+    const LABELS = 'labels';
+
 }

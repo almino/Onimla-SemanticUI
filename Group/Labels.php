@@ -13,7 +13,7 @@ class Labels extends Component {
 
     public function __construct($children = FALSE) {
         parent::__construct('div', FALSE, func_get_args());
-        $this->getClassAttribute()->append(Constant::STATISTICS);
+        $this->getClassAttribute()->append(Constant::LABELS);
     }
 
 }
