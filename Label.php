@@ -14,7 +14,7 @@ class Label extends Component {
         Traits\Component,
         Traits\Size;
 
-    public function __construct($element, $text = FALSE) {
+    public function __construct($element = 'div', $text = FALSE) {
         parent::__construct($element);
         $this->addClass(self::CLASS_NAME);
         $this->text($text);

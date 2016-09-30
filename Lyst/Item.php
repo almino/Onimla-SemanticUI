@@ -27,6 +27,8 @@ class Item extends Node implements HasAttribute {
         $this->content = new Content;
 
         $this->container->content = $this->content;
+        
+        $this->append(func_get_args());
     }
 
     public function __toString() {
