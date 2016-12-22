@@ -160,5 +160,8 @@ abstract class Constant {
     # http://semantic-ui.com/elements/label.html#group-size
     const LABELS = 'labels';
     
+    # http://semantic-ui.com/elements/icon.html
+    const ICON = 'icon';
+    
 
 }
