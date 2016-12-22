@@ -7,17 +7,30 @@ use Onimla\SemanticUI\Constant;
 /**
  * @method \Onimla\HTML\Attribute\Klass getClassAttribute()
  */
-trait Labeled {
+trait Labeled
+{
 
-    public function setLabeled($position = FALSE) {
-        $this->getClassAttribute()->before(self::CLASS_NAME, $position, Constant::LABELED);
+    public function setLabeled($position = FALSE)
+    {
+
+        $method = 'after';
+        $search = \Onimla\SemanticUI\Component::CLASS_NAME;
+
+        if ($this->hasClass(Constant::BUTTON)) {
+            $method = 'before';
+            $search = Constant::BUTTON;
+        }
+
+        call_user_func_array(array($this->getClassAttribute(), $method), array($search, Constant::LABELED));
     }
 
-    public function unsetLabeled($position = FALSE) {
+    public function unsetLabeled($position = FALSE)
+    {
         $this->getClassAttribute()->strictRemoveClass($this->getLabeledClasses($position));
     }
 
-    private function labeledRegEx($position = FALSE) {
+    private function labeledRegEx($position = FALSE)
+    {
         if ($position === FALSE) {
             $position = implode('|', array(
                 Constant::RIGHT,
@@ -28,7 +41,8 @@ trait Labeled {
         return "/({$position})\s+(" . Constant::LABELED . ')/';
     }
 
-    public function getLabeledClasses($position = FALSE) {
+    public function getLabeledClasses($position = FALSE)
+    {
         $matches = array();
 
         $this->getClassAttribute()->matchValue($this->labeledRegEx($position), $matches);
@@ -36,28 +50,34 @@ trait Labeled {
         return count($matches) > 1 ? "{$matches[1]} {$matches[2]}" : NULL;
     }
 
-    public function isLabeled($side = FALSE) {
+    public function isLabeled($side = FALSE)
+    {
         return (bool) $this->getClassAttribute()->matchValue($this->labeledRegEx($side));
     }
 
-    public function isLeftLabeled() {
+    public function isLeftLabeled()
+    {
         return $this->isLabeled(Constant::LEFT);
     }
 
-    public function isRightLabeled() {
+    public function isRightLabeled()
+    {
         return $this->isLabeled(Constant::RIGHT);
     }
 
-    public function labeled($position = FALSE) {
+    public function labeled($position = FALSE)
+    {
         $this->setLabeled($position);
         return $this;
     }
 
-    public function leftLabeled() {
+    public function leftLabeled()
+    {
         return $this->labeled(Constant::LEFT);
     }
 
-    public function rightLabeled() {
+    public function rightLabeled()
+    {
         return $this->labeled(Constant::RIGHT);
     }
 
