@@ -14,6 +14,7 @@ trait Icon
     {
         $this->unsetIcon();
         $this->removeClass(Constant::ICON);
+        $this->getClassAttribute()->strictRemoveClass(Constant::LABELED, Constant::ICON);
         
         $method = 'after';
         $search = \Onimla\SemanticUI\Component::CLASS_NAME;
