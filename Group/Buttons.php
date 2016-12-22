@@ -5,7 +5,7 @@ namespace Onimla\SemanticUI\Group;
 use Onimla\SemanticUI\Component;
 
 /**
- * @see http://semantic-ui.com/elements/segment.html#segments
+ * @see http://semantic-ui.com/elements/button.html#buttons
  */
 class Buttons extends Component {
 
