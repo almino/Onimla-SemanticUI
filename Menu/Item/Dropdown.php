@@ -5,12 +5,12 @@ namespace Onimla\SemanticUI\Menu\Item;
 use Onimla\SemanticUI\Content\Item;
 use Onimla\SemanticUI\Constant;
 use Onimla\SemanticUI\Icon;
-use Onimla\HTML\Element;
+use Onimla\SemanticUI\Content\Menu as SubMenu;
 
 /**
  * @property string $spacer
  * @property \Onimla\SemanticUI\Icon $caret <code>&lt;i class=&quot;dropdown icon&quot;&gt;&lt;/i&gt;</code>
- * @property \Onimla\HTML\Element $container div.menu
+ * @property \Onimla\SemanticUI\Content\Menu $container div.menu
  */
 class Dropdown extends Item
 {
@@ -24,9 +24,7 @@ class Dropdown extends Item
 
         $this->spacer = '&nbsp;';
         $this->caret = new Icon(Constant::DROPDOWN);
-        $this->container = new Element('div');
-
-        $this->container->addClass(Constant::MENU);
+        $this->container = new SubMenu;
     }
 
     public function prepend($children)
