@@ -22,9 +22,34 @@ class Dropdown extends Item
 
         $this->text($text);
 
+        $this->container = new SubMenu;
+    }
+
+    public function text($text = FALSE)
+    {
+        $children = $this->filterChildren(...func_get_args());
+
+        if (count($children) < 1) {
+            return parent::text();
+        }
+
+        if (isset($this->container)) {
+            # Salva os itens do sub menu
+            $menu = $this->container;
+        }
+
+        # Redefine tudo!
+        parent::text(...$children);
+
+        # Coloca o ícone para indicar o sub menu
         $this->spacer = '&nbsp;';
         $this->caret = new Icon(Constant::DROPDOWN);
-        $this->container = new SubMenu;
+
+        if ($menu) {
+            $this->container = $menu;
+        }
+
+        return $this;
     }
 
     public function prepend($children)
@@ -36,6 +61,18 @@ class Dropdown extends Item
     public function append($children)
     {
         call_user_func_array(array($this->container, __FUNCTION__), func_get_args());
+        return $this;
+    }
+
+    public function appendText($text)
+    {
+        # Pega todos os parâmetros passados
+        $children = func_get_args();
+        # Ajusta o texto
+        array_walk($children, 'htmlentities');
+        # Coloca o texto no lugar devido
+        $this->addChildrenBefore($this->spacer, $children);
+
         return $this;
     }
 
