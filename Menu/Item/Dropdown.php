@@ -29,6 +29,7 @@ class Dropdown extends Item
     public function text($text = FALSE)
     {
         $children = $this->filterChildren(...func_get_args());
+        array_walk($children, 'htmlentities');
 
         if (count($children) < 1) {
             return parent::text();
@@ -40,7 +41,7 @@ class Dropdown extends Item
         }
 
         # Redefine tudo!
-        parent::text(...$children);
+        $this->children = $children;
 
         # Coloca o ícone para indicar o sub menu
         $this->spacer = '&nbsp;';
@@ -68,7 +69,7 @@ class Dropdown extends Item
     public function appendText($text)
     {
         # Pega todos os parâmetros passados
-        $children = func_get_args();
+        $children = self::arrayFlatten(func_get_args());
         # Ajusta o texto
         array_walk($children, 'htmlentities');
         # Coloca o texto no lugar devido
