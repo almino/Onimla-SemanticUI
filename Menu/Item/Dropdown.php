@@ -3,6 +3,7 @@
 namespace Onimla\SemanticUI\Menu\Item;
 
 use Onimla\SemanticUI\Content\Item;
+use Onimla\SemanticUI\Component;
 use Onimla\SemanticUI\Constant;
 use Onimla\SemanticUI\Icon;
 use Onimla\SemanticUI\Content\Menu as SubMenu;
@@ -18,7 +19,7 @@ class Dropdown extends Item
     public function __construct($text = FALSE)
     {
         parent::__construct();
-        $this->getClassAttribute()->before(Constant::ITEM, Constant::DROPDOWN);
+        $this->getClassAttribute()->prepend(Component::CLASS_NAME)->before(Constant::ITEM, Constant::DROPDOWN);
 
         $this->text($text);
 
