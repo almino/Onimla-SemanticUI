@@ -44,7 +44,6 @@ class Dropdown extends Item
         $this->children = $children;
 
         # Coloca o ícone para indicar o sub menu
-        $this->spacer = '&nbsp;';
         $this->caret = new Icon(Constant::DROPDOWN);
 
         if ($menu) {
