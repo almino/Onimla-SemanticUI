@@ -12,6 +12,7 @@ class Menu extends Component {
         Traits\Fluid,
         Traits\Pointing,
         Traits\Secondary,
+        Traits\Size,
         Traits\Vertical;
 
     public function __construct($children = FALSE) {

@@ -7,14 +7,12 @@ use Onimla\SemanticUI\Constant;
 
 class Dropdown extends Select {
 
-    const CLASS_NAME = 'dropdown';
-
     use \Onimla\SemanticUI\Traits\Component;
 
     public function __construct($name, $options = FALSE) {
         parent::__construct($name, $options);
         $this->setComponent();
-        $this->addClass(self::CLASS_NAME);
+        $this->addClass(Constant::DROPDOWN);
     }
 
     public function isSearchable() {
@@ -22,7 +20,7 @@ class Dropdown extends Select {
     }
 
     public function setSearchable() {
-        $this->getClassAttribute()->before(self::CLASS_NAME, Constant::SEARCH);
+        $this->getClassAttribute()->before(Constant::DROPDOWN, Constant::SEARCH);
     }
 
     public function unsetSearchable() {

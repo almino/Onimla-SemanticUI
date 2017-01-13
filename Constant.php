@@ -2,7 +2,8 @@
 
 namespace Onimla\SemanticUI;
 
-abstract class Constant {
+abstract class Constant
+{
     # http://semantic-ui.com/elements/button.html#basic
 
     const BASIC = 'basic';
@@ -48,7 +49,7 @@ abstract class Constant {
 
     # http://semantic-ui.com/collections/message.html#list-message
     const LYST = 'list';
-    
+
     # http://semantic-ui.com/elements/list.html#description
     const DESCRIPTION = 'description';
 
@@ -159,9 +160,11 @@ abstract class Constant {
 
     # http://semantic-ui.com/elements/label.html#group-size
     const LABELS = 'labels';
-    
+
     # http://semantic-ui.com/elements/icon.html
     const ICON = 'icon';
-    
+
+    # http://semantic-ui.com/modules/dropdown.html
+    const DROPDOWN = 'dropdown';
 
 }
