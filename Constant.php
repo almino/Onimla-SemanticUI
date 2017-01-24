@@ -167,4 +167,7 @@ abstract class Constant
     # http://semantic-ui.com/modules/dropdown.html
     const DROPDOWN = 'dropdown';
 
+    # http://semantic-ui.com/collections/form.html#required
+    const REQUIRED = 'required';
+
 }

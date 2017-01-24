@@ -8,6 +8,7 @@ use Onimla\SemanticUI\Component;
 use Onimla\HTML\Input;
 use Onimla\HTML\Label;
 use Onimla\HTML\Polymorphism\UserInput;
+use Onimla\SemanticUI\Constant;
 
 /**
  * A field is a form element containing a label and an input
@@ -197,13 +198,13 @@ abstract class ContainerInputLabel extends Node implements HasAttribute, UserInp
     }
 
     public function setRequired() {
-        $this->container->getClassAttribute()->prepend('required');
+        $this->container->getClassAttribute()->prepend(Constant::REQUIRED);
         call_user_func(array($this->input, __FUNCTION__));
         return $this;
     }
 
     public function unsetRequired() {
-        $this->container->removeClass('required');
+        $this->container->removeClass(Constant::REQUIRED);
         call_user_func(array($this->input, __FUNCTION__));
         return $this;
     }
