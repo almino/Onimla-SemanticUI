@@ -27,6 +27,11 @@ trait Colored {
         $method = 'after';
         $search = \Onimla\SemanticUI\Component::CLASS_NAME;
 
+        if ($this->hasClass(Constant::ICON)) {
+            $method = 'prepend';
+            $search = '';
+        }
+
         if ($this->hasClass(Constant::HEADER)) {
             $method = 'before';
             $search = Constant::HEADER;
@@ -46,14 +51,6 @@ trait Colored {
             $method = 'before';
             $search = Constant::INVERTED;
         }
-        
-        /*
-        echo "<p>";
-        echo "<em>" . microtime(TRUE) . "</em>";
-        echo " <code style=\"color: grey;\">{$this->selector('css')}</code>: ";
-        echo "&ensp;Insert <strong>{$color}</strong> {$method} <code>{$search}</code>";
-        echo ".</p>";
-         */
 
         call_user_func_array(array($this->getClassAttribute(), $method), array($search, $color));
     }
